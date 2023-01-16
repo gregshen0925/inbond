@@ -2,14 +2,13 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { targetNetwork } from '@/constants/constant';
-import useOpenWallet from '@/hooks/useOpenWallet';
 
 type Props = {
-  setConnectModalOn:Dispatch<SetStateAction<boolean>>
-  setWalletInfoModalOn:Dispatch<SetStateAction<boolean>>
+  setConnectModalOn: Dispatch<SetStateAction<boolean>>;
+  setWalletInfoModalOn: Dispatch<SetStateAction<boolean>>;
 };
 
-const ConnectButton = ({setWalletInfoModalOn,setConnectModalOn}: Props) => {
+const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
   const { account, connected, network } = useWallet();
   const [address, setAddress] = useState<string | null | undefined>(null);
   useEffect(() => {

@@ -1,24 +1,28 @@
 import cn from 'classnames';
 import Header from '@/layouts/header/header';
 import Sidebar from '@/layouts/sidebar/_default';
-import { OpenWalletProvider } from '@/context/OpenWalletProvider';
-import useOpenWallet from '@/hooks/useOpenWallet';
 import WalletInfoModal from '@/components/modals/WalletInfoModal';
 import ConnectModal from '@/components/modals/ConnectModal';
+import { useState } from 'react';
 
 export default function ModernLayout({
   children,
   contentClassName,
 }: React.PropsWithChildren<{ contentClassName?: string }>) {
-  const {
-    connectModalOn,
-    setConnectModalOn,
-    walletInfoModalOn,
-    setWalletInfoModalOn,
-  } = useOpenWallet();
+  const [connectModalOn, setConnectModalOn] = useState<boolean>(false);
+  const [walletInfoModalOn, setWalletInfoModalOn] = useState<boolean>(false);
   return (
     <div className="ltr:xl:pl-72 rtl:xl:pr-72 ltr:2xl:pl-80 rtl:2xl:pr-80">
-      <Header />
+      {connectModalOn ? (
+        <ConnectModal setConnectModalOn={setConnectModalOn} />
+      ) : null}
+      {walletInfoModalOn ? (
+        <WalletInfoModal setWalletInfoModalOn={setWalletInfoModalOn} />
+      ) : null}
+      <Header
+        setConnectModalOn={setConnectModalOn}
+        setWalletInfoModalOn={setWalletInfoModalOn}
+      />
       <Sidebar className="hidden xl:block" />
 
       <main

@@ -99,7 +99,7 @@ const ConnectModal = ({ setConnectModalOn }: Props) => {
               Connect Wallet
             </h3>
           </div>
-          <div className="overflow-y-scroll p-6">
+          <div className="p-6">
             <p className="text-sm font-normal text-gray-400">
               Currently not available for mobile
             </p>

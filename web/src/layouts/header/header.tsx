@@ -11,10 +11,7 @@ import { useDrawer } from '@/components/drawer-views/context';
 import WalletConnect from '@/components/nft/wallet-connect';
 import routes from '@/config/routes';
 import ConnectButton from '@/components/connect-button';
-import useOpenWallet from '@/hooks/useOpenWallet';
-import ConnectModal from '@/components/modals/ConnectModal';
-import WalletInfoModal from '@/components/modals/WalletInfoModal';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 function NotificationButton() {
   return (
@@ -27,28 +24,32 @@ function NotificationButton() {
   );
 }
 
-function HeaderRightArea() {
-  const [connectModalOn, setConnectModalOn] = useState<boolean>(false);
-  const [walletInfoModalOn, setWalletInfoModalOn] = useState<boolean>(false);
-  return (
-    <div className="relative order-last flex shrink-0 items-center gap-4 sm:gap-6 lg:gap-8">
-      {/* <NotificationButton /> */}
-      {/* <WalletConnect /> */}
-      <ConnectButton
-        setConnectModalOn={setConnectModalOn}
-        setWalletInfoModalOn={setWalletInfoModalOn}
-      />
-      {connectModalOn ? (
-        <ConnectModal setConnectModalOn={setConnectModalOn} />
-      ) : null}
-      {walletInfoModalOn ? (
-        <WalletInfoModal setWalletInfoModalOn={setWalletInfoModalOn} />
-      ) : null}
-    </div>
-  );
-}
+// function HeaderRightArea() {
 
-export default function Header({ className }: { className?: string }) {
+//   return (
+//     <div className="relative order-last flex shrink-0 items-center gap-4 sm:gap-6 lg:gap-8">
+//       {/* <NotificationButton /> */}
+//       {/* <WalletConnect /> */}
+//       <ConnectButton
+//         setConnectModalOn={setConnectModalOn}
+//         setWalletInfoModalOn={setWalletInfoModalOn}
+//       />
+
+//     </div>
+//   );
+// }
+
+type Props = {
+  className?: string;
+  setConnectModalOn: Dispatch<SetStateAction<boolean>>;
+  setWalletInfoModalOn: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function Header({
+  className,
+  setConnectModalOn,
+  setWalletInfoModalOn,
+}: Props) {
   const router = useRouter();
   const isMounted = useIsMounted();
   const { openDrawer } = useDrawer();
@@ -84,7 +85,15 @@ export default function Header({ className }: { className?: string }) {
             className="ltr:-ml-[17px] rtl:-mr-[17px] dark:text-white"
           />
         </div>
-        <HeaderRightArea />
+        {/* <HeaderRightArea /> */}
+        <div className="relative order-last flex shrink-0 items-center gap-4 sm:gap-6 lg:gap-8">
+          {/* <NotificationButton /> */}
+          {/* <WalletConnect /> */}
+          <ConnectButton
+            setConnectModalOn={setConnectModalOn}
+            setWalletInfoModalOn={setWalletInfoModalOn}
+          />
+        </div>
       </div>
     </nav>
   );
