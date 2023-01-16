@@ -15,7 +15,7 @@ export const menuItems = [
     icon: <CompassIcon />,
     href: routes.home,
   },
-    {
+  {
     name: 'Bond Details',
     icon: <DiskIcon />,
     href: routes.bondDetails,
@@ -41,7 +41,7 @@ export const menuItems = [
   //   href: routes.liquidity,
   // },
   {
-    name: 'Create NFT',
+    name: 'Create Bond',
     icon: <PlusCircle />,
     href: routes.createBond,
   },
