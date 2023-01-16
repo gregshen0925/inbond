@@ -10,6 +10,11 @@ import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useDrawer } from '@/components/drawer-views/context';
 import WalletConnect from '@/components/nft/wallet-connect';
 import routes from '@/config/routes';
+import ConnectButton from '@/components/connect-button';
+import useOpenWallet from '@/hooks/useOpenWallet';
+import ConnectModal from '@/components/modals/ConnectModal';
+import WalletInfoModal from '@/components/modals/WalletInfoModal';
+import { useState } from 'react';
 
 function NotificationButton() {
   return (
@@ -23,10 +28,22 @@ function NotificationButton() {
 }
 
 function HeaderRightArea() {
+  const [connectModalOn, setConnectModalOn] = useState<boolean>(false);
+  const [walletInfoModalOn, setWalletInfoModalOn] = useState<boolean>(false);
   return (
     <div className="relative order-last flex shrink-0 items-center gap-4 sm:gap-6 lg:gap-8">
-      <NotificationButton />
-      <WalletConnect />
+      {/* <NotificationButton /> */}
+      {/* <WalletConnect /> */}
+      <ConnectButton
+        setConnectModalOn={setConnectModalOn}
+        setWalletInfoModalOn={setWalletInfoModalOn}
+      />
+      {connectModalOn ? (
+        <ConnectModal setConnectModalOn={setConnectModalOn} />
+      ) : null}
+      {walletInfoModalOn ? (
+        <WalletInfoModal setWalletInfoModalOn={setWalletInfoModalOn} />
+      ) : null}
     </div>
   );
 }

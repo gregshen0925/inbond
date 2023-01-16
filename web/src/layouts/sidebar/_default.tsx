@@ -20,7 +20,7 @@ export default function Sidebar({ className }: { className?: string }) {
       )}
     >
       <div className="relative flex h-24 items-center justify-between overflow-hidden px-6 py-4 2xl:px-8">
-        <div className="text-2xl">InBond</div>
+        <div className="text-2xl font-bold">InBond</div>
         {/* <Logo /> */}
         <div className="md:hidden">
           <Button
