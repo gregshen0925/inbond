@@ -16,22 +16,22 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const NFTDetailsPage: NextPageWithLayout<
+const BondDetailsPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
-  const { layout } = useLayout();
+  // const { layout } = useLayout();
 
-  if (layout === LAYOUT_OPTIONS.MINIMAL) {
-    return <MinimalNFTDetails product={nftData} />;
-  }
+  // if (layout === LAYOUT_OPTIONS.MINIMAL) {
+  //   return <MinimalNFTDetails product={nftData} />;
+  // }
 
-  if (layout === LAYOUT_OPTIONS.RETRO) {
-    return <RetroNFTDetails product={nftData} />;
-  }
+  // if (layout === LAYOUT_OPTIONS.RETRO) {
+  //   return <RetroNFTDetails product={nftData} />;
+  // }
 
-  if (layout === LAYOUT_OPTIONS.CLASSIC) {
-    return <ClassicNFTDetails product={nftData} />;
-  }
+  // if (layout === LAYOUT_OPTIONS.CLASSIC) {
+  //   return <ClassicNFTDetails product={nftData} />;
+  // }
 
   return (
     <>
@@ -44,8 +44,8 @@ const NFTDetailsPage: NextPageWithLayout<
   );
 };
 
-NFTDetailsPage.getLayout = function getLayout(page) {
+BondDetailsPage.getLayout = function getLayout(page) {
   return <RootLayout contentClassName="!pb-0">{page}</RootLayout>;
 };
 
-export default NFTDetailsPage;
+export default BondDetailsPage;

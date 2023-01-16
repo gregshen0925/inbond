@@ -60,7 +60,7 @@ export default function FeaturedCard({ item, className }: FeaturedCardProps) {
         <div className="flex shrink-0 items-center ltr:pl-2 ltr:pr-0.5 rtl:pr-2 rtl:pl-0.5">
           {amount && (
             <div className="text-sm font-medium -tracking-wider ltr:pr-2.5 rtl:pl-2.5 sm:text-base sm:ltr:pr-3 sm:rtl:pl-3">
-              {amount} ETH
+              {amount} USDC
             </div>
           )}
           {transactionUrl && (

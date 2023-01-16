@@ -9,19 +9,20 @@ import Avatar4 from '@/assets/images/avatar/4.png';
 import Avatar5 from '@/assets/images/avatar/5.png';
 import Avatar6 from '@/assets/images/avatar/6.png';
 import Avatar7 from '@/assets/images/avatar/7.png';
+import InJoyLabs from '@/assets/images/injoylabslogo.png';
+import Greg from '@/assets/images/Greg.jpg';
 
 export const nftData = {
   isAuction: true,
-  name: 'Flow Punk Gallery #303',
-  image: SingleNft,
-  minted_date: 'Jan 26, 2022',
+  name: 'InJoy Labs Bond 1',
+  image: InJoyLabs,
+  minted_date: 'Jan 13, 2023',
   minted_slug: 'https://etherscan.io/',
-  price: 0.2,
-  description:
-    'Fisherian Runaways, Child of #48 Bat Veil & #42 Screw Nose. This mushroom is the result of the cross-breeding of two original one of a kind generative mushrooms donated back to the Fisherian Runaways project their generous owner.',
-  creator: { id: 1, logo: Avatar1, name: '@Cameronwilliamson', slug: '#' },
-  collection: { id: 1, logo: Avatar3, name: 'Criptic', slug: '#' },
-  owner: { id: 1, logo: Avatar4, name: '@williamson', slug: '#' },
+  price: 1500,
+  description: 'This is a test bond created by InJoy Labs',
+  creator: { id: 1, logo: Greg, name: '@gregshen0925', slug: '#' },
+  collection: { id: 1, logo: InJoyLabs, name: 'InJoy Labs', slug: '#' },
+  owner: { id: 1, logo: Greg, name: '@gregshen0925', slug: '#' },
   block_chains: [
     { id: 1, logo: Bitcoin, name: 'Ethereum', slug: '#' },
     { id: 2, logo: Ethereum, name: 'Bitcoin', slug: '#' },
@@ -34,7 +35,7 @@ export const nftData = {
       authorSlug: '#',
       created_at: '2022-01-22T17:26:22.000000Z',
       avatar: Avatar1,
-      amount: 0.02,
+      amount: 1501,
       transactionUrl: '#',
     },
     {
@@ -44,7 +45,7 @@ export const nftData = {
       authorSlug: '#',
       created_at: '2022-02-22T17:26:22.000000Z',
       avatar: Avatar2,
-      amount: 0.05,
+      amount: 1599,
       transactionUrl: '#',
     },
     {
@@ -54,7 +55,7 @@ export const nftData = {
       authorSlug: '#',
       created_at: '2022-03-22T17:26:22.000000Z',
       avatar: Avatar3,
-      amount: 0.07,
+      amount: 1600,
       transactionUrl: '#',
     },
     {
@@ -64,7 +65,7 @@ export const nftData = {
       authorSlug: '#',
       created_at: '2022-01-22T17:26:22.000000Z',
       avatar: Avatar4,
-      amount: 0.78,
+      amount: 1700,
       transactionUrl: '#',
     },
     {
@@ -74,7 +75,7 @@ export const nftData = {
       authorSlug: '#',
       created_at: '2022-02-22T17:26:22.000000Z',
       avatar: Avatar5,
-      amount: 0.98,
+      amount: 1900,
       transactionUrl: '#',
     },
     {
@@ -84,14 +85,14 @@ export const nftData = {
       authorSlug: '#',
       created_at: '2022-03-22T17:26:22.000000Z',
       avatar: Avatar6,
-      amount: 1.01,
+      amount: 2000,
       transactionUrl: '#',
     },
   ],
   history: [
     {
       id: 1,
-      label: 'Minted',
+      label: 'Created',
       name: 'Williamson',
       authorSlug: '#',
       created_at: '2022-03-22T17:26:22.000000Z',
@@ -116,7 +117,7 @@ export const nftData = {
       authorSlug: '#',
       created_at: '2022-01-22T17:26:22.000000Z',
       avatar: Avatar1,
-      amount: 1.01,
+      amount: 2000,
       transactionUrl: '#',
     },
   ],

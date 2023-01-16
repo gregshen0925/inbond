@@ -16,7 +16,7 @@ type Avatar = {
   slug: string;
   logo: StaticImageData;
 };
-type NftDetailsProps = {
+type BondDetailsProps = {
   isAuction?: boolean;
   image: StaticImageData;
   name: string;
@@ -30,7 +30,7 @@ type NftDetailsProps = {
   block_chains: Avatar[];
 };
 
-export default function NftDetails({ product }: { product: NftDetailsProps }) {
+export default function NftDetails({ product }: { product: BondDetailsProps }) {
   const {
     isAuction,
     image,
@@ -75,7 +75,7 @@ export default function NftDetails({ product }: { product: NftDetailsProps }) {
                 href={minted_slug}
                 className="mt-1.5 inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white xl:mt-2.5"
               >
-                Minted on {minted_date}
+                Created on {minted_date}
                 <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
               </AnchorLink>
               <div className="mt-4 flex flex-wrap gap-6 pt-0.5 lg:-mx-6 lg:mt-6 lg:gap-0">
@@ -143,7 +143,7 @@ export default function NftDetails({ product }: { product: NftDetailsProps }) {
                     </div>
                     <div className="block">
                       <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
-                        Block Chain
+                        Blockchain
                       </h3>
                       <div className="flex flex-col gap-2">
                         {block_chains?.map((item: any) => (

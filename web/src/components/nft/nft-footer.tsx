@@ -43,7 +43,7 @@ export default function NftFooter({
                 </AnchorLink>
               </h3>
               <div className="text-lg font-medium -tracking-wider md:text-xl xl:text-2xl">
-                {currentBid?.amount} ETH
+                {currentBid?.amount} USDC
               </div>
               <AnchorLink
                 href={currentBid?.authorSlug ?? '#'}
