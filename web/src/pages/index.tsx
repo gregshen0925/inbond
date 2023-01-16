@@ -1,6 +1,8 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { NextPageWithLayout } from '@/types';
 import RootLayout from '@/layouts/_root-layout';
+import Search from '@/components/search/search';
+import { NextSeo } from 'next-seo';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -11,8 +13,12 @@ export const getStaticProps: GetStaticProps = async () => {
 const HomePage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
-  return (<div>projects</div>)
-  ;
+  return (
+    <>
+      <NextSeo title="" description="" />
+      <Search />
+    </>
+  );
 };
 
 HomePage.getLayout = function getLayout(page) {

@@ -10,11 +10,15 @@ import { PlusCircle } from '@/components/icons/plus-circle';
 import { CompassIcon } from '@/components/icons/compass';
 
 export const menuItems = [
-
   {
-    name: 'Projects',
-    icon: <FarmIcon />,
+    name: 'Explore Bonds',
+    icon: <CompassIcon />,
     href: routes.home,
+  },
+    {
+    name: 'Bond Details',
+    icon: <DiskIcon />,
+    href: routes.bondDetails,
   },
   {
     name: 'Dashboard',
@@ -36,21 +40,12 @@ export const menuItems = [
   //   icon: <PoolIcon />,
   //   href: routes.liquidity,
   // },
-  // {
-  //   name: 'Explore NFTs',
-  //   icon: <CompassIcon />,
-  //   href: routes.search,
-  // },
-  // {
-  //   name: 'Create NFT',
-  //   icon: <PlusCircle />,
-  //   href: routes.createNft,
-  // },
-  // {
-  //   name: 'NFT Details',
-  //   icon: <DiskIcon />,
-  //   href: routes.nftDetails,
-  // },
+  {
+    name: 'Create NFT',
+    icon: <PlusCircle />,
+    href: routes.createBond,
+  },
+
   // {
   //   name: 'Profile',
   //   icon: <ProfileIcon />,
