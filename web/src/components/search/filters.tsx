@@ -224,9 +224,9 @@ export function Filters() {
       <Collapse label="Price Range" initialOpen>
         <PriceRange />
       </Collapse>
-      <Collapse label="Collection" initialOpen>
+      {/* <Collapse label="Collection" initialOpen>
         <CollectionSelect onSelect={(value) => console.log(value)} />
-      </Collapse>
+      </Collapse> */}
     </>
   );
 }
