@@ -2,6 +2,7 @@ import SingleNft from '@/assets/images/single-nft.jpg';
 
 import Bitcoin from '@/assets/images/currency/bitcoin.svg';
 import Ethereum from '@/assets/images/currency/ethereum.svg';
+import Aptos from '@/assets/images/aptos.png';
 import Avatar1 from '@/assets/images/avatar/1.png';
 import Avatar2 from '@/assets/images/avatar/2.png';
 import Avatar3 from '@/assets/images/avatar/3.png';
@@ -26,6 +27,7 @@ export const nftData = {
   block_chains: [
     { id: 1, logo: Bitcoin, name: 'Ethereum', slug: '#' },
     { id: 2, logo: Ethereum, name: 'Bitcoin', slug: '#' },
+    { id: 3, logo: Aptos, name: 'Aptos', slug: '#' },
   ],
   bids: [
     {
