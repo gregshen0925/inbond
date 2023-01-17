@@ -3,22 +3,9 @@ import { NextSeo } from 'next-seo';
 import type { NextPageWithLayout } from '@/types';
 import NftDetails from '@/components/nft/nft-details';
 import { nftData } from '@/data/static/single-nft';
-import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
-import MinimalNFTDetails from '@/components/nft/minimal-nft-details';
-import RetroNFTDetails from '@/components/nft/retro-nft-details';
-import ClassicNFTDetails from '@/components/nft/classic-nft-details';
 import RootLayout from '@/layouts/_root-layout';
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-  };
-};
-
-const BondDetailsPage: NextPageWithLayout<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = () => {
+const BondDetailsPage: NextPageWithLayout = () => {
   // const { layout } = useLayout();
 
   // if (layout === LAYOUT_OPTIONS.MINIMAL) {
@@ -35,10 +22,7 @@ const BondDetailsPage: NextPageWithLayout<
 
   return (
     <>
-      <NextSeo
-        title="NFT details"
-        description="Criptic - React Next Web3 NFT Crypto Dashboard Template"
-      />
+      <NextSeo title="Bond details" description="" />
       <NftDetails product={nftData} />
     </>
   );
