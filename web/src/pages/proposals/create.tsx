@@ -19,10 +19,10 @@ const actionOptions = [
     name: 'Custom Contact',
     value: 'custom_contact',
   },
-  {
-    name: 'CRIPTIC Token',
-    value: 'criptic_token',
-  },
+  // {
+  //   name: 'CRIPTIC Token',
+  //   value: 'criptic_token',
+  // },
   {
     name: 'Reserve',
     value: 'reserve',
@@ -217,14 +217,14 @@ function ActionFields() {
               placeholder="Enter contact address 0x1f9840a85..."
             />
           )}
-          {actionType.value === 'criptic_token' && (
+          {/* {actionType.value === 'criptic_token' && (
             <div className="rtl:xs:mlr6 rtl:sm:mlr12 mt-4 ltr:xs:ml-6 ltr:sm:ml-12">
               <CripticTokenAction
                 selectedOption={cripticTokenAction}
                 onChange={setCripticTokenAction}
               />
             </div>
-          )}
+          )} */}
           {actionType.value === 'reserve' && (
             <div className="mt-4 ltr:xs:ml-6 rtl:xs:mr-6 ltr:sm:ml-12 rtl:sm:mr-12">
               <Listbox
@@ -253,12 +253,9 @@ const CreateProposalPage: NextPageWithLayout = () => {
   }
   return (
     <>
-      <NextSeo
-        title="Create Proposal"
-        description="Create proposal"
-      />
+      <NextSeo title="Create Proposal" description="Create proposal" />
       <section className="mx-auto w-full max-w-[1160px] text-sm">
-        <header className="mb-10 flex flex-col gap-4 rounded-lg bg-white p-5 py-6 shadow-card dark:bg-light-dark xs:p-6 sm:flex-row sm:items-center sm:justify-between">
+        {/* <header className="mb-10 flex flex-col gap-4 rounded-lg bg-white p-5 py-6 shadow-card dark:bg-light-dark xs:p-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-4 xs:gap-3 xl:gap-4">
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gray-100 dark:bg-dark">
               <Image alt="Vote Pool" src={votePool} width={32} height={32} />
@@ -292,7 +289,7 @@ const CreateProposalPage: NextPageWithLayout = () => {
               All Proposal
             </Button>
           </div>
-        </header>
+        </header> */}
 
         <h2 className="mb-5 text-lg font-medium dark:text-gray-100 sm:mb-6 lg:mb-7 xl:text-xl">
           Create a new proposal

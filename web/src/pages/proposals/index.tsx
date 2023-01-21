@@ -88,7 +88,7 @@ const ProposalsPage: NextPageWithLayout = () => {
         description="Proposals"
       />
       <section className="mx-auto w-full max-w-[1160px] text-sm ">
-        <header
+        {/* <header
           className={cn(
             'mb-8 flex flex-col gap-4 rounded-lg bg-white p-5 py-6 shadow-card dark:bg-light-dark xs:p-6 ',
             {
@@ -122,7 +122,7 @@ const ProposalsPage: NextPageWithLayout = () => {
               Create Proposal
             </Button>
           </div>
-        </header>
+        </header> */}
         <ParamTab tabMenu={tabMenuItems}>
           <TabPanel className="focus:outline-none">
             <VoteList voteStatus={'active'} />
