@@ -110,14 +110,14 @@ export default function NftDetails({ product }: { product: BondDetailsProps }) {
                     title: 'Details',
                     path: 'details',
                   },
-                  {
-                    title: 'Bids',
-                    path: 'bids',
-                  },
-                  {
-                    title: 'History',
-                    path: 'history',
-                  },
+                  // {
+                  //   title: 'Bids',
+                  //   path: 'bids',
+                  // },
+                  // {
+                  //   title: 'History',
+                  //   path: 'history',
+                  // },
                 ]}
               >
                 <TabPanel className="focus:outline-none">
@@ -141,7 +141,7 @@ export default function NftDetails({ product }: { product: BondDetailsProps }) {
                         />
                       </AnchorLink>
                     </div>
-                    <div className="block">
+                    {/* <div className="block">
                       <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
                         Blockchain
                       </h3>
@@ -159,7 +159,7 @@ export default function NftDetails({ product }: { product: BondDetailsProps }) {
                           </AnchorLink>
                         ))}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </TabPanel>
                 <TabPanel className="focus:outline-none">
@@ -173,7 +173,7 @@ export default function NftDetails({ product }: { product: BondDetailsProps }) {
                     ))}
                   </div>
                 </TabPanel>
-                <TabPanel className="focus:outline-none">
+                {/* <TabPanel className="focus:outline-none">
                   <div className="flex flex-col-reverse">
                     {nftData?.history?.map((item) => (
                       <FeaturedCard
@@ -183,24 +183,24 @@ export default function NftDetails({ product }: { product: BondDetailsProps }) {
                       />
                     ))}
                   </div>
-                </TabPanel>
+                </TabPanel> */}
               </ParamTab>
             </div>
           </div>
-          <NftFooter
+          {/* <NftFooter
             className="hidden md:block"
             currentBid={nftData?.bids[nftData?.bids?.length - 1]}
             auctionTime={Date.now() + 4000000 * 10}
             isAuction={isAuction}
             price={price}
-          />
+          /> */}
         </div>
-        <NftFooter
+        {/* <NftFooter
           currentBid={nftData?.bids[nftData?.bids?.length - 1]}
           auctionTime={Date.now() + 4000000 * 10}
           isAuction={isAuction}
           price={price}
-        />
+        /> */}
       </div>
     </div>
   );

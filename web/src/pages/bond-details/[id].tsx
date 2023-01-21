@@ -1,4 +1,3 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import type { NextPageWithLayout } from '@/types';
 import NftDetails from '@/components/nft/nft-details';

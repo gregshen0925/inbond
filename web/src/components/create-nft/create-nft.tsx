@@ -1,66 +1,65 @@
 import { useState } from 'react';
-import cn from 'classnames';
+// import cn from 'classnames';
 import { NextSeo } from 'next-seo';
-import { Transition } from '@/components/ui/transition';
-import { RadioGroup } from '@/components/ui/radio-group';
-import { Listbox } from '@/components/ui/listbox';
-import Image from '@/components/ui/image';
+// import { Transition } from '@/components/ui/transition';
+// import { RadioGroup } from '@/components/ui/radio-group';
+// import { Listbox } from '@/components/ui/listbox';
+// import Image from '@/components/ui/image';
 import Button from '@/components/ui/button';
-import { Switch } from '@/components/ui/switch';
+// import { Switch } from '@/components/ui/switch';
 import Input from '@/components/ui/forms/input';
 import Textarea from '@/components/ui/forms/textarea';
 import Uploader from '@/components/ui/forms/uploader';
 import InputLabel from '@/components/ui/input-label';
-import ToggleBar from '@/components/ui/toggle-bar';
-import { ChevronDown } from '@/components/icons/chevron-down';
-import { Ethereum } from '@/components/icons/ethereum';
-import { Flow } from '@/components/icons/flow';
-import { Warning } from '@/components/icons/warning';
-import { Unlocked } from '@/components/icons/unlocked';
-import Avatar from '@/components/ui/avatar';
-//images
-import AuthorImage from '@/assets/images/author.jpg';
-import NFT1 from '@/assets/images/nft/nft-1.jpg';
-import PriceType from '@/components/create-nft/price-types-props';
+// import ToggleBar from '@/components/ui/toggle-bar';
+// import { ChevronDown } from '@/components/icons/chevron-down';
+// import { Ethereum } from '@/components/icons/ethereum';
+// import { Flow } from '@/components/icons/flow';
+// import { Warning } from '@/components/icons/warning';
+// import { Unlocked } from '@/components/icons/unlocked';
+// import Avatar from '@/components/ui/avatar';
+// //images
+// import AuthorImage from '@/assets/images/author.jpg';
+// import NFT1 from '@/assets/images/nft/nft-1.jpg';
+// import PriceType from '@/components/create-nft/price-types-props';
 
-const BlockchainOptions = [
-  {
-    id: 1,
-    name: 'Ethereum',
-    value: 'ethereum',
-    icon: <Ethereum />,
-  },
-  {
-    id: 2,
-    name: 'Flow',
-    value: 'flow',
-    icon: <Flow />,
-  },
-];
+// const BlockchainOptions = [
+//   {
+//     id: 1,
+//     name: 'Ethereum',
+//     value: 'ethereum',
+//     icon: <Ethereum />,
+//   },
+//   {
+//     id: 2,
+//     name: 'Flow',
+//     value: 'flow',
+//     icon: <Flow />,
+//   },
+// ];
 
 export default function CreateNFT() {
   let [publish, setPublish] = useState(true);
   let [explicit, setExplicit] = useState(false);
   let [unlocked, setUnlocked] = useState(false);
   let [priceType, setPriceType] = useState('fixed');
-  let [blockchain, setBlockChain] = useState(BlockchainOptions[0]);
+  // let [blockchain, setBlockChain] = useState(BlockchainOptions[0]);
   return (
     <>
       <NextSeo title="" description="" />
-      <div className="mx-auto w-full sm:pt-0 lg:px-8 xl:px-10 2xl:px-0">
+      <div className="mx-auto w-1/2 sm:pt-0 lg:px-8 xl:px-10 2xl:px-0">
         <h2 className="mb-6 text-lg font-medium uppercase tracking-wider text-gray-900 dark:text-white sm:mb-10 sm:text-2xl">
-          Create New Item
+          Create New Bond
         </h2>
         <div className="mb-8 grid grid-cols-1 gap-12 lg:grid-cols-3">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             {/* File uploader */}
-            <div className="mb-8">
+            <div className="mb-8 grid ">
               <InputLabel title="Upload file" important />
               <Uploader />
             </div>
-
             {/* NFT price type */}
-            <div className="flex items-center justify-between gap-4">
+            {/* <div className="flex items-center justify-between gap-4">
               <InputLabel
                 title="Put on marketplace"
                 subTitle="Enter price to allow users instantly purchase your NFT"
@@ -87,17 +86,16 @@ export default function CreateNFT() {
                 </Switch>
               </div>
             </div>
-            {publish && <PriceType value={priceType} onChange={setPriceType} />}
+            {publish && <PriceType value={priceType} onChange={setPriceType} />} */}
           </div>
 
-          <div className="hidden flex-col lg:flex">
-            {/* NFT preview */}
+          {/* <div className="hidden flex-col lg:flex">
             <InputLabel title="Preview" />
             <div className="relative flex flex-grow flex-col overflow-hidden rounded-lg bg-white shadow-card transition-all duration-200 hover:shadow-large dark:bg-light-dark">
               <div className="flex items-center p-4 text-sm font-medium text-gray-600 transition hover:text-gray-900 dark:text-gray-400">
                 <Avatar
                   size="sm"
-                  image={AuthorImage}
+                  image=""
                   alt="Cameronwilliamson"
                   className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
                 />
@@ -105,7 +103,7 @@ export default function CreateNFT() {
               </div>
               <div className="relative block w-full pb-full">
                 <Image
-                  src={NFT1}
+                  src=""
                   placeholder="blur"
                   layout="fill"
                   objectFit="cover"
@@ -121,16 +119,37 @@ export default function CreateNFT() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Price */}
-        <div className="mb-8">
-          <InputLabel title="Price" important />
+        <div className="mb-8 ">
+          <InputLabel title="Total to raise" important />
           <Input
             min={0}
             type="number"
-            placeholder="Enter your price"
+            placeholder="Enter amount"
+            inputClassName="spin-button-hidden"
+          />
+        </div>
+
+        {/* Period */}
+        <div className="mb-8">
+          <InputLabel title="Start time" important />
+          <Input
+            min={0}
+            type="datetime-local"
+            placeholder="Enter amount"
+            inputClassName="spin-button-hidden"
+          />
+        </div>
+
+        <div className="mb-8">
+          <InputLabel title="End time" important />
+          <Input
+            min={0}
+            type="datetime-local"
+            placeholder="Enter amount"
             inputClassName="spin-button-hidden"
           />
         </div>
@@ -160,7 +179,7 @@ export default function CreateNFT() {
         </div>
 
         {/* Unlockable content */}
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <ToggleBar
             title="Unlockable Content"
             subTitle="Include unlockable content that can only be revealed by the owner of the item."
@@ -172,10 +191,10 @@ export default function CreateNFT() {
               <Textarea placeholder="Enter content (access key, code to redeem, link to a file, etc.)" />
             )}
           </ToggleBar>
-        </div>
+        </div> */}
 
         {/* Explicit content */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <ToggleBar
             title="Explicit &amp; Sensitive Content"
             subTitle="Set this item as explicit and sensitive content"
@@ -183,19 +202,19 @@ export default function CreateNFT() {
             checked={explicit}
             onChange={() => setExplicit(!explicit)}
           />
-        </div>
+        </div> */}
 
         {/* Supply */}
         <div className="mb-8">
           <InputLabel
-            title="Supply"
-            subTitle="The number of items that can be minted."
+            title="Max investment per wallet"
+            subTitle="What is the maximum value for each wallet to purchase"
           />
           <Input type="number" placeholder="1" disabled />
         </div>
 
         {/* Blockchain */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <InputLabel title="Blockchain" />
           <div className="relative">
             <Listbox value={blockchain} onChange={setBlockChain}>
@@ -234,9 +253,10 @@ export default function CreateNFT() {
               </Transition>
             </Listbox>
           </div>
+        </div> */}
+        <div className="flex justify-center">
+          <Button shape="rounded">CREATE</Button>
         </div>
-
-        <Button shape="rounded">CREATE</Button>
       </div>
     </>
   );

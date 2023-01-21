@@ -46,9 +46,9 @@ export default function ModernScreen() {
         <VolumeChart />
       </div>
 
-      <div className="my-8 sm:my-10">
+      {/* <div className="my-8 sm:my-10">
         <TopCurrencyTable />
-      </div>
+      </div> */}
 
       <div className="flex flex-wrap">
         <div
