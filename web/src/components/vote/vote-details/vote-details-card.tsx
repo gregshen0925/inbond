@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import cn from 'classnames';
 import Button from '@/components/ui/button';
 import RevealContent from '@/components/ui/reveal-content';
-import AuctionCountdown from '@/components/nft/auction-countdown';
+import AuctionCountdown from '@/components/bond/auction-countdown';
 import { Switch } from '@/components/ui/switch';
 import { ExportIcon } from '@/components/icons/export-icon';
 import VotePoll from '@/components/vote/vote-details/vote-poll';
@@ -12,7 +12,7 @@ import VoteActions from '@/components/vote/vote-details/vote-actions';
 import VoterTable from '@/components/vote/vote-details/voter-table';
 import { fadeInBottom } from '@/lib/framer-motion/fade-in-bottom';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 function VoteActionButton() {
   return (

@@ -6,6 +6,10 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
+type Value = {
+  value: string;
+};
+
 export type CoinTypes = {
   icon: JSX.Element;
   code: string;
@@ -18,3 +22,12 @@ export interface Attachment {
   original: string;
   thumbnail: string;
 }
+
+export type BondData = {
+  description: string;
+  external_url: string;
+  funding: Value;
+  image_url: string;
+  names: string;
+  target_funding_size: string;
+};

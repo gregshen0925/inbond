@@ -13,17 +13,14 @@ import forum from '@/assets/images/forum.svg';
 import bank from '@/assets/images/bank.svg';
 import mirror from '@/assets/images/mirror.svg';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 const VotePage: NextPageWithLayout = () => {
   const router = useRouter();
   const { layout } = useLayout();
   return (
     <>
-      <NextSeo
-        title="Vote"
-        description="Voting"
-      />
+      <NextSeo title="Vote" description="Voting" />
       <div className="mx-auto w-full max-w-[1160px] text-sm md:pt-14 4xl:pt-24">
         <div
           className={cn('grid ', {

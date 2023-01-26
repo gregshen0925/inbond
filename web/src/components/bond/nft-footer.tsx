@@ -2,7 +2,7 @@ import { useModal } from '@/components/modal-views/context';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import cn from 'classnames';
 import Image from '@/components/ui/image';
-import AuctionCountdown from '@/components/nft/auction-countdown';
+import AuctionCountdown from '@/components/bond/auction-countdown';
 import Button from '@/components/ui/button';
 import Avatar1 from '@/assets/images/avatar/3.png';
 

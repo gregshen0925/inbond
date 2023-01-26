@@ -1,14 +1,14 @@
 import { StaticImageData } from 'next/image';
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 import Image from '@/components/ui/image';
-import FeaturedCard from '@/components/nft/featured-card';
+import FeaturedCard from '@/components/bond/featured-card';
 import ListCard from '@/components/ui/list-card';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { ArrowLinkIcon } from '@/components/icons/arrow-link-icon';
 import { nftData } from '@/data/static/single-nft';
-import NftDropDown from '@/components/nft/nft-dropdown';
+import NftDropDown from '@/components/bond/nft-dropdown';
 import Avatar from '@/components/ui/avatar';
-import NftFooter from '@/components/nft/nft-footer';
+import NftFooter from '@/components/bond/nft-footer';
 
 type Avatar = {
   id: string | number;

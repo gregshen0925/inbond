@@ -4,7 +4,7 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useDirection } from '@/lib/hooks/use-direction';
 import { useThemeColor } from '@/lib/hooks/use-theme-color';
 import { useSettingsDrawer } from '@/components/settings/settings-context';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 import { useLayout } from '@/lib/hooks/use-layout';
 
 export default function SettingsButton() {

@@ -1,13 +1,13 @@
-"use client";
-import { useWallet } from "@manahippo/aptos-wallet-adapter";
+'use client';
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import React, {
   useRef,
   useState,
   type Dispatch,
   type SetStateAction,
-} from "react";
-import { motion } from "framer-motion";
-import useOnClickOutside from "../../../hooks/useOnClickOutside";
+} from 'react';
+import { motion } from 'framer-motion';
+import useOnClickOutside from '../../../lib/hooks/use-click-outside';
 
 type Props = {
   setWalletInfoModalOn: Dispatch<SetStateAction<boolean>>;
@@ -25,7 +25,7 @@ const InboxModal = ({ setWalletInfoModalOn }: Props) => {
     setWalletInfoModalOn(false);
   };
   const handleCopyText = () => {
-    navigator.clipboard.writeText(account?.address?.toString() || "");
+    navigator.clipboard.writeText(account?.address?.toString() || '');
     setCopied(true);
   };
   useOnClickOutside(clickOutsideRef, clickOutsidehandler);
@@ -72,7 +72,7 @@ const InboxModal = ({ setWalletInfoModalOn }: Props) => {
               <motion.div
                 whileTap={{
                   scale: 0.8,
-                  borderRadius: "100%",
+                  borderRadius: '100%',
                 }}
               >
                 <button onClick={handleCopyText} className="cursor-pointer">
@@ -82,7 +82,7 @@ const InboxModal = ({ setWalletInfoModalOn }: Props) => {
                     <div>
                       <h3 className="text-center text-base font-semibold text-gray-900 dark:text-white lg:text-xl">
                         {account?.address?.toString().substring(0, 5) +
-                          "..." +
+                          '...' +
                           account?.address
                             ?.toString()
                             .substring(
@@ -101,7 +101,7 @@ const InboxModal = ({ setWalletInfoModalOn }: Props) => {
             <motion.div
               whileTap={{
                 scale: 0.8,
-                borderRadius: "100%",
+                borderRadius: '100%',
               }}
             >
               <button

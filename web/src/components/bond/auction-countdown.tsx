@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import Countdown, { zeroPad } from 'react-countdown';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 function CountdownDisplayWrapper({ days, hours, minutes, seconds }: any) {
   const { layout } = useLayout();

@@ -10,9 +10,9 @@ import { Close } from '@/components/icons/close';
 import { useDrawer } from '@/components/drawer-views/context';
 import { ChevronDown } from '@/components/icons/chevron-down';
 import { MenuItem } from '@/components/ui/collapsible-menu';
-import WalletConnect from '@/components/nft/wallet-connect';
+import WalletConnect from '@/components/bond/wallet-connect';
 import { menuItems } from '@/layouts/sidebar/_menu-items';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 export function MenuItems() {
   const router = useRouter();

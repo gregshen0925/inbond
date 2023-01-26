@@ -8,17 +8,17 @@ import Button from '@/components/ui/button';
 import { Close } from '@/components/icons/close';
 import { useModal, MODAL_VIEW } from '@/components/modal-views/context';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 import Followers from '@/components/profile/followers-view';
 // dynamic imports
 const SearchView = dynamic(() => import('@/components/search/view'));
-const ShareView = dynamic(() => import('@/components/nft/share-view'));
-const SelectWallet = dynamic(() => import('@/components/nft/select-wallet'));
+const ShareView = dynamic(() => import('@/components/bond/share-view'));
+const SelectWallet = dynamic(() => import('@/components/bond/select-wallet'));
 const ProfileInfo = dynamic(
   () => import('@/components/profile/profile-info-view')
 );
 const PreviewContent = dynamic(
-  () => import('@/components/create-nft/nft-preview-content')
+  () => import('@/components/create-bond/nft-preview-content')
 );
 
 function renderModalContent(view: MODAL_VIEW | string) {

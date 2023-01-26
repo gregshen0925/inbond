@@ -1,13 +1,13 @@
 import type { NextPageWithLayout } from '@/types';
 import { NextSeo } from 'next-seo';
 import RootLayout from '@/layouts/_root-layout';
-import CreateNFT from '@/components/create-nft/create-nft';
+import CreateBond from '@/components/create-bond/create-bond';
 
 const CreateBondPage: NextPageWithLayout = () => {
   return (
     <>
       <NextSeo title="" description="" />
-      <CreateNFT />
+      <CreateBond />
     </>
   );
 };

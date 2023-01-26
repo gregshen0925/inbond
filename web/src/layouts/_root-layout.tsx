@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 import Loader from '@/components/ui/loader';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 // dynamic imports

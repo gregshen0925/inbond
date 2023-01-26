@@ -38,7 +38,7 @@ import InputLabel from '@/components/ui/input-label';
 //   },
 // ];
 
-export default function CreateNFT() {
+export default function CreateBond() {
   let [publish, setPublish] = useState(true);
   let [explicit, setExplicit] = useState(false);
   let [unlocked, setUnlocked] = useState(false);

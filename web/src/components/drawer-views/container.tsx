@@ -9,7 +9,7 @@ const Sidebar = dynamic(() => import('@/layouts/sidebar/_default'));
 const DrawerFilters = dynamic(() => import('@/components/search/filters'));
 const DrawerMenu = dynamic(() => import('@/layouts/sidebar/_layout-menu'));
 const PreviewContent = dynamic(
-  () => import('@/components/create-nft/nft-preview-content')
+  () => import('@/components/create-bond/nft-preview-content')
 );
 
 function renderDrawerContent(view: DRAWER_VIEW | string) {

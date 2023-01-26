@@ -1,13 +1,13 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import type { NextPageWithLayout } from '@/types';
-import NftDetails from '@/components/nft/nft-details';
+import NftDetails from '@/components/bond/bond-details';
 import { nftData } from '@/data/static/single-nft';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
-import MinimalNFTDetails from '@/components/nft/minimal-nft-details';
-import RetroNFTDetails from '@/components/nft/retro-nft-details';
-import ClassicNFTDetails from '@/components/nft/classic-nft-details';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
+import MinimalNFTDetails from '@/components/bond/minimal-nft-details';
+import RetroNFTDetails from '@/components/bond/retro-nft-details';
+import ClassicNFTDetails from '@/components/bond/classic-nft-details';
 import RootLayout from '@/layouts/_root-layout';
 
 export const getStaticProps: GetStaticProps = async () => {

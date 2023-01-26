@@ -1,14 +1,14 @@
 import { StaticImageData } from 'next/image';
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 import Image from '@/components/ui/image';
-import FeaturedCard from '@/components/nft/featured-card';
+import FeaturedCard from '@/components/bond/featured-card';
 import ListCard from '@/components/ui/list-card';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { ArrowLinkIcon } from '@/components/icons/arrow-link-icon';
 import { nftData } from '@/data/static/single-nft';
-import NftDropDown from '@/components/nft/nft-dropdown';
+import NftDropDown from '@/components/bond/nft-dropdown';
 import Avatar from '@/components/ui/avatar';
-import NftFooter from '@/components/nft/nft-footer';
+import NftFooter from '@/components/bond/nft-footer';
 import { NextSeo } from 'next-seo';
 
 type Avatar = {
@@ -52,10 +52,7 @@ export default function ClassicNFTDetails({
 
   return (
     <>
-      <NextSeo
-        title=""
-        description=""
-      />
+      <NextSeo title="" description="" />
       <div className="flex flex-grow">
         <div className="mx-auto flex w-full flex-grow flex-col transition-all xl:max-w-[1360px] 4xl:max-w-[1760px]">
           <div className="relative mb-8 flex flex-grow items-center justify-center md:mb-0 md:pb-7 ltr:md:left-0 rtl:md:right-0 rtl:md:pr-0 lg:fixed lg:mb-0 lg:h-[calc(100%-140px)] lg:w-[calc(100%-492px)] ltr:lg:pl-0 rtl:lg:pr-0 xl:w-[calc(100%-412px)] ltr:xl:pl-0 ltr:xl:pr-12 rtl:xl:pr-0 rtl:xl:pl-12 2xl:w-[calc(100%-404px)] 2xl:pt-0 ltr:2xl:pl-0 3xl:w-[calc(100%-460px)] ltr:4xl:pl-0 rtl:4xl:pr-0">

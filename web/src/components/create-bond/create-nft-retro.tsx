@@ -16,8 +16,8 @@ import { Flow } from '@/components/icons/flow';
 import { Warning } from '@/components/icons/warning';
 import { Unlocked } from '@/components/icons/unlocked';
 import React from 'react';
-import Preview from '@/components/create-nft/nft-preview';
-import PriceType from '@/components/create-nft/price-types-props';
+import Preview from '@/components/create-bond/nft-preview';
+import PriceType from '@/components/create-bond/price-types-props';
 
 const BlockchainOptions = [
   {
@@ -42,10 +42,7 @@ export default function CreateNFTRetro() {
   const [blockchain, setBlockChain] = useState(BlockchainOptions[0]);
   return (
     <>
-      <NextSeo
-        title=""
-        description=""
-      />
+      <NextSeo title="" description="" />
       <form>
         <div className="mx-auto w-full pt-8 sm:pt-12 lg:px-8 xl:px-10 2xl:px-0">
           <div className="flex items-center justify-between">

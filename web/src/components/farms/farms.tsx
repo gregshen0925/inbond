@@ -12,7 +12,7 @@ import { Switch } from '@/components/ui/switch';
 import { ChevronDown } from '@/components/icons/chevron-down';
 import { SearchIcon } from '@/components/icons/search';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 import HorizontalThreeDots from '@/components/icons/horizontal-three-dots';
 import routes from '@/config/routes';
 

@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 const data = [
   {

@@ -4,7 +4,7 @@ import { Verified } from '@/components/icons/verified';
 import Avatar from '@/components/ui/avatar';
 import { StaticImageData } from 'next/image';
 
-type NFTGridProps = {
+type BondGridProps = {
   author: string;
   authorImage: StaticImageData;
   image: StaticImageData;
@@ -13,14 +13,14 @@ type NFTGridProps = {
   price: string;
 };
 
-export default function NFTGrid({
+export default function BondGrid({
   author,
   authorImage,
   image,
   name,
   collection,
   price,
-}: NFTGridProps) {
+}: BondGridProps) {
   return (
     <div className="relative overflow-hidden rounded-lg bg-white shadow-card transition-all duration-200 hover:shadow-large dark:bg-light-dark">
       <div className="p-4">
@@ -37,7 +37,10 @@ export default function NFTGrid({
           <span className="overflow-hidden text-ellipsis">@{author}</span>
         </AnchorLink>
       </div>
-      <AnchorLink href="/bond-details" className="relative block w-full pb-full">
+      <AnchorLink
+        href="/bond-details/injoy-labs-phase-1"
+        className="relative block w-full pb-full"
+      >
         <Image
           src={image}
           placeholder="blur"

@@ -1,7 +1,7 @@
 import React, { useRef, type Dispatch, type SetStateAction } from 'react';
 import { motion } from 'framer-motion';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
-import useOnClickOutside from '../../../hooks/useOnClickOutside';
+import useOnClickOutside from '../../../lib/hooks/use-click-outside';
 import Image from 'next/image';
 
 interface Props {

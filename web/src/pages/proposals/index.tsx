@@ -13,7 +13,7 @@ import { getVotesByStatus } from '@/data/static/vote-data';
 import votePool from '@/assets/images/vote-pool.svg';
 import RootLayout from '@/layouts/_root-layout';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 const ProposalsPage: NextPageWithLayout = () => {
   const router = useRouter();
@@ -83,10 +83,7 @@ const ProposalsPage: NextPageWithLayout = () => {
   ];
   return (
     <>
-      <NextSeo
-        title="Proposal"
-        description="Proposals"
-      />
+      <NextSeo title="Proposal" description="Proposals" />
       <section className="mx-auto w-full max-w-[1160px] text-sm ">
         {/* <header
           className={cn(

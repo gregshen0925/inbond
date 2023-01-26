@@ -3,7 +3,7 @@ import Button from '@/components/ui/button';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { InfoIcon } from '@/components/icons/info-icon';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 interface AuthorInformationProps {
   data: any;

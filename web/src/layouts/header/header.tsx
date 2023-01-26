@@ -8,7 +8,7 @@ import ActiveLink from '@/components/ui/links/active-link';
 import SearchButton from '@/components/search/button';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useDrawer } from '@/components/drawer-views/context';
-import WalletConnect from '@/components/nft/wallet-connect';
+import WalletConnect from '@/components/bond/wallet-connect';
 import routes from '@/config/routes';
 import ConnectButton from '@/components/connect-button';
 import { Dispatch, SetStateAction, useState } from 'react';

@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 // 1. set initial atom for criptic layout
 const cripticLayoutAtom = atom(

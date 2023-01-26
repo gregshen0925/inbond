@@ -21,7 +21,7 @@ import { RetroLayoutIcon } from '@/components/icons/retro-layout-icon';
 import { MinimalLayoutIcon } from '@/components/icons/minimal-layout-icon';
 import { ClassicLayoutIcon } from '@/components/icons/classic-layout-icon';
 import { useLayout } from '@/lib/hooks/use-layout';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 const ColorPreset = [
   {

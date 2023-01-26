@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useMeasure } from '@/lib/hooks/use-measure';
 import ActiveLink from '@/components/ui/links/active-link';
 import { ChevronDown } from '@/components/icons/chevron-down';
-import { LAYOUT_OPTIONS } from '@/lib/constants';
+import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
 type MenuItemProps = {
   name?: string;

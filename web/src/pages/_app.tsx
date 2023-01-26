@@ -7,9 +7,9 @@ import ModalsContainer from '@/components/modal-views/container';
 import DrawersContainer from '@/components/drawer-views/container';
 import SettingsButton from '@/components/settings/settings-button';
 import SettingsDrawer from '@/components/settings/settings-drawer';
-import { WalletProvider } from '@/lib/hooks/use-connect';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // base css file
 import 'swiper/css';
@@ -44,6 +44,8 @@ const toastOptions = {
   loading: { className: 'border border-yello-300' },
 };
 
+const queryClient = new QueryClient();
+
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   //could remove this if you don't need to page level layout
   const getLayout = Component.getLayout ?? ((page) => page);
@@ -60,11 +62,13 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
       <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
         <Toaster position="top-center" toastOptions={toastOptions} />
         <AptosWalletProvider>
+          <QueryClientProvider client={queryClient}>
             {getLayout(<Component {...pageProps} />)}
-            <SettingsButton />
-            <SettingsDrawer />
-            <ModalsContainer />
-            <DrawersContainer />
+          </QueryClientProvider>
+          <SettingsButton />
+          <SettingsDrawer />
+          <ModalsContainer />
+          <DrawersContainer />
         </AptosWalletProvider>
       </ThemeProvider>
     </>

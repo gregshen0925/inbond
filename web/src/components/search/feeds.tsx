@@ -1,10 +1,16 @@
 import cn from 'classnames';
-import { NFTList } from '@/data/static/nft-list';
-import NFTGrid from '@/components/ui/nft-card';
+import { BondList } from '@/data/static/bond-list';
+import BondGrid from '@/components/ui/bond-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { getBondInfo } from '@/pages/api/getBondsInfo';
 
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
+  // const bondsInfo = useQuery({
+  //   queryKey: ['bonds'],
+  //   queryFn: getBondInfo,
+  // });
   return (
     <div
       className={cn(
@@ -15,15 +21,15 @@ export default function Feeds({ className }: { className?: string }) {
         className
       )}
     >
-      {NFTList.map((nft) => (
-        <NFTGrid
-          key={nft.id}
-          name={nft.name}
-          image={nft.image}
-          author={nft.author}
-          authorImage={nft.authorImage}
-          price={nft.price}
-          collection={nft.collection}
+      {BondList.map((bond) => (
+        <BondGrid
+          key={bond.id}
+          name={bond.name}
+          image={bond.image}
+          author={bond.author}
+          authorImage={bond.authorImage}
+          price={bond.price}
+          collection={bond.collection}
         />
       ))}
     </div>
