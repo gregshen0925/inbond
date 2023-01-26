@@ -53,10 +53,11 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
     <>
       <Head>
         {/* maximum-scale 1 meta tag need to prevent ios input focus auto zooming */}
-        {/* <meta
+        <meta
           name="viewport"
           content="width=device-width, initial-scale=1 maximum-scale=1"
-        /> */}
+        />
+        <link rel="icon" href="https://i.imgur.com/W7K187R.png" />
         <title>InBond</title>
       </Head>
       <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
