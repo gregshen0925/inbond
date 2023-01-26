@@ -4,6 +4,7 @@ import { Verified } from '@/components/icons/verified';
 import Avatar from '@/components/ui/avatar';
 import { StaticImageData } from 'next/image';
 import { BondData } from '@/types';
+import { CREATOR_ADDRESS } from '@/utils/aptosClient';
 
 export default function BondGrid({
   creator,
@@ -31,7 +32,7 @@ export default function BondGrid({
         </AnchorLink>
       </div>
       <AnchorLink
-        href="/bond-details/injoy-labs-phase-1"
+        href={`/bond-details/${CREATOR_ADDRESS}`}
         className="relative block w-full pb-full"
       >
         <Image

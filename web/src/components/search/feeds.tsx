@@ -13,7 +13,6 @@ export default function Feeds({ className }: { className?: string }) {
   });
 
   const BondData = (bondQuery?.data as BondData) || null;
-  console.log(BondData);
 
   // const bondsInfo = useQuery({
   //   queryKey: ['bonds'],

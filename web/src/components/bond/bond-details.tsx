@@ -44,8 +44,6 @@ export default function BondDetails() {
 
   const BondData = (bondQuery?.data as BondData) || null;
 
-  console.log(BondData);
-
   if (isLoading) return <div>loading...</div>;
   if (isSuccess) {
     return (
