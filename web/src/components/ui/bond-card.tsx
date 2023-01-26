@@ -3,24 +3,17 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import { Verified } from '@/components/icons/verified';
 import Avatar from '@/components/ui/avatar';
 import { StaticImageData } from 'next/image';
-
-type BondGridProps = {
-  author: string;
-  authorImage: StaticImageData;
-  image: StaticImageData;
-  name: string;
-  collection: string;
-  price: string;
-};
+import { BondData } from '@/types';
 
 export default function BondGrid({
-  author,
-  authorImage,
-  image,
+  creator,
+  description,
+  external_url,
+  funding,
+  image_url,
   name,
-  collection,
-  price,
-}: BondGridProps) {
+  target_funding_size,
+}: BondData) {
   return (
     <div className="relative overflow-hidden rounded-lg bg-white shadow-card transition-all duration-200 hover:shadow-large dark:bg-light-dark">
       <div className="p-4">
@@ -29,12 +22,12 @@ export default function BondGrid({
           className="flex items-center text-sm font-medium text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
         >
           <Avatar
-            image={authorImage}
+            image={image_url}
             alt={name}
             size="sm"
             className="text-ellipsis ltr:mr-3 rtl:ml-3 dark:border-gray-500"
           />
-          <span className="overflow-hidden text-ellipsis">@{author}</span>
+          <span className="overflow-hidden text-ellipsis">{name}</span>
         </AnchorLink>
       </div>
       <AnchorLink
@@ -42,8 +35,8 @@ export default function BondGrid({
         className="relative block w-full pb-full"
       >
         <Image
-          src={image}
-          placeholder="blur"
+          src={image_url}
+          // placeholder="blur"
           layout="fill"
           objectFit="cover"
           alt=""
@@ -51,23 +44,26 @@ export default function BondGrid({
       </AnchorLink>
 
       <div className="p-5">
-        <AnchorLink
-          href="/bond-details"
+        {/* <AnchorLink
+          href="/bond-details/injoy-labs-phase-1"
           className="text-sm font-medium text-black dark:text-white"
         >
-          {name}
-        </AnchorLink>
+          {names}
+        </AnchorLink> */}
         <div className="mt-1.5 flex">
           <AnchorLink
-            href="/"
+            href="/bond-details/injoy-labs-phase-1"
             className="inline-flex items-center text-xs text-gray-600 dark:text-gray-400"
           >
-            {collection}
+            {creator}
             <Verified className="ltr:ml-1 rtl:mr-1" />
           </AnchorLink>
         </div>
-        <div className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
-          {price}
+        <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
+          Target Size: {Number(target_funding_size) / 10 ** 8} APT
+        </div>
+        <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
+          Already Raised: {Number(funding?.value) / 10 ** 8} APT
         </div>
       </div>
     </div>

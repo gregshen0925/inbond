@@ -24,10 +24,11 @@ export interface Attachment {
 }
 
 export type BondData = {
+  creator: string;
   description: string;
   external_url: string;
   funding: Value;
   image_url: string;
-  names: string;
+  name: string;
   target_funding_size: string;
 };

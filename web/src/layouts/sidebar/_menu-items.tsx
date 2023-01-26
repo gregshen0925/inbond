@@ -16,11 +16,6 @@ export const menuItems = [
     href: routes.home,
   },
   {
-    name: 'Bond Details',
-    icon: <DiskIcon />,
-    href: routes.bondDetails,
-  },
-  {
     name: 'Dashboard',
     icon: <HomeIcon />,
     href: routes.dashboard,

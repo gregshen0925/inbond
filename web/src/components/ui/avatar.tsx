@@ -1,9 +1,8 @@
 import cn from 'classnames';
 import Image from '@/components/ui/image';
-import { StaticImageData } from 'next/image';
 
 interface AvatarProps {
-  image: StaticImageData;
+  image: string;
   alt: string;
   className?: string;
   size?: SizeNames;
@@ -54,8 +53,9 @@ function Avatar({
           <Image
             src={image}
             alt={alt}
-            width={width}
-            height={height}
+            // width={width}
+            // height={height}
+            layout="fill"
             className="rounded-full"
           />
         ) : (
@@ -66,12 +66,11 @@ function Avatar({
             height={height}
             layout="fill"
             objectFit="cover"
-            placeholder="blur"
             className="rounded-full"
           />
         )
       ) : (
-        <Image src={image} alt={alt} className="rounded-[6px]" />
+        <Image src={image} alt="" layout="fill" className="rounded-[6px]" />
       )}
     </figure>
   );

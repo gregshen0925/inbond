@@ -1,12 +1,20 @@
 import cn from 'classnames';
-import { BondList } from '@/data/static/bond-list';
 import BondGrid from '@/components/ui/bond-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getBondInfo } from '@/pages/api/getBondsInfo';
+import { useQuery } from '@tanstack/react-query';
+import { BondData } from '@/types';
+import { getBond } from '@/pages/api/getBond';
 
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
+  const { data: bondQuery } = useQuery({
+    queryKey: ['bond'],
+    queryFn: getBond,
+  });
+
+  const BondData = (bondQuery?.data as BondData) || null;
+  console.log(BondData);
+
   // const bondsInfo = useQuery({
   //   queryKey: ['bonds'],
   //   queryFn: getBondInfo,
@@ -21,17 +29,27 @@ export default function Feeds({ className }: { className?: string }) {
         className
       )}
     >
-      {BondList.map((bond) => (
+      {/* {BondList.map((BondData) => (
+        <div>
         <BondGrid
-          key={bond.id}
-          name={bond.name}
-          image={bond.image}
-          author={bond.author}
-          authorImage={bond.authorImage}
-          price={bond.price}
-          collection={bond.collection}
+        description={BondData.description}
+        external_url={BondData.external_url}
+        funding={BondData.funding}
+        image_url={BondData.image_url}
+        names={BondData.names}
+        target_funding_size={BondData.target_funding_size}
         />
-      ))}
+        </div>
+      ))} */}
+      <BondGrid
+        description={BondData?.description}
+        external_url={BondData?.external_url}
+        funding={BondData?.funding}
+        image_url={BondData?.image_url}
+        name={BondData?.name}
+        target_funding_size={BondData?.target_funding_size}
+        creator={BondData?.creator}
+      />
     </div>
   );
 }

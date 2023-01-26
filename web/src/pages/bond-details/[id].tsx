@@ -1,7 +1,6 @@
 import { NextSeo } from 'next-seo';
 import type { NextPageWithLayout } from '@/types';
 import BondDetails from '@/components/bond/bond-details';
-import { nftData } from '@/data/static/single-nft';
 import RootLayout from '@/layouts/_root-layout';
 
 const BondDetailsPage: NextPageWithLayout = () => {
@@ -22,7 +21,7 @@ const BondDetailsPage: NextPageWithLayout = () => {
   return (
     <>
       <NextSeo title="Bond details" description="" />
-      <BondDetails product={nftData} />
+      <BondDetails />
     </>
   );
 };

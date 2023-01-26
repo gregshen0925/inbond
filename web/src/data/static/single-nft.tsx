@@ -10,7 +10,7 @@ import Avatar4 from '@/assets/images/avatar/4.png';
 import Avatar5 from '@/assets/images/avatar/5.png';
 import Avatar6 from '@/assets/images/avatar/6.png';
 import Avatar7 from '@/assets/images/avatar/7.png';
-import InJoyLabs from '@/assets/images/injoylabslogo.png';
+import InJoyLabs from '@/assets/images/injoylabslogo-dark.png';
 import Greg from '@/assets/images/Greg.jpg';
 
 export const nftData = {

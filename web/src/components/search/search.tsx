@@ -3,18 +3,9 @@ import Feeds from '@/components/search/feeds';
 import { useDrawer } from '@/components/drawer-views/context';
 import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
 import { OptionIcon } from '@/components/icons/option';
-import { useQuery } from '@tanstack/react-query';
-import { getBond } from '../../pages/api/getBond';
-import { BondData } from '@/types';
 
 export default function Search() {
   const { openDrawer } = useDrawer();
-  const { data: bondQuery } = useQuery({
-    queryKey: ['bond'],
-    queryFn: getBond,
-  });
-
-  const BondData = (bondQuery?.data as BondData) || null;
 
   return (
     <>
@@ -28,7 +19,6 @@ export default function Search() {
             <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm">
               1 project
             </span>
-            <div className="text-white">Funds:{BondData?.funding.value}</div>
 
             <div className="flex gap-6 3xl:gap-8">
               <SortList />
