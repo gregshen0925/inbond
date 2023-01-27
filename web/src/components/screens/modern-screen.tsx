@@ -16,21 +16,18 @@ import TopupButton from '@/components/ui/topup-button';
 import AuthorImage from '@/assets/images/author.jpg';
 import { useBlockchain } from '../../lib/hooks/use-blockchain';
 
-type Data = {
-  data:{
-    key:string,
-    value:number
-  }[]
-}
 
 type investedData = {
-  voting_powers:Data
+  voting_powers:  
+  {data:{
+    key:string,
+    value:number
+  }[]}
 }
 
 export default function ModernScreen() {
   const {investedList} = useBlockchain()
   const investedData:investedData = investedList?.data as investedData
-  console.log(investedData.voting_powers.data[0])
   return (
     <>
       <NextSeo title="InBond" description="InBond - By InJoy Labs" />

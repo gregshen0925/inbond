@@ -7,14 +7,28 @@ import type { BondData } from '@/types';
 import { useBlockchain } from '@/lib/hooks/use-blockchain';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useQuery } from '@tanstack/react-query';
+import { getBond } from '@/lib/utils/getBond';
+import { useRouter } from 'next/router';
 
 
 export default function BondDetails() {
-  const {data:bondQuery, bondQuerySuccess, bondQueryLoading, invest} = useBlockchain()
+  const router = useRouter();
+  const { id } = router.query;
+  const {invest} = useBlockchain()
   const [investAmount,setInvestAmount]=useState<number|undefined>()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvestAmount(Number(e.target.value));
   };
+
+  const route = typeof id === "string" ? id : "/";
+  const params = route.split("+");
+
+
+  const {data:bondQuery}= useQuery({
+    queryKey: ['getBondInfo'],
+    queryFn: ()=>getBond(params[0],params[1]),
+  })
 
   const BondData = (bondQuery?.data as BondData) || null;
 
@@ -28,8 +42,7 @@ export default function BondDetails() {
     })
   }
 
-  if (bondQueryLoading) return <div>loading...</div>;
-  if (bondQuerySuccess) {
+
     return (
       <div className="flex flex-grow">
         <div className="mx-auto flex w-full flex-grow flex-col transition-all xl:max-w-[1360px] 4xl:max-w-[1760px]">
@@ -38,7 +51,7 @@ export default function BondDetails() {
               <div className="relative aspect-square max-h-full overflow-hidden rounded-lg">
                 {BondData?.image_url ? (
                   <Image
-                    src={BondData.image_url}
+                    src={BondData?.image_url}
                     // layout="fill"
                     width={500}
                     height={500}
@@ -179,7 +192,7 @@ export default function BondDetails() {
                 </TabPanel> */}
                 </ParamTab>
               </div>
-              <div className='text-white pb-3'>Progress : {Number(BondData.funding.value)/10**8}/{Number(BondData.target_funding_size)/10**8} APT</div>
+              <div className='text-white pb-3'>Progress : {Number(BondData?.funding.value)/10**8}/{Number(BondData?.target_funding_size)/10**8} APT</div>
               <div className='flex space-x-2 pb-4'>
               <input
             type="number"
@@ -219,5 +232,4 @@ export default function BondDetails() {
         </div>
       </div>
     );
-  } else return <></>;
 }

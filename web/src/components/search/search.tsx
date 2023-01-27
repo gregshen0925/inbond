@@ -3,9 +3,26 @@ import Feeds from '@/components/search/feeds';
 import { useDrawer } from '@/components/drawer-views/context';
 import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
 import { OptionIcon } from '@/components/icons/option';
+import { useBlockchain } from '@/lib/hooks/use-blockchain';
+
+type KV = {
+    key:string,
+    value:string
+}
+
+type AllProjects={
+    funding_type_map:{
+      data:KV[]
+    }
+}
 
 export default function Search() {
   const { openDrawer } = useDrawer();
+  const { allProjects } = useBlockchain()
+  const allProjectsData = allProjects?.data as AllProjects||null
+  const projectsArray:KV[]=[]
+
+allProjectsData?.funding_type_map.data.forEach((project) => {projectsArray.push(project)})
 
   return (
     <>
@@ -17,7 +34,7 @@ export default function Search() {
         <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
           <div className="relative z-10 mb-6 flex items-center justify-between">
             <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm">
-              1 project
+              {allProjectsData?`${allProjectsData.funding_type_map.data.length} project `:"fetching..."} 
             </span>
 
             <div className="flex gap-6 3xl:gap-8">
@@ -39,7 +56,7 @@ export default function Search() {
               </div>
             </div>
           </div>
-          <Feeds />
+          <Feeds projectsArray={projectsArray}/>
         </div>
 
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">

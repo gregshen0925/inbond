@@ -5,6 +5,7 @@ import type { Types } from "aptos";
 import toast from "react-hot-toast";
 import { client, CREATOR_ADDRESS, TREASURY_MODULE_ID } from '../utils/aptosClient';
 import { getInvestedList } from '../utils/getInvestedList';
+import { getAllProjects } from '../utils/getAllProjects';
 
 export function useBlockchain(){
     const {
@@ -16,14 +17,6 @@ export function useBlockchain(){
         signTransaction,
       } = useWallet();
 
-      const {
-        data: bondQuery,
-        isSuccess:bondQuerySuccess,
-        isLoading:bondQueryLoading,
-      } = useQuery({
-        queryKey: ['bond'],
-        queryFn: getBond,
-      });
 
       const {
         data: investedList,
@@ -34,6 +27,15 @@ export function useBlockchain(){
         queryFn: getInvestedList,
       })
 
+      const {
+        data: allProjects,
+        isSuccess:getAllProjectsSuccess,
+        isLoading:getAllProjectsLoading,
+      } = useQuery({
+        queryKey: ['allProjects'],
+        queryFn: getAllProjects,
+      })
+
       const invest = async (investAmount:number)=>{
         if (!account?.address || !account?.publicKey){
             toast.error("Please connect wallet first")
@@ -41,7 +43,7 @@ export function useBlockchain(){
         else {
             const payload: Types.TransactionPayload = {
               type: "entry_function_payload",
-              function: `${TREASURY_MODULE_ID}::invest`,
+              function: `${TREASURY_MODULE_ID}invest`,
               type_arguments: ["0x1::aptos_coin::AptosCoin"],
               arguments: [CREATOR_ADDRESS,investAmount!*10**8],
             };
@@ -57,5 +59,16 @@ export function useBlockchain(){
       }
     }
 
-      return {data:bondQuery, bondQuerySuccess, bondQueryLoading,invest,investedList,investedListSuccess,investedListLoading}
+      return {
+        //  bondQuery,
+        //  bondQuerySuccess, 
+        //  bondQueryLoading,
+         invest,
+         investedList, 
+         investedListSuccess,
+         investedListLoading,
+         allProjects,
+         getAllProjectsSuccess,
+         getAllProjectsLoading
+        }
 }

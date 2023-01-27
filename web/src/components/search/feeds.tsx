@@ -1,16 +1,25 @@
 import cn from 'classnames';
 import BondGrid from '@/components/ui/bond-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
-import { useQuery } from '@tanstack/react-query';
 import { BondData } from '@/types';
-import { getBond } from '@/lib/utils/getBond';
 import { useBlockchain } from '@/lib/hooks/use-blockchain';
+import { client, TREASURY_MODULE_ID } from '@/lib/utils/aptosClient';
+import { useMemo } from 'react';
 
-export default function Feeds({ className }: { className?: string }) {
+type KV = {
+  key:string,
+  value:string
+}
+
+type Props={
+  projectsArray:KV[]
+  className?: string;
+}
+
+export default function Feeds({ projectsArray, className }: Props) {
   const { isGridCompact } = useGridSwitcher();
-  const {data:bondQuery} = useBlockchain()
 
-  const BondData = (bondQuery?.data as BondData) || null;
+  // const BondData = (bondQuery?.data as BondData) || null;
 
   return (
     <div
@@ -22,27 +31,15 @@ export default function Feeds({ className }: { className?: string }) {
         className
       )}
     >
-      {/* {BondList.map((BondData) => (
-        <div>
+      {projectsArray?projectsArray.map((project) => (
+        <div key={project.key}>
         <BondGrid
-        description={BondData.description}
-        external_url={BondData.external_url}
-        funding={BondData.funding}
-        image_url={BondData.image_url}
-        names={BondData.names}
-        target_funding_size={BondData.target_funding_size}
+        project={project}
         />
         </div>
-      ))} */}
-      <BondGrid
-        description={BondData?.description}
-        external_url={BondData?.external_url}
-        funding={BondData?.funding}
-        image_url={BondData?.image_url}
-        name={BondData?.name}
-        target_funding_size={BondData?.target_funding_size}
-        creator={BondData?.creator}
-      />
+      )):null}
+
+
     </div>
   );
 }
