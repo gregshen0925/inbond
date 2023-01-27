@@ -1,48 +1,32 @@
-import { StaticImageData } from 'next/image';
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 import Image from '@/components/ui/image';
-import FeaturedCard from '@/components/bond/featured-card';
-import ListCard from '@/components/ui/list-card';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { ArrowLinkIcon } from '@/components/icons/arrow-link-icon';
-import { nftData } from '@/data/static/single-nft';
 import NftDropDown from '@/components/bond/nft-dropdown';
-import Avatar from '@/components/ui/avatar';
-import { useQuery } from '@tanstack/react-query';
-import { BondData } from '@/types';
-import { getBond } from '@/pages/api/getBond';
+import type { BondData } from '@/types';
+import { useBlockchain } from '@/lib/hooks/use-blockchain';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
-type Avatar = {
-  id: string | number;
-  name: string;
-  slug: string;
-  logo: StaticImageData;
-};
-type BondDetailsProps = {
-  isAuction?: boolean;
-  image: StaticImageData;
-  name: string;
-  description: string;
-  minted_date: string;
-  minted_slug: string;
-  price: number;
-  creator: Avatar;
-  collection: Avatar;
-  owner: Avatar;
-  block_chains: Avatar[];
-};
 
 export default function BondDetails() {
-  const {
-    data: bondQuery,
-    isSuccess,
-    isLoading,
-  } = useQuery({
-    queryKey: ['bond'],
-    queryFn: getBond,
-  });
+  const {data:bondQuery, isSuccess, isLoading, invest} = useBlockchain()
+  const [investAmount,setInvestAmount]=useState<number|undefined>()
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInvestAmount(Number(e.target.value));
+  };
 
   const BondData = (bondQuery?.data as BondData) || null;
+
+  const handleInvest = async(investAmount:number) =>{
+    if (!investAmount){
+      setInvestAmount(0)
+      return
+    }
+    await invest(investAmount).then(()=>{
+      setInvestAmount(0)
+    })
+  }
 
   if (isLoading) return <div>loading...</div>;
   if (isSuccess) {
@@ -73,9 +57,9 @@ export default function BondDetails() {
                   <h2 className="text-xl font-medium leading-[1.45em] -tracking-wider text-gray-900 dark:text-white md:text-2xl xl:text-3xl">
                     {BondData?.name}
                   </h2>
-                  <div className="mt-1.5 shrink-0 ltr:ml-3 rtl:mr-3 xl:mt-2">
+                  {/* <div className="mt-1.5 shrink-0 ltr:ml-3 rtl:mr-3 xl:mt-2">
                     <NftDropDown />
-                  </div>
+                  </div> */}
                 </div>
                 <AnchorLink
                   href={'/'}
@@ -173,13 +157,13 @@ export default function BondDetails() {
                   </TabPanel>
                   <TabPanel className="focus:outline-none">
                     <div className="flex flex-col-reverse">
-                      {nftData?.bids?.map((bid) => (
+                      {/* {nftData?.bids?.map((bid) => (
                         <FeaturedCard
                           item={bid}
                           key={bid?.id}
                           className="mb-3 first:mb-0"
                         />
-                      ))}
+                      ))} */}
                     </div>
                   </TabPanel>
                   {/* <TabPanel className="focus:outline-none">
@@ -194,6 +178,28 @@ export default function BondDetails() {
                   </div>
                 </TabPanel> */}
                 </ParamTab>
+              </div>
+              <div className='text-white pb-3'>Progress : {Number(BondData.funding.value)/10**8}/{Number(BondData.target_funding_size)/10**8} APT</div>
+              <div className='flex space-x-2 pb-4'>
+              <input
+            type="number"
+            id="investAmount"
+            value={investAmount}
+            onChange={handleChange}
+            className="w-[150px] shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="0 APT"
+            required={true}
+          />
+                <motion.div
+        whileTap={{
+          scale: 0.8,
+          borderRadius: '100%',
+        }}
+      >
+              <button className="font-bold rounded-xl bg-green-500 px-2 py-2 disabled:cursor-not-allowed hover:bg-green-400" onClick={()=>handleInvest(investAmount!)} disabled={!investAmount||investAmount<0}>
+                Invest
+              </button>
+              </motion.div>
               </div>
             </div>
             {/* <NftFooter

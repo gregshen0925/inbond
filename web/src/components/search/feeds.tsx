@@ -3,21 +3,15 @@ import BondGrid from '@/components/ui/bond-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 import { useQuery } from '@tanstack/react-query';
 import { BondData } from '@/types';
-import { getBond } from '@/pages/api/getBond';
+import { getBond } from '@/utils/getBond';
+import { useBlockchain } from '@/lib/hooks/use-blockchain';
 
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
-  const { data: bondQuery } = useQuery({
-    queryKey: ['bond'],
-    queryFn: getBond,
-  });
+  const {data:bondQuery} = useBlockchain()
 
   const BondData = (bondQuery?.data as BondData) || null;
 
-  // const bondsInfo = useQuery({
-  //   queryKey: ['bonds'],
-  //   queryFn: getBondInfo,
-  // });
   return (
     <div
       className={cn(

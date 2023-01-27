@@ -19,9 +19,9 @@ export default function ModernScreen() {
     <>
       <NextSeo title="InBond" description="InBond - By InJoy Labs" />
       <div className="flex flex-wrap">
-        <div className="mb-8 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
+        {/* <div className="mb-8 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
           <CoinSlider coins={coinSlideData} />
-        </div>
+        </div> */}
         <div className="w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
           <div className="flex h-full flex-col justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
             {/* <Avatar
@@ -40,6 +40,10 @@ export default function ModernScreen() {
           </div>
         </div>
       </div>
+      
+      <div className="text-white text-2xl font-bold pt-5">
+            My Investments
+      </div>
 
       <div className="mt-8 grid gap-6 sm:my-10 md:grid-cols-2">
         <LiquidityChart />
@@ -50,7 +54,7 @@ export default function ModernScreen() {
         <TopCurrencyTable />
       </div> */}
 
-      <div className="flex flex-wrap">
+      {/* <div className="flex flex-wrap">
         <div
           className={cn(
             'w-full lg:w-[calc(100%-288px)] ltr:lg:pr-6 rtl:lg:pl-6 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]'
@@ -66,7 +70,7 @@ export default function ModernScreen() {
           <OverviewChart />
           <TopPools />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -53,7 +53,7 @@ export default function BondGrid({
         </AnchorLink> */}
         <div className="mt-1.5 flex">
           <AnchorLink
-            href="/bond-details/injoy-labs-phase-1"
+            href={`/bond-details/${CREATOR_ADDRESS}`}
             className="inline-flex items-center text-xs text-gray-600 dark:text-gray-400"
           >
             {creator}

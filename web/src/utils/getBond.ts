@@ -1,9 +1,8 @@
 import {
   client,
   CREATOR_ADDRESS,
-  MODULE_ADDRESS,
   TREASURY_MODULE_ID,
-} from '../../utils/aptosClient';
+} from './aptosClient';
 
 export const getBond = async () => {
   const { type, data } = await client.getAccountResource(
