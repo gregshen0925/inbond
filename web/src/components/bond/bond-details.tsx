@@ -41,7 +41,7 @@ export default function BondDetails() {
       setInvestAmount(0)
     })
   }
-
+  if (!BondData)return <></>
 
     return (
       <div className="flex flex-grow">
