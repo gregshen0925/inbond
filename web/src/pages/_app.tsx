@@ -17,6 +17,8 @@ import '@/assets/css/scrollbar.css';
 import '@/assets/css/globals.css';
 import '@/assets/css/range-slider.css';
 import '@/assets/css/styles.css';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -49,6 +51,8 @@ const queryClient = new QueryClient();
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   //could remove this if you don't need to page level layout
   const getLayout = Component.getLayout ?? ((page) => page);
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -64,7 +68,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <Toaster position="top-center" toastOptions={toastOptions} />
         <AptosWalletProvider>
           <QueryClientProvider client={queryClient}>
-            {getLayout(<Component {...pageProps} />)}
+                {getLayout(<Component {...pageProps} />)}
           </QueryClientProvider>
           <SettingsButton />
           <SettingsDrawer />

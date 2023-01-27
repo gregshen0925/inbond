@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import React, { type FC } from 'react';
 import {
   WalletAdapterNetwork,
   MartianWalletAdapter,
@@ -10,8 +10,8 @@ import {
   SpikaWalletAdapter,
   BitkeepWalletAdapter,
   BloctoWalletAdapter,
-} from "@manahippo/aptos-wallet-adapter";
-import { useMemo } from "react";
+} from '@manahippo/aptos-wallet-adapter';
+import { useMemo } from 'react';
 
 type WalletProvider = {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ export const AptosWalletProvider: FC<WalletProvider> = ({ children }) => {
     () => [
       new BloctoWalletAdapter({
         network: WalletAdapterNetwork.Testnet,
-        bloctoAppId: "InBond",
+        bloctoAppId: 'InBond',
       }),
       new MartianWalletAdapter(),
       new AptosWalletAdapter(),
@@ -37,8 +37,9 @@ export const AptosWalletProvider: FC<WalletProvider> = ({ children }) => {
   return (
     <WalletProvider
       wallets={wallets}
+      autoConnect={true}
       onError={(error: Error) => {
-        console.log("wallet errors: ", error);
+        console.log('wallet errors: ', error);
       }}
     >
       {children}
