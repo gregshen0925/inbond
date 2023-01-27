@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 
 
 export default function BondDetails() {
-  const {data:bondQuery, isSuccess, isLoading, invest} = useBlockchain()
+  const {data:bondQuery, bondQuerySuccess, bondQueryLoading, invest} = useBlockchain()
   const [investAmount,setInvestAmount]=useState<number|undefined>()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvestAmount(Number(e.target.value));
@@ -28,8 +28,8 @@ export default function BondDetails() {
     })
   }
 
-  if (isLoading) return <div>loading...</div>;
-  if (isSuccess) {
+  if (bondQueryLoading) return <div>loading...</div>;
+  if (bondQuerySuccess) {
     return (
       <div className="flex flex-grow">
         <div className="mx-auto flex w-full flex-grow flex-col transition-all xl:max-w-[1360px] 4xl:max-w-[1760px]">
