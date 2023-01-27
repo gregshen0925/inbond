@@ -4,7 +4,7 @@ import { Verified } from '@/components/icons/verified';
 import Avatar from '@/components/ui/avatar';
 import { StaticImageData } from 'next/image';
 import { BondData } from '@/types';
-import { CREATOR_ADDRESS } from '@/utils/aptosClient';
+import { CREATOR_ADDRESS } from '@/lib/utils/aptosClient';
 
 export default function BondGrid({
   creator,

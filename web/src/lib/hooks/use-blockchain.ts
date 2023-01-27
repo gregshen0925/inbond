@@ -1,9 +1,10 @@
-import { getBond } from "@/utils/getBond";
+import { getBond } from "@/lib/utils/getBond";
 import { useWallet } from "@manahippo/aptos-wallet-adapter";
 import { useQuery } from "@tanstack/react-query";
-import { type Types } from "aptos";
+import type { Types } from "aptos";
 import toast from "react-hot-toast";
-import { client, CREATOR_ADDRESS, TREASURY_MODULE_ID } from '../../utils/aptosClient';
+import { client, CREATOR_ADDRESS, TREASURY_MODULE_ID } from '../utils/aptosClient';
+import { getInvestedList } from '../utils/getInvestedList';
 
 export function useBlockchain(){
     const {
@@ -17,12 +18,21 @@ export function useBlockchain(){
 
       const {
         data: bondQuery,
-        isSuccess,
-        isLoading,
+        isSuccess:bondQuerySuccess,
+        isLoading:bondQueryLoading,
       } = useQuery({
         queryKey: ['bond'],
         queryFn: getBond,
       });
+
+      const {
+        data: investedList,
+        isSuccess:investedListSuccess,
+        isLoading:investedListLoading,
+      } = useQuery({
+        queryKey: ['investedList'],
+        queryFn: getInvestedList,
+      })
 
       const invest = async (investAmount:number)=>{
         if (!account?.address || !account?.publicKey){
@@ -47,5 +57,5 @@ export function useBlockchain(){
       }
     }
 
-      return {data:bondQuery, isSuccess, isLoading,invest}
+      return {data:bondQuery, bondQuerySuccess, bondQueryLoading,invest,investedList,investedListSuccess,investedListLoading}
 }

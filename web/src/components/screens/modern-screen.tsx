@@ -11,10 +11,26 @@ import { coinSlideData } from '@/data/static/coin-slide-data';
 import Avatar from '@/components/ui/avatar';
 import TopupButton from '@/components/ui/topup-button';
 
+
 //images
 import AuthorImage from '@/assets/images/author.jpg';
+import { useBlockchain } from '../../lib/hooks/use-blockchain';
+
+type Data = {
+  data:{
+    key:string,
+    value:number
+  }[]
+}
+
+type investedData = {
+  voting_powers:Data
+}
 
 export default function ModernScreen() {
+  const {investedList} = useBlockchain()
+  const investedData:investedData = investedList?.data as investedData
+  console.log(investedData.voting_powers.data[0])
   return (
     <>
       <NextSeo title="InBond" description="InBond - By InJoy Labs" />
@@ -44,6 +60,11 @@ export default function ModernScreen() {
       <div className="text-white text-2xl font-bold pt-5">
             My Investments
       </div>
+      <div>{investedData.voting_powers.data[0].key}</div>
+      <div>{investedData.voting_powers.data[0].value/10**8}</div>
+
+      {/* <div>{investedData.voting_powers[0]}</div> */}
+
 
       <div className="mt-8 grid gap-6 sm:my-10 md:grid-cols-2">
         <LiquidityChart />
