@@ -1,5 +1,5 @@
 import { NextSeo } from 'next-seo';
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import BondDetails from '@/components/bond/bond-details';
 import RootLayout from '@/layouts/_root-layout';
 

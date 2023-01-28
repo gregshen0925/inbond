@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import Head from 'next/head';
 import { AptosWalletProvider } from '@/context/AptosWalletProvider';
 import { ThemeProvider } from 'next-themes';
@@ -68,7 +68,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <Toaster position="top-center" toastOptions={toastOptions} />
         <AptosWalletProvider>
           <QueryClientProvider client={queryClient}>
-                {getLayout(<Component {...pageProps} />)}
+            {getLayout(<Component {...pageProps} />)}
           </QueryClientProvider>
           <SettingsButton />
           <SettingsDrawer />

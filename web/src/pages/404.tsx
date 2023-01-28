@@ -1,4 +1,4 @@
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import RootLayout from '@/layouts/_root-layout';

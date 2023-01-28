@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import cn from 'classnames';
 import { NextSeo } from 'next-seo';
 import Button from '@/components/ui/button';

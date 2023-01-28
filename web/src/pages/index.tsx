@@ -1,5 +1,5 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import RootLayout from '@/layouts/_root-layout';
 import Search from '@/components/search/search';
 import { NextSeo } from 'next-seo';

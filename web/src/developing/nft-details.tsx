@@ -1,6 +1,6 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import NftDetails from '@/components/bond/bond-details';
 import { nftData } from '@/data/static/single-nft';
 import { useLayout } from '@/lib/hooks/use-layout';

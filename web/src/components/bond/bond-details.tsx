@@ -3,7 +3,7 @@ import Image from '@/components/ui/image';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { ArrowLinkIcon } from '@/components/icons/arrow-link-icon';
 import NftDropDown from '@/components/bond/nft-dropdown';
-import type { BondData } from '@/types';
+import type { BondData } from '@/types/typing';
 import { useBlockchain } from '@/lib/hooks/use-blockchain';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -11,38 +11,41 @@ import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 import { useRouter } from 'next/router';
 
-
-export default function BondDetails() {
+export default async function BondDetails() {
   const router = useRouter();
   const { id } = router.query;
-  const {invest} = useBlockchain()
-  const [investAmount,setInvestAmount]=useState<number|undefined>()
+  const { invest } = useBlockchain();
+  const [investAmount, setInvestAmount] = useState<number | undefined>();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvestAmount(Number(e.target.value));
   };
 
-  const route = typeof id === "string" ? id : "/";
-  const params = route.split("+");
+  const route = typeof id === 'string' ? id : '/';
+  const params = route.split('+');
 
-
-  const {data:bondQuery}= useQuery({
+  const {
+    data: bondQuery,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useQuery({
     queryKey: ['getBondInfo'],
-    queryFn: ()=>getBond(params[0],params[1]),
-  })
+    queryFn: () => getBond(params[0], params[1]),
+  });
 
   const BondData = (bondQuery?.data as BondData) || null;
 
-  const handleInvest = async(investAmount:number) =>{
-    if (!investAmount){
-      setInvestAmount(0)
-      return
+  const handleInvest = async (investAmount: number) => {
+    if (!investAmount) {
+      setInvestAmount(0);
+      return;
     }
-    await invest(investAmount).then(()=>{
-      setInvestAmount(0)
-    })
-  }
-  if (!BondData)return <></>
-
+    await invest(investAmount).then(() => {
+      setInvestAmount(0);
+      refetch();
+    });
+  };
+  if (isSuccess)
     return (
       <div className="flex flex-grow">
         <div className="mx-auto flex w-full flex-grow flex-col transition-all xl:max-w-[1360px] 4xl:max-w-[1760px]">
@@ -192,27 +195,34 @@ export default function BondDetails() {
                 </TabPanel> */}
                 </ParamTab>
               </div>
-              <div className='text-white pb-3'>Progress : {Number(BondData?.funding.value)/10**8}/{Number(BondData?.target_funding_size)/10**8} APT</div>
-              <div className='flex space-x-2 pb-4'>
-              <input
-            type="number"
-            id="investAmount"
-            value={investAmount}
-            onChange={handleChange}
-            className="w-[150px] shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="0 APT"
-            required={true}
-          />
+              <div className="pb-3 text-white">
+                Progress : {Number(BondData?.funding.value) / 10 ** 8}/
+                {Number(BondData?.target_funding_size) / 10 ** 8} APT
+              </div>
+              <div className="flex space-x-2 pb-4">
+                <input
+                  type="number"
+                  id="investAmount"
+                  value={investAmount}
+                  onChange={handleChange}
+                  className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                  placeholder="0 APT"
+                  required={true}
+                />
                 <motion.div
-        whileTap={{
-          scale: 0.8,
-          borderRadius: '100%',
-        }}
-      >
-              <button className="font-bold rounded-xl bg-green-500 px-2 py-2 disabled:cursor-not-allowed hover:bg-green-400" onClick={()=>handleInvest(investAmount!)} disabled={!investAmount||investAmount<0}>
-                Invest
-              </button>
-              </motion.div>
+                  whileTap={{
+                    scale: 0.8,
+                    borderRadius: '100%',
+                  }}
+                >
+                  <button
+                    className="rounded-xl bg-green-500 px-2 py-2 font-bold hover:bg-green-400 disabled:cursor-not-allowed"
+                    onClick={() => handleInvest(investAmount!)}
+                    disabled={!investAmount || investAmount < 0}
+                  >
+                    Invest
+                  </button>
+                </motion.div>
               </div>
             </div>
             {/* <NftFooter
@@ -232,4 +242,5 @@ export default function BondDetails() {
         </div>
       </div>
     );
+  else return <></>;
 }

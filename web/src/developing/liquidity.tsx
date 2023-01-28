@@ -1,4 +1,4 @@
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import { NextSeo } from 'next-seo';
 import Button from '@/components/ui/button';
 import CoinInput from '@/components/ui/coin-input';
