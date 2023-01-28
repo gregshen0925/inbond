@@ -22,7 +22,7 @@ export default function BondGrid({ project }: Props) {
   const BondData = (bondQuery?.data as BondData) || null;
 
   return (
-    <a href={`/bond-details/${project.key}+${project.value}`}>
+    <a href={`/bond-details/${project.key}&${project.value}`}>
       <div className="relative overflow-hidden rounded-lg bg-white shadow-card transition-all duration-200 hover:shadow-large dark:bg-light-dark">
         <div className="p-4">
           <div className="flex items-center text-sm font-medium text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
