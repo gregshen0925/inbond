@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 import { useRouter } from 'next/router';
+import ApexDonutChart from '../ui/chart/ApexDonutChart';
 
 export default function BondDetails() {
   const router = useRouter();
@@ -225,6 +226,7 @@ export default function BondDetails() {
                     </button>
                   </motion.div>
                 </div>
+                <ApexDonutChart />
               </div>
               {/* <NftFooter
             className="hidden md:block"
