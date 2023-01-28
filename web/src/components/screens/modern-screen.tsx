@@ -16,6 +16,9 @@ import { useBlockchain } from '../../lib/hooks/use-blockchain';
 import InvestedGrid from '../ui/invested-projects-card';
 import { KV } from '@/types/typing';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
+import { getInvestedList } from '@/lib/utils/getInvestedList';
+import { useQuery } from '@tanstack/react-query';
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
 
 type investedData = {
   voting_powers: {
@@ -31,7 +34,24 @@ type Props = {
 };
 
 export default function ModernScreen({ className }: Props) {
-  const { investedList } = useBlockchain();
+  // const { investedList } = useBlockchain();
+  const { account } = useWallet();
+
+  // const getInvestedData = ()=>{
+  //   if (investedList){
+  //     const investedData: investedData = investedList?.data as investedData;
+  //   }
+
+  const {
+    data: investedList,
+    isSuccess: investedListSuccess,
+    isLoading: investedListLoading,
+  } = useQuery({
+    enabled: !!account?.address?.toString(),
+    queryKey: ['investedList'],
+    queryFn: () => getInvestedList(account?.address?.toString() || '0x0'),
+  });
+
   const investedData: investedData = investedList?.data as investedData;
   const { isGridCompact } = useGridSwitcher();
 
@@ -76,8 +96,10 @@ export default function ModernScreen({ className }: Props) {
               <div key={project.key}>
                 <InvestedGrid
                   creatorAddress={project.key}
-                  coinType={"0x1::aptos_coin::AptosCoin"}
-                  investedAmount={investedData?.voting_powers.data[0].value / 10 ** 8}
+                  coinType={'0x1::aptos_coin::AptosCoin'}
+                  investedAmount={
+                    investedData?.voting_powers.data[0].value / 10 ** 8
+                  }
                 />
               </div>
             ))

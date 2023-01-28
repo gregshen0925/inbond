@@ -18,14 +18,7 @@ export function useBlockchain(){
       } = useWallet();
 
 
-      const {
-        data: investedList,
-        isSuccess:investedListSuccess,
-        isLoading:investedListLoading,
-      } = useQuery({
-        queryKey: ['investedList'],
-        queryFn: getInvestedList,
-      })
+
 
       const {
         data: allProjects,
@@ -60,13 +53,7 @@ export function useBlockchain(){
     }
 
       return {
-        //  bondQuery,
-        //  bondQuerySuccess, 
-        //  bondQueryLoading,
          invest,
-         investedList, 
-         investedListSuccess,
-         investedListLoading,
          allProjects,
          getAllProjectsSuccess,
          getAllProjectsLoading

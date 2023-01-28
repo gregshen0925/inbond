@@ -62,9 +62,11 @@ export default function InvestedGrid({
           <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
             Already Raised: {Number(BondData?.funding?.value) / 10 ** 8} APT
           </div>
-          <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
-            You&apos;ve Invested: {investedAmount} APT
-          </div>
+          {investedAmount ? (
+            <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
+              You&apos;ve Invested: {investedAmount} APT
+            </div>
+          ) : null}
         </div>
       </div>
     </a>
