@@ -1,28 +1,30 @@
 import Image from '@/components/ui/image';
 import { Verified } from '@/components/icons/verified';
 import Avatar from '@/components/ui/avatar';
-import type { BondData, KV } from '@/types/typing';
+import { BondData } from '@/types/typing';
 import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 
 type Props = {
-  project: KV;
+  creatorAddress: string;
+  coinType: string;
+  investedAmount: number;
 };
 
-export default function BondGrid({ project }: Props) {
-  // const {bondQuery, allProjects} = useBlockchain()
-
-  // const BondData = (bondQuery?.data as BondData) || null;
-
+export default function InvestedGrid({
+  creatorAddress,
+  coinType,
+  investedAmount,
+}: Props) {
   const { data: bondQuery } = useQuery({
     queryKey: ['getBondInfo'],
-    queryFn: () => getBond(project.key, project.value),
+    queryFn: () => getBond(creatorAddress, coinType),
   });
 
   const BondData = (bondQuery?.data as BondData) || null;
 
   return (
-    <a href={`/bond-details/${project.key}+${project.value}`}>
+    <a href={`/bond-details/${creatorAddress}+${coinType}`}>
       <div className="relative overflow-hidden rounded-lg bg-white shadow-card transition-all duration-200 hover:shadow-large dark:bg-light-dark">
         <div className="p-4">
           <div className="flex items-center text-sm font-medium text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
@@ -59,6 +61,9 @@ export default function BondGrid({ project }: Props) {
           </div>
           <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
             Already Raised: {Number(BondData?.funding?.value) / 10 ** 8} APT
+          </div>
+          <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
+            You&apos;ve Invested: {investedAmount} APT
           </div>
         </div>
       </div>

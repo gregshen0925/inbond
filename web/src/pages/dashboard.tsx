@@ -1,4 +1,4 @@
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout } from '@/types/typing';
 import { NextSeo } from 'next-seo';
 import ModernScreen from '@/components/screens/modern-screen';
 import RootLayout from '@/layouts/_root-layout';
@@ -6,10 +6,7 @@ import RootLayout from '@/layouts/_root-layout';
 const DashboardPage: NextPageWithLayout = () => {
   return (
     <>
-      <NextSeo
-        title="Dashboard"
-        description="Dashboard"
-      />
+      <NextSeo title="Dashboard" description="Dashboard" />
       <ModernScreen />
     </>
   );

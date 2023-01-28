@@ -11,23 +11,30 @@ import { coinSlideData } from '@/data/static/coin-slide-data';
 import Avatar from '@/components/ui/avatar';
 import TopupButton from '@/components/ui/topup-button';
 
-
 //images
-import AuthorImage from '@/assets/images/author.jpg';
 import { useBlockchain } from '../../lib/hooks/use-blockchain';
-
+import InvestedGrid from '../ui/invested-projects-card';
+import { KV } from '@/types/typing';
+import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 type investedData = {
-  voting_powers:  
-  {data:{
-    key:string,
-    value:number
-  }[]}
-}
+  voting_powers: {
+    data: {
+      key: string;
+      value: number;
+    }[];
+  };
+};
 
-export default function ModernScreen() {
-  const {investedList} = useBlockchain()
-  const investedData:investedData = investedList?.data as investedData
+type Props = {
+  className?: string;
+};
+
+export default function ModernScreen({ className }: Props) {
+  const { investedList } = useBlockchain();
+  const investedData: investedData = investedList?.data as investedData;
+  const { isGridCompact } = useGridSwitcher();
+
   return (
     <>
       <NextSeo title="InBond" description="InBond - By InJoy Labs" />
@@ -53,15 +60,33 @@ export default function ModernScreen() {
           </div>
         </div>
       </div>
-      
-      <div className="text-white text-2xl font-bold pt-5">
-            My Investments
+
+      <div className="py-5 text-2xl font-bold text-white">My Investments</div>
+      <div
+        className={cn(
+          'grid gap-5 sm:grid-cols-2 md:grid-cols-3',
+          isGridCompact
+            ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+            : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+          className
+        )}
+      >
+        {investedData
+          ? investedData.voting_powers.data.map((project) => (
+              <div key={project.key}>
+                <InvestedGrid
+                  creatorAddress={project.key}
+                  coinType={"0x1::aptos_coin::AptosCoin"}
+                  investedAmount={investedData?.voting_powers.data[0].value / 10 ** 8}
+                />
+              </div>
+            ))
+          : null}
       </div>
-      <div>{investedData.voting_powers.data[0].key}</div>
-      <div>{investedData.voting_powers.data[0].value/10**8}</div>
+      {/* <div>{investedData?.voting_powers.data[0].key}</div>
+      <div>{investedData?.voting_powers.data[0].value / 10 ** 8}</div> */}
 
       {/* <div>{investedData.voting_powers[0]}</div> */}
-
 
       <div className="mt-8 grid gap-6 sm:my-10 md:grid-cols-2">
         <LiquidityChart />

@@ -32,3 +32,8 @@ export type BondData = {
   name: string;
   target_funding_size: string;
 };
+
+export type KV = {
+  key: string;
+  value: string;
+};

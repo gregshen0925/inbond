@@ -101,7 +101,7 @@ export function SortList() {
 }
 
 export function PriceRange() {
-  let [range, setRange] = useState({ min: 0, max: 1000 });
+  let [range, setRange] = useState({ min: 0, max: 5000 });
   function handleRangeChange(value: any) {
     setRange({
       min: value[0],
@@ -142,7 +142,7 @@ export function PriceRange() {
       <Slider
         range
         min={0}
-        max={1000}
+        max={5000}
         value={[range.min, range.max]}
         allowCross={false}
         onChange={(value) => handleRangeChange(value)}
@@ -221,7 +221,7 @@ export function Filters() {
       <Collapse label="Status" initialOpen>
         <Status />
       </Collapse>
-      <Collapse label="Price Range" initialOpen>
+      <Collapse label="Invest Amount Range" initialOpen>
         <PriceRange />
       </Collapse>
       {/* <Collapse label="Collection" initialOpen>

@@ -1,20 +1,13 @@
 import cn from 'classnames';
 import BondGrid from '@/components/ui/bond-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
-import { BondData } from '@/types';
-import { useBlockchain } from '@/lib/hooks/use-blockchain';
-import { client, TREASURY_MODULE_ID } from '@/lib/utils/aptosClient';
-import { useMemo } from 'react';
+import { KV } from '@/types/typing';
 
-type KV = {
-  key:string,
-  value:string
-}
 
-type Props={
-  projectsArray:KV[]
+type Props = {
+  projectsArray: KV[];
   className?: string;
-}
+};
 
 export default function Feeds({ projectsArray, className }: Props) {
   const { isGridCompact } = useGridSwitcher();
@@ -31,15 +24,13 @@ export default function Feeds({ projectsArray, className }: Props) {
         className
       )}
     >
-      {projectsArray?projectsArray.map((project) => (
-        <div key={project.key}>
-        <BondGrid
-        project={project}
-        />
-        </div>
-      )):null}
-
-
+      {projectsArray
+        ? projectsArray.map((project) => (
+            <div key={project.key}>
+              <BondGrid project={project} />
+            </div>
+          ))
+        : null}
     </div>
   );
 }
