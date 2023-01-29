@@ -45,7 +45,7 @@ export default function CreateBond() {
   return (
     <>
       <NextSeo title="" description="" />
-      <div className="mx-auto w-1/2 sm:pt-0 lg:px-8 xl:px-10 2xl:px-0">
+      <div className="mx-auto w-3/4 sm:pt-0 lg:px-8 xl:px-10 2xl:px-0">
         <h2 className="mb-6 text-lg font-medium uppercase tracking-wider text-gray-900 dark:text-white sm:mb-10 sm:text-2xl">
           Create New Bond
         </h2>
@@ -131,6 +131,14 @@ export default function CreateBond() {
           />
         </div>
 
+        <div className="mb-8">
+          <InputLabel
+            title="Max investment per wallet"
+            subTitle="What is the maximum value for each wallet to purchase"
+          />
+          <Input type="number" placeholder="1" />
+        </div>
+
         {/* Period */}
         <div className="mb-8">
           <InputLabel title="Start time" important />
@@ -203,13 +211,6 @@ export default function CreateBond() {
         </div> */}
 
         {/* Supply */}
-        <div className="mb-8">
-          <InputLabel
-            title="Max investment per wallet"
-            subTitle="What is the maximum value for each wallet to purchase"
-          />
-          <Input type="number" placeholder="1" disabled />
-        </div>
 
         {/* Blockchain */}
         <div className="mb-8">
