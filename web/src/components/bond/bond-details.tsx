@@ -48,6 +48,7 @@ export default function BondDetails() {
   };
   return (
     <>
+      {isLoading ? <div>Loading...</div> : null}
       {isSuccess ? (
         <div className="flex flex-grow">
           <div className="mx-auto flex w-full flex-grow flex-col transition-all xl:max-w-[1360px] 4xl:max-w-[1760px]">
@@ -197,7 +198,7 @@ export default function BondDetails() {
                 </TabPanel> */}
                   </ParamTab>
                 </div>
-                <div className="pb-3 text-white">
+                <div className="pb-3 text-gray-900 dark:text-white">
                   Progress : {Number(BondData?.funding.value) / 10 ** 8}/
                   {Number(BondData?.target_funding_size) / 10 ** 8} APT
                 </div>

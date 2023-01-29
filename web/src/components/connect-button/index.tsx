@@ -15,7 +15,7 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
     setAddress(account?.address?.toString());
   }, [connected, account]);
   return (
-    <div>
+    <div className="pt-4">
       <motion.div
         whileTap={{
           scale: 0.8,
@@ -54,7 +54,7 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
         </div>
       </motion.div>
 
-      <div className="justify-end py-1 text-center text-sm font-bold text-white">
+      <div className="justify-end py-1 text-center text-sm font-bold dark:text-white ">
         {address
           ? account?.address?.toString().substring(0, 5) +
             '...' +

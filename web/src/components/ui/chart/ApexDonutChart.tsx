@@ -1,7 +1,5 @@
 // ** MUI Imports
-import Card from '@mui/material/Card';
-import { useTheme } from '@mui/material/styles';
-import CardHeader from '@mui/material/CardHeader';
+
 import CardContent from '@mui/material/CardContent';
 
 // ** Third Party Imports
@@ -9,6 +7,7 @@ import { ApexOptions } from 'apexcharts';
 
 // ** Component Import
 import ReactApexcharts from 'src/components/react-apexcharts';
+import { useIsDarkMode } from '@/lib/hooks/use-is-dark-mode';
 
 const donutColors = {
   series1: '#fdd835',
@@ -20,11 +19,12 @@ const donutColors = {
 
 const ApexDonutChart = () => {
   // ** Hook
-  const theme = useTheme();
+  // const theme = useTheme();
+  const { isDarkMode } = useIsDarkMode();
 
   const options: ApexOptions = {
     stroke: { width: 0 },
-    labels: ['Operational', 'Networking', 'Hiring', 'R&D'],
+    labels: ['Dev Team', 'Partnership', 'Community', 'Sale on InBond'],
     colors: [
       donutColors.series1,
       donutColors.series5,
@@ -38,7 +38,7 @@ const ApexDonutChart = () => {
     legend: {
       position: 'bottom',
       markers: { offsetX: -3 },
-      labels: { colors: '#FFFFFF' },
+      labels: { colors: isDarkMode ? '#FFFFFF' : '#000000' },
       itemMargin: {
         vertical: 3,
         horizontal: 10,
@@ -54,15 +54,15 @@ const ApexDonutChart = () => {
             },
             value: {
               fontSize: '1.2rem',
-              color: theme.palette.text.secondary,
+              color: isDarkMode ? '#FFFFFF' : '#000000',
               formatter: (val: string) => `${parseInt(val, 10)}`,
             },
             total: {
               show: true,
               fontSize: '1.2rem',
-              label: 'Operational',
-              formatter: () => '31%',
-              color: theme.palette.text.primary,
+              label: 'Total',
+              formatter: () => '2600000',
+              color: isDarkMode ? '#FFFFFF' : '#000000',
             },
           },
         },
@@ -112,19 +112,22 @@ const ApexDonutChart = () => {
   return (
     // <Card>
     <>
-      <CardHeader
+      {/* <CardHeader
         title="Tokenomic"
         subheader="Tokenomic of project"
         subheaderTypographyProps={{
           sx: { color: (theme) => `${theme.palette.text.disabled} !important` },
         }}
-      />
+      /> */}
+      <div className="pt-2 text-center text-2xl text-gray-900 dark:text-white">
+        Tokenomics
+      </div>
       <CardContent>
         <ReactApexcharts
           type="donut"
           height={400}
           options={options}
-          series={[85, 16, 50, 50]}
+          series={[400000, 200000, 1000000, 1000000]}
         />
       </CardContent>
     </>
