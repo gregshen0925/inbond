@@ -34,13 +34,7 @@ type Props = {
 };
 
 export default function ModernScreen({ className }: Props) {
-  // const { investedList } = useBlockchain();
   const { account } = useWallet();
-
-  // const getInvestedData = ()=>{
-  //   if (investedList){
-  //     const investedData: investedData = investedList?.data as investedData;
-  //   }
 
   const {
     data: investedList,
@@ -81,7 +75,9 @@ export default function ModernScreen({ className }: Props) {
         </div>
       </div>
 
-      <div className="py-5 text-2xl font-bold text-white">My Investments</div>
+      <div className="py-5 text-2xl font-bold text-gray-900 dark:text-white">
+        My Investments
+      </div>
       <div
         className={cn(
           'grid gap-5 sm:grid-cols-2 md:grid-cols-3',

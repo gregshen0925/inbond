@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // import cn from 'classnames';
 import { NextSeo } from 'next-seo';
-// import { Transition } from '@/components/ui/transition';
+import { Transition } from '@/components/ui/transition';
 // import { RadioGroup } from '@/components/ui/radio-group';
-// import { Listbox } from '@/components/ui/listbox';
+import { Listbox } from '@/components/ui/listbox';
 // import Image from '@/components/ui/image';
 import Button from '@/components/ui/button';
 // import { Switch } from '@/components/ui/switch';
@@ -11,39 +11,37 @@ import Input from '@/components/ui/forms/input';
 import Textarea from '@/components/ui/forms/textarea';
 import Uploader from '@/components/ui/forms/uploader';
 import InputLabel from '@/components/ui/input-label';
-// import ToggleBar from '@/components/ui/toggle-bar';
-// import { ChevronDown } from '@/components/icons/chevron-down';
-// import { Ethereum } from '@/components/icons/ethereum';
-// import { Flow } from '@/components/icons/flow';
-// import { Warning } from '@/components/icons/warning';
-// import { Unlocked } from '@/components/icons/unlocked';
-// import Avatar from '@/components/ui/avatar';
-// //images
-// import AuthorImage from '@/assets/images/author.jpg';
-// import NFT1 from '@/assets/images/nft/nft-1.jpg';
+import ToggleBar from '@/components/ui/toggle-bar';
+import { ChevronDown } from '@/components/icons/chevron-down';
+import { Warning } from '@/components/icons/warning';
+import { Unlocked } from '@/components/icons/unlocked';
+//images
+import { Aptos } from '../icons/aptos';
+import { Sui } from '../icons/sui';
+
 // import PriceType from '@/components/create-nft/price-types-props';
 
-// const BlockchainOptions = [
-//   {
-//     id: 1,
-//     name: 'Ethereum',
-//     value: 'ethereum',
-//     icon: <Ethereum />,
-//   },
-//   {
-//     id: 2,
-//     name: 'Flow',
-//     value: 'flow',
-//     icon: <Flow />,
-//   },
-// ];
+const BlockchainOptions = [
+  {
+    id: 1,
+    name: 'Aptos',
+    value: 'aptos',
+    icon: <Aptos />,
+  },
+  {
+    id: 2,
+    name: 'Sui',
+    value: 'sui',
+    icon: <Sui />,
+  },
+];
 
 export default function CreateBond() {
   let [publish, setPublish] = useState(true);
   let [explicit, setExplicit] = useState(false);
   let [unlocked, setUnlocked] = useState(false);
   let [priceType, setPriceType] = useState('fixed');
-  // let [blockchain, setBlockChain] = useState(BlockchainOptions[0]);
+  let [blockchain, setBlockChain] = useState(BlockchainOptions[0]);
   return (
     <>
       <NextSeo title="" description="" />
@@ -58,7 +56,7 @@ export default function CreateBond() {
               <InputLabel title="Upload file" important />
               <Uploader />
             </div>
-            {/* NFT price type */}
+            {/* price type */}
             {/* <div className="flex items-center justify-between gap-4">
               <InputLabel
                 title="Put on marketplace"
@@ -214,7 +212,7 @@ export default function CreateBond() {
         </div>
 
         {/* Blockchain */}
-        {/* <div className="mb-8">
+        <div className="mb-8">
           <InputLabel title="Blockchain" />
           <div className="relative">
             <Listbox value={blockchain} onChange={setBlockChain}>
@@ -253,7 +251,7 @@ export default function CreateBond() {
               </Transition>
             </Listbox>
           </div>
-        </div> */}
+        </div>
         <div className="flex justify-center">
           <Button shape="rounded">CREATE</Button>
         </div>
