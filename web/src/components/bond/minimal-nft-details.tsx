@@ -8,7 +8,7 @@ import { ArrowLinkIcon } from '@/components/icons/arrow-link-icon';
 import { nftData } from '@/data/static/single-nft';
 import NftDropDown from '@/components/bond/nft-dropdown';
 import Avatar from '@/components/ui/avatar';
-import NftFooter from '@/components/bond/nft-footer';
+import NftFooter from '@/components/bond/bond-footer';
 
 type Avatar = {
   id: string | number;

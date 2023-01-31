@@ -11,14 +11,25 @@ import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 import { useRouter } from 'next/router';
 import ApexDonutChart from '../ui/chart/ApexDonutChart';
+import { nftData } from '@/data/static/single-nft';
+import BondFooter from './bond-footer';
 
 export default function BondDetails() {
   const router = useRouter();
   const { id } = router.query;
-  const { invest } = useBlockchain();
+  const { invest, convert, redeem } = useBlockchain();
   const [investAmount, setInvestAmount] = useState<number | undefined>();
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [redeemAmount, setRedeemAmount] = useState<number | undefined>();
+  const [convertAmount, setConvertAmount] = useState<number | undefined>();
+
+  const handleInvestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvestAmount(Number(e.target.value));
+  };
+  const handleRedeemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRedeemAmount(Number(e.target.value));
+  };
+  const handleConvertChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConvertAmount(Number(e.target.value));
   };
 
   const route = typeof id === 'string' ? id : '/';
@@ -46,6 +57,29 @@ export default function BondDetails() {
       refetch();
     });
   };
+
+  const handleConvert = async (convertAmount: number) => {
+    if (!convertAmount) {
+      setConvertAmount(0);
+      return;
+    }
+    await convert(convertAmount).then(() => {
+      setConvertAmount(0);
+      refetch();
+    });
+  };
+
+  const handleRedeem = async (redeemAmount: number) => {
+    if (!redeemAmount) {
+      setRedeemAmount(0);
+      return;
+    }
+    await redeem(redeemAmount).then(() => {
+      setRedeemAmount(0);
+      refetch();
+    });
+  };
+
   return (
     <>
       {isLoading ? <div>Loading...</div> : null}
@@ -72,24 +106,24 @@ export default function BondDetails() {
             <div className="relative flex w-full flex-grow flex-col justify-between ltr:md:ml-auto ltr:md:pl-8 rtl:md:mr-auto rtl:md:pr-8 lg:min-h-[calc(100vh-96px)] lg:w-[460px] ltr:lg:pl-12 rtl:lg:pr-12 xl:w-[592px] ltr:xl:pl-20 rtl:xl:pr-20">
               <div className="block">
                 <div className="block">
-                  <div className="flex justify-between">
-                    <h2 className="text-xl font-medium leading-[1.45em] -tracking-wider text-gray-900 dark:text-white md:text-2xl xl:text-3xl">
+                  <div className="flex justify-center ">
+                    <h2 className="text-3xl font-medium leading-[1.45em] -tracking-wider text-gray-900 dark:text-white ">
                       {BondData?.name}
                     </h2>
                     {/* <div className="mt-1.5 shrink-0 ltr:ml-3 rtl:mr-3 xl:mt-2">
                     <NftDropDown />
                   </div> */}
                   </div>
-                  <AnchorLink
+                  {/* <AnchorLink
                     href={'/'}
                     className="mt-1.5 inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white xl:mt-2.5"
                   >
                     Created on
-                    {/* {minted_date} */}
+                    {minted_date}
                     <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
-                  </AnchorLink>
+                  </AnchorLink> */}
                   <div className="mt-4 flex flex-wrap gap-6 pt-0.5 lg:-mx-6 lg:mt-6 lg:gap-0">
-                    <div className="shrink-0 border-dashed border-gray-200 dark:border-gray-700 lg:px-6 lg:ltr:border-r lg:rtl:border-l">
+                    {/* <div className="shrink-0 border-dashed border-gray-200 dark:border-gray-700 lg:px-6 lg:ltr:border-r lg:rtl:border-l">
                       <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
                         Created By
                       </h3>
@@ -101,7 +135,7 @@ export default function BondDetails() {
                           {BondData?.creator}
                         </div>
                       </AnchorLink>
-                    </div>
+                    </div> */}
                     {/* <div className="shrink-0 lg:px-6">
                     <h3 className="text-heading-style mb-2.5 uppercase text-gray-900 dark:text-white">
                       Collection
@@ -116,7 +150,7 @@ export default function BondDetails() {
                   </div>
                 </div>
                 <div className="mt-5 flex flex-col pb-5 xl:mt-9">
-                  <ParamTab
+                  {/* <ParamTab
                     tabMenu={[
                       {
                         title: 'Details',
@@ -143,17 +177,17 @@ export default function BondDetails() {
                           </div>
                         </div>
                         <div className="block">
-                          {/* <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
+                          <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
                         Owner
-                      </h3> */}
-                          {/* <AnchorLink href={owner?.slug} className="inline-block">
+                      </h3>
+                          <AnchorLink href={owner?.slug} className="inline-block">
                         <ListCard
                           item={owner}
                           className="rounded-full p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                         />
-                      </AnchorLink> */}
+                      </AnchorLink>
                         </div>
-                        {/* <div className="block">
+                        <div className="block">
                       <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
                         Blockchain
                       </h3>
@@ -171,21 +205,21 @@ export default function BondDetails() {
                           </AnchorLink>
                         ))}
                       </div>
-                    </div> */}
+                    </div>
                       </div>
                     </TabPanel>
                     <TabPanel className="focus:outline-none">
                       <div className="flex flex-col-reverse">
-                        {/* {nftData?.bids?.map((bid) => (
+                        {nftData?.bids?.map((bid) => (
                         <FeaturedCard
                           item={bid}
                           key={bid?.id}
                           className="mb-3 first:mb-0"
                         />
-                      ))} */}
+                      ))}
                       </div>
                     </TabPanel>
-                    {/* <TabPanel className="focus:outline-none">
+                    <TabPanel className="focus:outline-none">
                   <div className="flex flex-col-reverse">
                     {nftData?.history?.map((item) => (
                       <FeaturedCard
@@ -195,23 +229,72 @@ export default function BondDetails() {
                       />
                     ))}
                   </div>
-                </TabPanel> */}
-                  </ParamTab>
+                </TabPanel>
+                  </ParamTab> */}
+                  <div className="pb-5">
+                    <div className="py-2 text-center text-2xl text-gray-900 dark:text-white">
+                      Creator
+                    </div>
+                    <div className="text-center text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400 sm:text-lg ">
+                      {BondData?.creator}
+                    </div>
+                  </div>
+                  <div className="pb-5">
+                    <div className="py-2 text-center text-2xl text-gray-900 dark:text-white">
+                      Description
+                    </div>
+                    <div className="text-center text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400 sm:text-lg lg:text-left">
+                      {BondData?.description}
+                    </div>
+                  </div>
+                  <ApexDonutChart />
                 </div>
-                <div className="pb-3 text-gray-900 dark:text-white">
+
+                <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
                   Progress : {Number(BondData?.funding.value) / 10 ** 8}/
                   {Number(BondData?.target_funding_size) / 10 ** 8} APT
                 </div>
-                <div className="flex space-x-2 pb-4">
-                  <input
-                    type="number"
-                    id="investAmount"
-                    value={investAmount}
-                    onChange={handleChange}
-                    className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                    placeholder="0 APT"
-                    required={true}
-                  />
+
+                <div className="flex justify-center space-x-2 pb-4">
+                  <div>
+                    <input
+                      type="number"
+                      id="investAmount"
+                      value={investAmount || undefined}
+                      onChange={handleInvestChange}
+                      className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                      placeholder="0 APT"
+                      required={true}
+                    />
+                  </div>
+                  <motion.div
+                    whileTap={{
+                      scale: 0.8,
+                      borderRadius: '100%',
+                    }}
+                  >
+                    <button
+                      className="rounded-xl bg-blue-500 px-3 py-2 font-bold hover:bg-blue-400 disabled:cursor-not-allowed"
+                      onClick={() => handleInvest(investAmount!)}
+                      disabled={!investAmount || investAmount < 0}
+                    >
+                      Invest
+                    </button>
+                  </motion.div>
+                </div>
+
+                <div className="flex justify-center space-x-2 pb-4">
+                  <div>
+                    <input
+                      type="number"
+                      id="investAmount"
+                      value={convertAmount || undefined}
+                      onChange={handleConvertChange}
+                      className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                      placeholder="0 APT"
+                      required={true}
+                    />
+                  </div>
                   <motion.div
                     whileTap={{
                       scale: 0.8,
@@ -220,29 +303,50 @@ export default function BondDetails() {
                   >
                     <button
                       className="rounded-xl bg-green-500 px-2 py-2 font-bold hover:bg-green-400 disabled:cursor-not-allowed"
-                      onClick={() => handleInvest(investAmount!)}
-                      disabled={!investAmount || investAmount < 0}
+                      onClick={() => handleConvert(convertAmount!)}
+                      disabled={!convertAmount || convertAmount < 0}
                     >
-                      Invest
+                      Convert
                     </button>
                   </motion.div>
                 </div>
-                <ApexDonutChart />
+
+                <div className="flex justify-center space-x-2 pb-4 last:pb-10">
+                  <div>
+                    <input
+                      type="number"
+                      id="redeemAmount"
+                      value={redeemAmount || undefined}
+                      onChange={handleRedeemChange}
+                      className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                      placeholder="0 APT"
+                      required={true}
+                    />
+                  </div>
+                  <motion.div
+                    whileTap={{
+                      scale: 0.8,
+                      borderRadius: '100%',
+                    }}
+                  >
+                    <button
+                      className="rounded-xl bg-red-500 px-3 py-2 font-bold hover:bg-red-400 disabled:cursor-not-allowed"
+                      onClick={() => handleRedeem(redeemAmount!)}
+                      disabled={!redeemAmount || redeemAmount < 0}
+                    >
+                      Redeem
+                    </button>
+                  </motion.div>
+                </div>
+                {/* <ApexDonutChart /> */}
               </div>
-              {/* <NftFooter
-            className="hidden md:block"
-            currentBid={nftData?.bids[nftData?.bids?.length - 1]}
-            auctionTime={Date.now() + 4000000 * 10}
-            isAuction={isAuction}
-            price={price}
-          /> */}
+              <BondFooter
+                className="hidden md:block"
+                // auctionTime={Date.now() + 4000000 * 10}
+                // isAuction={isAuction}
+                // price={price}
+              />
             </div>
-            {/* <NftFooter
-          currentBid={nftData?.bids[nftData?.bids?.length - 1]}
-          auctionTime={Date.now() + 4000000 * 10}
-          isAuction={isAuction}
-          price={price}
-        /> */}
           </div>
         </div>
       ) : null}

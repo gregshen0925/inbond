@@ -52,8 +52,54 @@ export function useBlockchain() {
     }
   };
 
+  const convert = async (convertAmount: number) => {
+    if (!account?.address || !account?.publicKey) {
+      toast.error('Please connect wallet first');
+    } else {
+      const payload: Types.TransactionPayload = {
+        type: 'entry_function_payload',
+        function: `${TREASURY_MODULE_ID}convert`,
+        type_arguments: ['0x1::aptos_coin::AptosCoin'],
+        arguments: [convertAmount! * 10 ** 8],
+      };
+      const transactionRes = await signAndSubmitTransaction(
+        payload
+        // txOptions
+      );
+      await client
+        .waitForTransaction(transactionRes?.hash || '', { checkSuccess: true })
+        .then(() => {
+          toast.success(`Successfully converted ${convertAmount} APT`);
+        });
+    }
+  };
+
+  const redeem = async (redeemAmount: number) => {
+    if (!account?.address || !account?.publicKey) {
+      toast.error('Please connect wallet first');
+    } else {
+      const payload: Types.TransactionPayload = {
+        type: 'entry_function_payload',
+        function: `${TREASURY_MODULE_ID}redeem`,
+        type_arguments: ['0x1::aptos_coin::AptosCoin'],
+        arguments: [redeemAmount! * 10 ** 8],
+      };
+      const transactionRes = await signAndSubmitTransaction(
+        payload
+        // txOptions
+      );
+      await client
+        .waitForTransaction(transactionRes?.hash || '', { checkSuccess: true })
+        .then(() => {
+          toast.success(`Successfully redeemed ${redeemAmount} APT`);
+        });
+    }
+  };
+
   return {
     invest,
+    convert,
+    redeem,
     allProjects,
     getAllProjectsSuccess,
     getAllProjectsLoading,

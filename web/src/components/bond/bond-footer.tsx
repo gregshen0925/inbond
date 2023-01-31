@@ -6,21 +6,21 @@ import AuctionCountdown from '@/components/bond/auction-countdown';
 import Button from '@/components/ui/button';
 import Avatar1 from '@/assets/images/avatar/3.png';
 
-interface NftFooterProps {
+interface BondFooterProps {
   className?: string;
-  currentBid: any;
-  auctionTime: Date | string | number;
+  currentBid?: any;
+  auctionTime?: Date | string | number;
   isAuction?: boolean;
   price?: number;
 }
 
-export default function NftFooter({
+export default function BondFooter({
   className = 'md:hidden',
   currentBid,
   auctionTime,
   isAuction,
   price,
-}: NftFooterProps) {
+}: BondFooterProps) {
   const { openModal } = useModal();
   return (
     <div
@@ -30,7 +30,7 @@ export default function NftFooter({
       )}
     >
       <div className="-mx-4 border-t-2 border-gray-900 px-4 pt-4 pb-5 dark:border-gray-700 sm:-mx-6 sm:px-6 md:mx-2 md:px-0 md:pt-5 lg:pt-6 lg:pb-7">
-        {isAuction && (
+        {/* {isAuction && (
           <div className="flex gap-4 pb-3.5 md:pb-4 xl:gap-5">
             <div className="block w-1/2 shrink-0 md:w-2/5">
               <h3 className="mb-1 truncate text-13px font-medium uppercase tracking-wider text-gray-900 dark:text-white sm:mb-1.5 sm:text-sm">
@@ -62,12 +62,15 @@ export default function NftFooter({
               <AuctionCountdown date={auctionTime} />
             </div>
           </div>
-        )}
+        )} */}
 
-        <div className="grid grid-cols-2 gap-3">
-          <Button shape="rounded">
+        <div
+          className="flex justify-center"
+          // "grid grid-cols-2 gap-3"
+        >
+          {/* <Button shape="rounded">
             {isAuction ? 'PLACE A BID' : `BUY FOR ${price} ETH`}
-          </Button>
+          </Button> */}
           <Button
             shape="rounded"
             variant="solid"
