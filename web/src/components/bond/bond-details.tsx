@@ -22,18 +22,12 @@ export default function BondDetails() {
   const [redeemAmount, setRedeemAmount] = useState<number | undefined>();
   const [convertAmount, setConvertAmount] = useState<number | undefined>();
 
-  const handleInvestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInvestAmount(Number(e.target.value));
-  };
-  const handleRedeemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRedeemAmount(Number(e.target.value));
-  };
-  const handleConvertChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setConvertAmount(Number(e.target.value));
-  };
-
   const route = typeof id === 'string' ? id : '/';
   const params = route.split('&');
+
+  function refreshPage() {
+    window.location.reload();
+  }
 
   const {
     data: bondQuery,
@@ -46,6 +40,16 @@ export default function BondDetails() {
   });
 
   const BondData = (bondQuery?.data as BondData) || null;
+
+  const handleInvestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInvestAmount(Number(e.target.value));
+  };
+  const handleRedeemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRedeemAmount(Number(e.target.value));
+  };
+  const handleConvertChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConvertAmount(Number(e.target.value));
+  };
 
   const handleInvest = async (investAmount: number) => {
     if (!investAmount) {
@@ -82,7 +86,12 @@ export default function BondDetails() {
 
   return (
     <>
-      {isLoading ? <div>Loading...</div> : null}
+      {isLoading ? (
+        <div>
+          <div>Loading...</div>
+          <button className="animate pulse" onClick={refreshPage}>Click me if it takes more than 3 seconds</button>
+        </div>
+      ) : null}
       {isSuccess ? (
         <div className="flex flex-grow">
           <div className="mx-auto flex w-full flex-grow flex-col transition-all xl:max-w-[1360px] 4xl:max-w-[1760px]">
