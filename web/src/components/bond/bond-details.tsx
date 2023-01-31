@@ -11,8 +11,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 import { useRouter } from 'next/router';
 import ApexDonutChart from '../ui/chart/ApexDonutChart';
-import { nftData } from '@/data/static/single-nft';
 import BondFooter from './bond-footer';
+import toast from 'react-hot-toast';
 
 export default function BondDetails() {
   const router = useRouter();
@@ -57,7 +57,6 @@ export default function BondDetails() {
       return;
     }
     await invest(investAmount).then(() => {
-      setInvestAmount(0);
       refetch();
     });
   };
@@ -67,10 +66,10 @@ export default function BondDetails() {
       setConvertAmount(0);
       return;
     }
-    await convert(convertAmount).then(() => {
-      setConvertAmount(0);
-      refetch();
-    });
+    toast.error('Still in development...');
+    // await convert(convertAmount).then(() => {
+    //   refetch();
+    // });
   };
 
   const handleRedeem = async (redeemAmount: number) => {
@@ -78,10 +77,10 @@ export default function BondDetails() {
       setRedeemAmount(0);
       return;
     }
-    await redeem(redeemAmount).then(() => {
-      setRedeemAmount(0);
-      refetch();
-    });
+    toast.error('Still in development...');
+    // await redeem(redeemAmount).then(() => {
+    //   refetch();
+    // });
   };
 
   return (
@@ -89,7 +88,9 @@ export default function BondDetails() {
       {isLoading ? (
         <div>
           <div>Loading...</div>
-          <button className="animate pulse" onClick={refreshPage}>Click me if it takes more than 3 seconds</button>
+          <button className="animate pulse" onClick={refreshPage}>
+            Click me if it takes more than 3 seconds
+          </button>
         </div>
       ) : null}
       {isSuccess ? (
