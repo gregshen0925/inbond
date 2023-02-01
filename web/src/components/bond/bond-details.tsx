@@ -16,6 +16,7 @@ import toast from 'react-hot-toast';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { getInvestedList } from '@/lib/utils/getInvestedList';
 import { APT_TYPE } from '@/lib/utils/aptosClient';
+import RedeemModal from '../modals/RedeemModal';
 
 export default function BondDetails() {
   const router = useRouter();
@@ -24,8 +25,8 @@ export default function BondDetails() {
   const [investAmount, setInvestAmount] = useState<number | undefined>();
   const [redeemAmount, setRedeemAmount] = useState<number | undefined>();
   const [convertAmount, setConvertAmount] = useState<number | undefined>();
-  const [aptBalance, setAptBalance] = useState<number | undefined>();
   const { account, connected } = useWallet();
+  const [redeemModalOn, setRedeemModalOn] = useState<boolean>(false);
 
   const route = typeof id === 'string' ? id : '/';
   const params = route.split('&');
@@ -153,6 +154,8 @@ export default function BondDetails() {
                 </div>
               </div>
             </div>
+
+            {redeemModalOn?<RedeemModal setRedeemModalOn={setRedeemModalOn} redeemAmount={redeemAmount||0} creatorAddress={params[0]} coinType={params[1]} />:null}
 
             <div className="relative flex w-full flex-grow flex-col justify-between ltr:md:ml-auto ltr:md:pl-8 rtl:md:mr-auto rtl:md:pr-8 lg:min-h-[calc(100vh-96px)] lg:w-[460px] ltr:lg:pl-12 rtl:lg:pr-12 xl:w-[592px] ltr:xl:pl-20 rtl:xl:pr-20">
               <div className="block">
@@ -407,7 +410,10 @@ export default function BondDetails() {
                   >
                     <button
                       className="rounded-xl bg-red-500 px-3 py-2 font-bold hover:bg-red-400 disabled:cursor-not-allowed"
-                      onClick={() => handleRedeem(redeemAmount!)}
+                      onClick={() => 
+                        // handleRedeem(redeemAmount!)
+                        setRedeemModalOn(true)
+                      }
                       disabled={!redeemAmount || redeemAmount < 0}
                     >
                       Redeem
