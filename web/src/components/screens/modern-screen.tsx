@@ -62,13 +62,13 @@ export default function ModernScreen({ className }: Props) {
         )}
       >
         {investedData
-          ? investedData.voting_powers.data.map((project, i) => (
-              <div key={i}>
+          ? investedData.voting_powers.data.map((project, idx) => (
+              <div key={project.key}>
                 <InvestedGrid
                   creatorAddress={project.key}
                   coinType={'0x1::aptos_coin::AptosCoin'}
                   investedAmount={
-                    investedData?.voting_powers.data[i].value / 10 ** 8
+                    investedData?.voting_powers.data[idx].value / 10 ** 8
                   }
                 />
               </div>
