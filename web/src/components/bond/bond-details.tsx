@@ -292,11 +292,13 @@ export default function BondDetails() {
 
                 <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
                   Progress : {Number(BondData?.funding.value) / 10 ** 8}/
-                  {Number(BondData?.target_funding_size) / 10 ** 8} {params[1]}
+                  {Number(BondData?.target_funding_size) / 10 ** 8}{' '}
+                  {params[1] == '0x1::aptos_coin::AptosCoin' ? '$APT' : null}
                 </div>
 
                 <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
-                  You&apos;ve invested : {investedValue[0]/10**8} {params[1]}
+                  You&apos;ve invested : {investedValue[0] / 10 ** 8}{' '}
+                  {params[1] == '0x1::aptos_coin::AptosCoin' ? '$APT' : null}
                 </div>
 
                 <div className="flex justify-center space-x-2 pb-4">
