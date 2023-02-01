@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 import type { BondData } from '@/types/typing';
 import { useEffect, useState } from 'react';
-import { client, TREASURY_MODULE_ID} from '@/lib/utils/aptosClient';
+import { client, TREASURY_MODULE_ID } from '@/lib/utils/aptosClient';
 
 type Props = {
   creatorAddress: string;
@@ -26,24 +26,25 @@ export default function InvestedGrid({
   // const BondData = (bondQuery?.data as BondData) || null;
 
   const [bondData, setBondData] = useState<BondData>({
-    creator: "",
-    description: "",
-    external_url: "",
+    creator: '',
+    description: '',
+    external_url: '',
     funding: { value: '0' },
-    image_url: "",
-    name: "",
-    target_funding_size: "",
+    image_url: '',
+    name: '',
+    target_funding_size: '',
   });
 
   useEffect(() => {
-    const getBondData =  async () => {
+    const getBondData = async () => {
       const resource = await client.getAccountResource(
-        creatorAddress, TREASURY_MODULE_ID + `Treasury<${coinType}>`
+        creatorAddress,
+        TREASURY_MODULE_ID + `Treasury<${coinType}>`
       );
       setBondData(resource.data as BondData);
-    }
+    };
     getBondData();
-  }, [creatorAddress])
+  }, [creatorAddress, coinType]);
 
   return (
     <a href={`/bond-details/${creatorAddress}&${coinType}`}>

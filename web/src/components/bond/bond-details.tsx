@@ -23,7 +23,8 @@ export default function BondDetails() {
   const [investAmount, setInvestAmount] = useState<number | undefined>();
   const [redeemAmount, setRedeemAmount] = useState<number | undefined>();
   const [convertAmount, setConvertAmount] = useState<number | undefined>();
-  const { account } = useWallet();
+  const [aptBalance, setAptBalance] = useState<number | undefined>();
+  const { account, connected } = useWallet();
 
   const route = typeof id === 'string' ? id : '/';
   const params = route.split('&');
@@ -48,9 +49,10 @@ export default function BondDetails() {
     queryKey: ['getTokenBalance'],
     queryFn: () =>
       getTokenBalance(
-        account?.address?.toString()!,
+        account?.address?.toString() || '0',
         '0x1::aptos_coin::AptosCoin'
       ),
+    enabled: !!account?.address?.toString(),
   });
 
   const {
@@ -115,11 +117,11 @@ export default function BondDetails() {
     // });
   };
 
-  const handleSetTokenMax = ()=>{
-    setInvestAmount((Math.floor(Number(tokenBalance)/10**8)))
-  }
-
-  console.log(Number(tokenBalance))
+  const handleSetTokenMax = async () => {
+    setInvestAmount(
+      Math.floor(Number((await refetchTokenBalance()).data) / 10 ** 8)
+    );
+  };
 
   return (
     <>
