@@ -67,8 +67,6 @@ const RedeemModal = ({ setRedeemModalOn,redeemAmount,creatorAddress,coinType }: 
               <h3 className="text-center text-base font-semibold text-gray-900 dark:text-white lg:text-2xl">
                 Are You Sure?
               </h3>
-
-              
             </div>
           </div>
 

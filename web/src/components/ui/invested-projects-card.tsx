@@ -26,6 +26,7 @@ export default function InvestedGrid({
   // const BondData = (bondQuery?.data as BondData) || null;
 
   const [bondData, setBondData] = useState<BondData>({
+    founder_type: '',
     creator: '',
     description: '',
     external_url: '',
