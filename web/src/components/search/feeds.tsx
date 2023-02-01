@@ -26,7 +26,7 @@ export default function Feeds({ projectsArray, className }: Props) {
       {projectsArray
         ? projectsArray.map((project, index) => (
             <div key={index}>
-              <BondGrid creatorAddress={project.key} coinType={project.value} />
+              <BondGrid project={project} />
             </div>
           ))
         : null}
