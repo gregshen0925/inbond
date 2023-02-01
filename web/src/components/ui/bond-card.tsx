@@ -11,6 +11,7 @@ type Props = {
 
 export default function BondGrid({ project }: Props) {
   const [bondData, setBondData] = useState<BondData>({
+    founder_type: '',
     creator: '',
     description: '',
     external_url: '',
@@ -71,7 +72,7 @@ export default function BondGrid({ project }: Props) {
             Target Size: {Number(bondData?.target_funding_size) / 10 ** 8} APT
           </div>
           <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
-            Already Raised: {Number(bondData?.funding?.value) / 10 ** 8} APT
+            Raised: {Number(bondData?.funding?.value) / 10 ** 8} APT
           </div>
         </div>
       </div>

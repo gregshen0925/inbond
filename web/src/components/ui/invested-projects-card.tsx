@@ -84,7 +84,7 @@ export default function InvestedGrid({
             Target Size: {Number(bondData?.target_funding_size) / 10 ** 8} $APT
           </div>
           <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
-            Already Raised: {Number(bondData?.funding?.value) / 10 ** 8} $APT
+            Raised: {Number(bondData?.funding?.value) / 10 ** 8} $APT
           </div>
           {investedAmount ? (
             <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
