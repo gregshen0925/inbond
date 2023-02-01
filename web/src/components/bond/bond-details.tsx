@@ -297,7 +297,8 @@ export default function BondDetails() {
                 </div>
 
                 <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
-                  You&apos;ve invested : {investedValue[0] / 10 ** 8}{' '}
+                  You&apos;ve invested :{' '}
+                  {investedValue[0] ? investedValue[0] / 10 ** 8 : 0}{' '}
                   {params[1] == '0x1::aptos_coin::AptosCoin' ? '$APT' : null}
                 </div>
 
@@ -309,7 +310,7 @@ export default function BondDetails() {
                       value={investAmount || undefined}
                       onChange={handleInvestChange}
                       className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                      placeholder="0 APT"
+                      placeholder="0"
                       required={true}
                     />
                   </div>
@@ -337,7 +338,7 @@ export default function BondDetails() {
                       value={convertAmount || undefined}
                       onChange={handleConvertChange}
                       className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                      placeholder="0 APT"
+                      placeholder="0"
                       required={true}
                     />
                   </div>
@@ -365,7 +366,7 @@ export default function BondDetails() {
                       value={redeemAmount || undefined}
                       onChange={handleRedeemChange}
                       className="dark:shadow-sm-light block w-[150px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                      placeholder="0 APT"
+                      placeholder="0"
                       required={true}
                     />
                   </div>

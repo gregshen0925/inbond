@@ -51,10 +51,10 @@ export const menuItems = [
     icon: <VoteIcon />,
     href: routes.vote,
     dropdownItems: [
-      {
-        name: 'Explore',
-        href: routes.vote,
-      },
+      // {
+      //   name: 'Explore',
+      //   href: routes.vote,
+      // },
       {
         name: 'Vote with pools',
         href: routes.proposals,
