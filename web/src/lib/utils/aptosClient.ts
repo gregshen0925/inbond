@@ -19,3 +19,5 @@ export const FOUNDERINFOS_MODULE_ID =
 
 export const CREATOR_ADDRESS =
   '0x6064192b201dc3a7cff0513654610b141e754c9eb1ff22d40622f858c9d912e9';
+
+export const APT_TYPE = "0x1::aptos_coin::AptosCoin";

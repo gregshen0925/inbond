@@ -15,6 +15,7 @@ import BondFooter from './bond-footer';
 import toast from 'react-hot-toast';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { getInvestedList } from '@/lib/utils/getInvestedList';
+import { APT_TYPE } from '@/lib/utils/aptosClient';
 
 export default function BondDetails() {
   const router = useRouter();
@@ -43,14 +44,14 @@ export default function BondDetails() {
     queryFn: () => getBond(params[0], params[1]),
   });
 
-  const BondData = (bondQuery?.data as BondData) || null;
+  const bondData = (bondQuery?.data as BondData) || null;
 
   const { data: tokenBalance, refetch: refetchTokenBalance } = useQuery({
     queryKey: ['getTokenBalance'],
     queryFn: () =>
       getTokenBalance(
-        account?.address?.toString() || '0',
-        '0x1::aptos_coin::AptosCoin'
+        account?.address?.toString()!,
+        params[1],
       ),
     enabled: !!account?.address?.toString(),
   });
@@ -100,10 +101,10 @@ export default function BondDetails() {
       setConvertAmount(0);
       return;
     }
-    toast.error('Still in development...');
-    // await convert(convertAmount).then(() => {
-    //   refetch();
-    // });
+    // toast.error('Still in development...');
+    await convert(params[1], bondData.founder_type, params[0], convertAmount).then(() => {
+      refetch();
+    });
   };
 
   const handleRedeem = async (redeemAmount: number) => {
@@ -111,10 +112,10 @@ export default function BondDetails() {
       setRedeemAmount(0);
       return;
     }
-    toast.error('Still in development...');
-    // await redeem(redeemAmount).then(() => {
-    //   refetch();
-    // });
+    // toast.error('Still in development...');
+    await redeem(params[1], params[0], redeemAmount).then(() => {
+      refetch();
+    });
   };
 
   const handleSetTokenMax = async () => {
@@ -139,13 +140,13 @@ export default function BondDetails() {
             <div className="relative mb-5 flex flex-grow items-center justify-center md:pb-7 md:pt-4 ltr:md:left-0 ltr:md:pl-6 rtl:md:right-0 rtl:md:pr-6 lg:fixed lg:mb-0 lg:h-[calc(100%-96px)] lg:w-[calc(100%-492px)] ltr:lg:pl-8 rtl:lg:pr-8 xl:w-[calc(100%-550px)] ltr:xl:pr-12 ltr:xl:pl-[340px] rtl:xl:pl-12 rtl:xl:pr-[340px] ltr:2xl:pl-96 rtl:2xl:pr-96 3xl:w-[calc(100%-632px)] ltr:4xl:pl-0 rtl:4xl:pr-0">
               <div className="flex h-full max-h-full w-full items-center justify-center lg:max-w-[768px]">
                 <div className="relative aspect-square max-h-full overflow-hidden rounded-lg">
-                  {BondData?.image_url ? (
+                  {bondData?.image_url ? (
                     <Image
-                      src={BondData?.image_url}
+                      src={bondData?.image_url}
                       // layout="fill"
                       width={500}
                       height={500}
-                      alt={BondData?.name}
+                      alt={bondData?.name}
                       className="h-full bg-gray-200 dark:bg-light-dark"
                     />
                   ) : null}
@@ -158,7 +159,7 @@ export default function BondDetails() {
                 <div className="block">
                   <div className="flex justify-center ">
                     <h2 className="text-3xl font-medium leading-[1.45em] -tracking-wider text-gray-900 dark:text-white ">
-                      {BondData?.name}
+                      {bondData?.name}
                     </h2>
                     {/* <div className="mt-1.5 shrink-0 ltr:ml-3 rtl:mr-3 xl:mt-2">
                     <NftDropDown />
@@ -178,11 +179,11 @@ export default function BondDetails() {
                         Created By
                       </h3>
                       <AnchorLink
-                        href={`${BondData?.external_url}`}
+                        href={`${bondData?.external_url}`}
                         className="inline-flex"
                       >
                         <div className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
-                          {BondData?.creator}
+                          {bondData?.creator}
                         </div>
                       </AnchorLink>
                     </div> */}
@@ -223,7 +224,7 @@ export default function BondDetails() {
                             Description
                           </h3>
                           <div className="text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400">
-                            {BondData?.description}
+                            {bondData?.description}
                           </div>
                         </div>
                         <div className="block">
@@ -286,7 +287,7 @@ export default function BondDetails() {
                       Creator
                     </div>
                     <div className="text-center text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400 sm:text-lg ">
-                      {BondData?.creator}
+                      {bondData?.creator}
                     </div>
                   </div>
                   <div className="pb-5">
@@ -294,22 +295,22 @@ export default function BondDetails() {
                       Description
                     </div>
                     <div className="text-center text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400 sm:text-lg lg:text-left">
-                      {BondData?.description}
+                      {bondData?.description}
                     </div>
                   </div>
                   <ApexDonutChart />
                 </div>
 
                 <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
-                  Progress : {Number(BondData?.funding.value) / 10 ** 8}/
-                  {Number(BondData?.target_funding_size) / 10 ** 8}{' '}
-                  {params[1] == '0x1::aptos_coin::AptosCoin' ? '$APT' : null}
+                  Progress : {Number(bondData?.funding.value) / 10 ** 8}/
+                  {Number(bondData?.target_funding_size) / 10 ** 8}{' '}
+                  {params[1] == APT_TYPE ? '$APT' : null}
                 </div>
 
                 <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
                   You&apos;ve invested :{' '}
                   {investedValue[0] ? investedValue[0] / 10 ** 8 : 0}{' '}
-                  {params[1] == '0x1::aptos_coin::AptosCoin' ? '$APT' : null}
+                  {params[1] == APT_TYPE ? '$APT' : null}
                 </div>
 
                 <div className="flex justify-center space-x-2 pb-4">

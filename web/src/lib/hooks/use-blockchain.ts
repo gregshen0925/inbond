@@ -52,15 +52,15 @@ export function useBlockchain() {
     }
   };
 
-  const convert = async (convertAmount: number) => {
+  const convert = async (fundingType: string, founderType: string, creatorAddress: string, convertAmount: number) => {
     if (!account?.address || !account?.publicKey) {
       toast.error('Please connect wallet first');
     } else {
       const payload: Types.TransactionPayload = {
         type: 'entry_function_payload',
-        function: `${TREASURY_MODULE_ID}convert`,
-        type_arguments: ['0x1::aptos_coin::AptosCoin'],
-        arguments: [convertAmount! * 10 ** 8],
+        function: `${TREASURY_MODULE_ID}convert_all`,
+        type_arguments: [fundingType, founderType],
+        arguments: [creatorAddress],
       };
       const transactionRes = await signAndSubmitTransaction(
         payload
@@ -74,15 +74,15 @@ export function useBlockchain() {
     }
   };
 
-  const redeem = async (redeemAmount: number) => {
+  const redeem = async (coinType: string, createAddress: string, redeemAmount: number) => {
     if (!account?.address || !account?.publicKey) {
       toast.error('Please connect wallet first');
     } else {
       const payload: Types.TransactionPayload = {
         type: 'entry_function_payload',
-        function: `${TREASURY_MODULE_ID}redeem`,
-        type_arguments: ['0x1::aptos_coin::AptosCoin'],
-        arguments: [redeemAmount! * 10 ** 8],
+        function: `${TREASURY_MODULE_ID}redeem_all`,
+        type_arguments: [coinType],
+        arguments: [createAddress],
       };
       const transactionRes = await signAndSubmitTransaction(
         payload

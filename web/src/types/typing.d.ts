@@ -31,6 +31,7 @@ export type BondData = {
   image_url: string;
   name: string;
   target_funding_size: string;
+  founder_type: string;
 };
 
 export type KV = {

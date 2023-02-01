@@ -1,13 +1,14 @@
 import cn from 'classnames';
 import { NextSeo } from 'next-seo';
-// import LiquidityChart from '@/components/ui/chats/liquidity-chart';
-// import VolumeChart from '@/components/ui/chats/volume-chart';
+import LiquidityChart from '@/components/ui/chats/liquidity-chart';
+import VolumeChart from '@/components/ui/chats/volume-chart';
 import InvestedGrid from '../ui/invested-projects-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 import { getInvestedList } from '@/lib/utils/getInvestedList';
 import { useQuery } from '@tanstack/react-query';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import type { investedData } from '@/types/typing';
+import { APT_TYPE } from '@/lib/utils/aptosClient';
 
 type Props = {
   className?: string;
@@ -66,7 +67,7 @@ export default function ModernScreen({ className }: Props) {
               <div key={project.key}>
                 <InvestedGrid
                   creatorAddress={project.key}
-                  coinType={'0x1::aptos_coin::AptosCoin'}
+                  coinType={APT_TYPE}
                   investedAmount={
                     investedData?.voting_powers.data[idx].value / 10 ** 8
                   }
