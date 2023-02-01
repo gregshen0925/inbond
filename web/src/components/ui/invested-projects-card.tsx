@@ -1,9 +1,9 @@
 import Image from '@/components/ui/image';
 import { Verified } from '@/components/icons/verified';
 import Avatar from '@/components/ui/avatar';
-import { BondData } from '@/types/typing';
 import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
+import type { BondData } from '@/types/typing';
 
 type Props = {
   creatorAddress: string;

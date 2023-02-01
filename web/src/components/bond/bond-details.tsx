@@ -3,7 +3,7 @@ import Image from '@/components/ui/image';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { ArrowLinkIcon } from '@/components/icons/arrow-link-icon';
 import NftDropDown from '@/components/bond/nft-dropdown';
-import type { BondData } from '@/types/typing';
+import type { BondData, investedData } from '@/types/typing';
 import { useBlockchain } from '@/lib/hooks/use-blockchain';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -13,6 +13,8 @@ import { useRouter } from 'next/router';
 import ApexDonutChart from '../ui/chart/ApexDonutChart';
 import BondFooter from './bond-footer';
 import toast from 'react-hot-toast';
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
+import { getInvestedList } from '@/lib/utils/getInvestedList';
 
 export default function BondDetails() {
   const router = useRouter();
@@ -21,6 +23,7 @@ export default function BondDetails() {
   const [investAmount, setInvestAmount] = useState<number | undefined>();
   const [redeemAmount, setRedeemAmount] = useState<number | undefined>();
   const [convertAmount, setConvertAmount] = useState<number | undefined>();
+  const { account } = useWallet();
 
   const route = typeof id === 'string' ? id : '/';
   const params = route.split('&');
@@ -40,6 +43,33 @@ export default function BondDetails() {
   });
 
   const BondData = (bondQuery?.data as BondData) || null;
+
+  const {
+    data: investedList,
+    isSuccess: investedListSuccess,
+    isLoading: investedListLoading,
+  } = useQuery({
+    enabled: !!account?.address?.toString(),
+    queryKey: ['investedList'],
+    queryFn: () => getInvestedList(account?.address?.toString() || '0x0'),
+  });
+
+  const investedData: investedData = investedList?.data as investedData;
+
+  const isEqual = (creator_address: string) => {
+    return (creator_address = params[0]);
+  };
+
+  const investedValue = [];
+
+  for (let i = 0; i < investedData?.voting_powers.data.length; i++) {
+    if (investedData?.voting_powers.data[i].key === params[0]) {
+      investedValue.push(investedData?.voting_powers.data[i].value);
+    }
+    // investedLists.push(investedData?.voting_powers.data[i].key);
+  }
+
+  // console.log(investedListf.filter(isEqual(params[0])));
 
   const handleInvestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvestAmount(Number(e.target.value));
@@ -262,7 +292,11 @@ export default function BondDetails() {
 
                 <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
                   Progress : {Number(BondData?.funding.value) / 10 ** 8}/
-                  {Number(BondData?.target_funding_size) / 10 ** 8} APT
+                  {Number(BondData?.target_funding_size) / 10 ** 8} {params[1]}
+                </div>
+
+                <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
+                  You&apos;ve invested : {investedValue[0]/10**8} {params[1]}
                 </div>
 
                 <div className="flex justify-center space-x-2 pb-4">

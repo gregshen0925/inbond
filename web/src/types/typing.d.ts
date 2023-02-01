@@ -37,3 +37,12 @@ export type KV = {
   key: string;
   value: string;
 };
+
+export type investedData = {
+  voting_powers: {
+    data: {
+      key: string;
+      value: number;
+    }[];
+  };
+};

@@ -1,33 +1,13 @@
 import cn from 'classnames';
 import { NextSeo } from 'next-seo';
-import CoinSlider from '@/components/ui/coin-card';
-import OverviewChart from '@/components/ui/chats/overview-chart';
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
-import TopPools from '@/components/ui/top-pools';
-import TransactionTable from '@/components/transaction/transaction-table';
-import TopCurrencyTable from '@/components/top-currency/currency-table';
-import { coinSlideData } from '@/data/static/coin-slide-data';
-import Avatar from '@/components/ui/avatar';
-import TopupButton from '@/components/ui/topup-button';
-
-//images
-import { useBlockchain } from '../../lib/hooks/use-blockchain';
 import InvestedGrid from '../ui/invested-projects-card';
-import { KV } from '@/types/typing';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 import { getInvestedList } from '@/lib/utils/getInvestedList';
 import { useQuery } from '@tanstack/react-query';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
-
-type investedData = {
-  voting_powers: {
-    data: {
-      key: string;
-      value: number;
-    }[];
-  };
-};
+import type { investedData } from '@/types/typing';
 
 type Props = {
   className?: string;
@@ -48,6 +28,8 @@ export default function ModernScreen({ className }: Props) {
 
   const investedData: investedData = investedList?.data as investedData;
   const { isGridCompact } = useGridSwitcher();
+
+  console.log(investedData?.voting_powers.data);
 
   return (
     <>
@@ -88,13 +70,13 @@ export default function ModernScreen({ className }: Props) {
         )}
       >
         {investedData
-          ? investedData.voting_powers.data.map((project) => (
-              <div key={project.key}>
+          ? investedData.voting_powers.data.map((project, i) => (
+              <div key={i}>
                 <InvestedGrid
                   creatorAddress={project.key}
                   coinType={'0x1::aptos_coin::AptosCoin'}
                   investedAmount={
-                    investedData?.voting_powers.data[0].value / 10 ** 8
+                    investedData?.voting_powers.data[i].value / 10 ** 8
                   }
                 />
               </div>
