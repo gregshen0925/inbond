@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { NextSeo } from 'next-seo';
-import LiquidityChart from '@/components/ui/chats/liquidity-chart';
-import VolumeChart from '@/components/ui/chats/volume-chart';
+// import LiquidityChart from '@/components/ui/chats/liquidity-chart';
+// import VolumeChart from '@/components/ui/chats/volume-chart';
 import InvestedGrid from '../ui/invested-projects-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 import { getInvestedList } from '@/lib/utils/getInvestedList';

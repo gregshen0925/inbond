@@ -3,11 +3,7 @@ import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { useQuery } from '@tanstack/react-query';
 import type { Types } from 'aptos';
 import toast from 'react-hot-toast';
-import {
-  client,
-  CREATOR_ADDRESS,
-  TREASURY_MODULE_ID,
-} from '../utils/aptosClient';
+import { client, coinClient, TREASURY_MODULE_ID } from '../utils/aptosClient';
 import { getInvestedList } from '../utils/getInvestedList';
 import { getAllProjects } from '../utils/getAllProjects';
 
@@ -29,6 +25,10 @@ export function useBlockchain() {
     queryKey: ['allProjects'],
     queryFn: getAllProjects,
   });
+
+  const getTokenBalance = async (userAddress: string, coinType: string) => {
+    return await coinClient.checkBalance(userAddress, { coinType });
+  };
 
   const invest = async (investAmount: number, creator_address: string) => {
     if (!account?.address || !account?.publicKey) {
@@ -97,6 +97,7 @@ export function useBlockchain() {
   };
 
   return {
+    getTokenBalance,
     invest,
     convert,
     redeem,

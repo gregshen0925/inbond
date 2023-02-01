@@ -1,9 +1,11 @@
-import { AptosClient, Types } from 'aptos';
+import { AptosClient, Types, CoinClient } from 'aptos';
 
 const NODE_URL =
   process.env.APTOS_NODE_URL || 'https://fullnode.testnet.aptoslabs.com';
 
 export const client = new AptosClient(NODE_URL);
+
+export const coinClient = new CoinClient(client);
 
 export { Types };
 

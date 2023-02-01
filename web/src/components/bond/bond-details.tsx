@@ -19,7 +19,7 @@ import { getInvestedList } from '@/lib/utils/getInvestedList';
 export default function BondDetails() {
   const router = useRouter();
   const { id } = router.query;
-  const { invest, convert, redeem } = useBlockchain();
+  const { invest, getTokenBalance, convert, redeem } = useBlockchain();
   const [investAmount, setInvestAmount] = useState<number | undefined>();
   const [redeemAmount, setRedeemAmount] = useState<number | undefined>();
   const [convertAmount, setConvertAmount] = useState<number | undefined>();
@@ -44,6 +44,15 @@ export default function BondDetails() {
 
   const BondData = (bondQuery?.data as BondData) || null;
 
+  const { data: tokenBalance, refetch: refetchTokenBalance } = useQuery({
+    queryKey: ['getTokenBalance'],
+    queryFn: () =>
+      getTokenBalance(
+        account?.address?.toString()!,
+        '0x1::aptos_coin::AptosCoin'
+      ),
+  });
+
   const {
     data: investedList,
     isSuccess: investedListSuccess,
@@ -56,7 +65,7 @@ export default function BondDetails() {
 
   const investedData: investedData = investedList?.data as investedData;
 
-  const investedValue = [];
+  const investedValue: number[] = [];
 
   for (let i = 0; i < investedData?.voting_powers.data.length; i++) {
     if (investedData?.voting_powers.data[i].key === params[0]) {
@@ -105,6 +114,12 @@ export default function BondDetails() {
     //   refetch();
     // });
   };
+
+  const handleSetTokenMax = ()=>{
+    setInvestAmount((Math.floor(Number(tokenBalance)/10**8)))
+  }
+
+  console.log(Number(tokenBalance))
 
   return (
     <>
@@ -307,6 +322,12 @@ export default function BondDetails() {
                       required={true}
                     />
                   </div>
+                  <button
+                    className="rounded-xl bg-gray-800 px-2 py-2"
+                    onClick={handleSetTokenMax}
+                  >
+                    Max
+                  </button>
                   <motion.div
                     whileTap={{
                       scale: 0.8,
@@ -335,6 +356,12 @@ export default function BondDetails() {
                       required={true}
                     />
                   </div>
+                  <button
+                    className="rounded-xl bg-gray-800 px-2 py-2"
+                    onClick={() => setConvertAmount(investedValue[0] / 10 ** 8)}
+                  >
+                    Max
+                  </button>
                   <motion.div
                     whileTap={{
                       scale: 0.8,
@@ -363,6 +390,12 @@ export default function BondDetails() {
                       required={true}
                     />
                   </div>
+                  <button
+                    className="rounded-xl bg-gray-800 px-2 py-2"
+                    onClick={() => setRedeemAmount(investedValue[0] / 10 ** 8)}
+                  >
+                    Max
+                  </button>
                   <motion.div
                     whileTap={{
                       scale: 0.8,
