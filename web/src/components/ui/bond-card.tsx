@@ -5,42 +5,36 @@ import type { BondData, KV } from '@/types/typing';
 import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 import { useEffect, useState } from 'react';
-import { client, TREASURY_MODULE_ID } from "@/lib/utils/aptosClient"
-
+import { client, TREASURY_MODULE_ID } from '@/lib/utils/aptosClient';
 
 type Props = {
   project: KV;
 };
 
 export default function BondGrid({ project }: Props) {
-  // const {bondQuery, allProjects} = useBlockchain()
-
-  // const BondData = (bondQuery?.data as BondData) || null;
-
   const [bondData, setBondData] = useState<BondData>({
-    creator: "",
-    description: "",
-    external_url: "",
+    creator: '',
+    description: '',
+    external_url: '',
     funding: { value: '0' },
-    image_url: "",
-    name: "",
-    target_funding_size: "",
+    image_url: '',
+    name: '',
+    target_funding_size: '',
   });
-
-  const { data: bondQuery } = useQuery({
-    queryKey: ['getBondInfo'],
-    queryFn: () => getBond(project.key, project.value),
-  });
-
-  // const BondData = (bondQuery?.data as BondData) || null;
 
   useEffect(() => {
     const getResource = async () => {
-      setBondData((await client.getAccountResource(project.key, TREASURY_MODULE_ID + "Treasury<0x1::aptos_coin::AptosCoin>")).data as BondData)
-    }
-    getResource()
-  }, [project])
-
+      setBondData(
+        (
+          await client.getAccountResource(
+            project.key,
+            TREASURY_MODULE_ID + `Treasury<${project.value}>`
+          )
+        ).data as BondData
+      );
+    };
+    getResource();
+  }, [project]);
 
   return (
     <a href={`/bond-details/${project.key}&${project.value}`}>

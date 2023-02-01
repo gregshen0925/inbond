@@ -65,7 +65,7 @@ export default function Search() {
           </div>
         </div>
       ) : (
-        'fetching data...'
+        'Fetching data...'
       )}
     </>
   );

@@ -22,6 +22,8 @@ export default function InvestedGrid({
   });
 
   const BondData = (bondQuery?.data as BondData) || null;
+  console.log(creatorAddress);
+  console.log(BondData);
 
   return (
     <a href={`/bond-details/${creatorAddress}&${coinType}`}>
@@ -57,14 +59,14 @@ export default function InvestedGrid({
             </div>
           </div>
           <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
-            Target Size: {Number(BondData?.target_funding_size) / 10 ** 8} APT
+            Target Size: {Number(BondData?.target_funding_size) / 10 ** 8} $APT
           </div>
           <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
-            Already Raised: {Number(BondData?.funding?.value) / 10 ** 8} APT
+            Already Raised: {Number(BondData?.funding?.value) / 10 ** 8} $APT
           </div>
           {investedAmount ? (
             <div className="text-md mt-4 font-medium text-gray-900 dark:text-white">
-              You&apos;ve Invested: {investedAmount} APT
+              You&apos;ve Invested: {investedAmount} $APT
             </div>
           ) : null}
         </div>

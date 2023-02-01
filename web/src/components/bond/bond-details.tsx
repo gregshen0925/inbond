@@ -56,20 +56,13 @@ export default function BondDetails() {
 
   const investedData: investedData = investedList?.data as investedData;
 
-  const isEqual = (creator_address: string) => {
-    return (creator_address = params[0]);
-  };
-
   const investedValue = [];
 
   for (let i = 0; i < investedData?.voting_powers.data.length; i++) {
     if (investedData?.voting_powers.data[i].key === params[0]) {
       investedValue.push(investedData?.voting_powers.data[i].value);
     }
-    // investedLists.push(investedData?.voting_powers.data[i].key);
   }
-
-  // console.log(investedListf.filter(isEqual(params[0])));
 
   const handleInvestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvestAmount(Number(e.target.value));
@@ -86,7 +79,7 @@ export default function BondDetails() {
       setInvestAmount(0);
       return;
     }
-    await invest(investAmount).then(() => {
+    await invest(investAmount, params[0]).then(() => {
       refetch();
     });
   };
