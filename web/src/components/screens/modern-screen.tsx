@@ -29,8 +29,6 @@ export default function ModernScreen({ className }: Props) {
   const investedData: investedData = investedList?.data as investedData;
   const { isGridCompact } = useGridSwitcher();
 
-  console.log(investedData?.voting_powers.data);
-
   return (
     <>
       <NextSeo title="InBond" description="InBond - By InJoy Labs" />

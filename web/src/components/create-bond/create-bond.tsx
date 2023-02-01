@@ -120,16 +120,7 @@ export default function CreateBond() {
           </div> */}
         </div>
 
-        {/* Price */}
-        <div className="mb-8 ">
-          <InputLabel title="Total to raise" important />
-          <Input
-            min={0}
-            type="number"
-            placeholder="Enter amount"
-            inputClassName="spin-button-hidden"
-          />
-        </div>
+
 
         <div className="mb-8">
           <InputLabel
@@ -137,6 +128,26 @@ export default function CreateBond() {
             subTitle="What is the maximum value for each wallet to purchase"
           />
           <Input type="number" placeholder="1" />
+        </div>
+
+        {/* Coin Type To Raise */}
+        <div className="mb-8">
+          <InputLabel
+            title="Coin Type to Raise"
+            subTitle="Which token to raise"
+          />
+          <Input type="string" placeholder="APT, USDC, etc.." />
+        </div>
+
+                {/* Price */}
+                <div className="mb-8 ">
+          <InputLabel title="Total to raise" important />
+          <Input
+            min={0}
+            type="number"
+            placeholder="Enter amount"
+            inputClassName="spin-button-hidden"
+          />
         </div>
 
         {/* Period */}

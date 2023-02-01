@@ -30,7 +30,7 @@ export function useBlockchain() {
     queryFn: getAllProjects,
   });
 
-  const invest = async (investAmount: number) => {
+  const invest = async (investAmount: number, creator_address: string) => {
     if (!account?.address || !account?.publicKey) {
       toast.error('Please connect wallet first');
     } else {
@@ -38,7 +38,7 @@ export function useBlockchain() {
         type: 'entry_function_payload',
         function: `${TREASURY_MODULE_ID}invest`,
         type_arguments: ['0x1::aptos_coin::AptosCoin'],
-        arguments: [CREATOR_ADDRESS, investAmount! * 10 ** 8],
+        arguments: [creator_address, investAmount! * 10 ** 8],
       };
       const transactionRes = await signAndSubmitTransaction(
         payload

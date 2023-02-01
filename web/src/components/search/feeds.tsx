@@ -3,7 +3,6 @@ import BondGrid from '@/components/ui/bond-card';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 import { KV } from '@/types/typing';
 
-
 type Props = {
   projectsArray: KV[];
   className?: string;
@@ -25,9 +24,9 @@ export default function Feeds({ projectsArray, className }: Props) {
       )}
     >
       {projectsArray
-        ? projectsArray.map((project) => (
-            <div key={project.key}>
-              <BondGrid project={project} />
+        ? projectsArray.map((project, index) => (
+            <div key={index}>
+              <BondGrid creatorAddress={project.key} coinType={project.value} />
             </div>
           ))
         : null}
