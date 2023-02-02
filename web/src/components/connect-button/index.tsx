@@ -26,10 +26,10 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
           <span className="mas">
             {`${
               connected
-                ? network?.name?.toString().toLowerCase() == targetNetwork ||
-                  'Aptos testnet'
+                ? network?.name?.toLowerCase() ==
+                  (targetNetwork || 'Aptos testnet')
                   ? network?.name
-                  : 'Wrong Network'
+                  : `Switch to ${targetNetwork}`
                 : 'Connect Wallet'
             }`}
           </span>
@@ -43,10 +43,10 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
             <div className={`${connected ? null : 'animate-pulse'}`}>
               {`${
                 connected
-                  ? network?.name?.toString().toLowerCase() == targetNetwork ||
-                    'Aptos testnet'
+                  ? network?.name?.toLowerCase() ==
+                    (targetNetwork || 'Aptos testnet')
                     ? network?.name
-                    : 'Wrong Network'
+                    : `Switch to ${targetNetwork}`
                   : 'Connect Wallet'
               }`}
             </div>

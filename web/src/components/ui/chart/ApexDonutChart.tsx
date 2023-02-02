@@ -119,7 +119,7 @@ const ApexDonutChart = () => {
           sx: { color: (theme) => `${theme.palette.text.disabled} !important` },
         }}
       /> */}
-      <div className="pt-2 text-center text-2xl text-gray-900 dark:text-white">
+      <div className="text-center text-2xl text-gray-900 dark:text-white">
         Tokenomics
       </div>
       <CardContent>

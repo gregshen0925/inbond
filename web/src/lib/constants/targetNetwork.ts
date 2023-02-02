@@ -1,1 +1,1 @@
-export const targetNetwork = "Testnet";
+export const targetNetwork = 'testnet';

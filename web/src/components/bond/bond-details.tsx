@@ -184,13 +184,12 @@ export default function BondDetails() {
                         : bondData?.name}
                     </h2>
                   </div>
-                  <div className="mt-4 flex flex-wrap gap-6 pt-0.5 lg:-mx-6 lg:mt-6 lg:gap-0"></div>
                 </div>
-                <div className="mt-5 flex flex-col pb-5 xl:mt-9">
+                <div className="flex flex-col pb-5 xl:mt-8">
                   <ApexDonutChart />
                 </div>
 
-                <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
+                <div className="flex justify-center py-5 text-gray-900 dark:text-white">
                   Progress : {Number(bondData?.funding.value) / 10 ** 8}/
                   {Number(bondData?.target_funding_size) / 10 ** 8}{' '}
                   {params[1] == APT_TYPE ? '$APT' : null}
