@@ -13,13 +13,10 @@ import Uploader from '@/components/ui/forms/uploader';
 import InputLabel from '@/components/ui/input-label';
 import ToggleBar from '@/components/ui/toggle-bar';
 import { ChevronDown } from '@/components/icons/chevron-down';
-import { Warning } from '@/components/icons/warning';
-import { Unlocked } from '@/components/icons/unlocked';
+
 //images
 import { Aptos } from '../icons/aptos';
 import { Sui } from '../icons/sui';
-
-// import PriceType from '@/components/create-nft/price-types-props';
 
 const BlockchainOptions = [
   {
@@ -120,8 +117,6 @@ export default function CreateBond() {
           </div> */}
         </div>
 
-
-
         <div className="mb-8">
           <InputLabel
             title="Max investment per wallet"
@@ -139,8 +134,8 @@ export default function CreateBond() {
           <Input type="string" placeholder="APT, USDC, etc.." />
         </div>
 
-                {/* Price */}
-                <div className="mb-8 ">
+        {/* Price */}
+        <div className="mb-8 ">
           <InputLabel title="Total to raise" important />
           <Input
             min={0}
