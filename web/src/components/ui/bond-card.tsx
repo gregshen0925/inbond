@@ -47,7 +47,9 @@ export default function BondGrid({ project }: Props) {
               className="text-ellipsis ltr:mr-3 rtl:ml-3 dark:border-gray-500"
             />
             <span className="overflow-hidden text-ellipsis">
-              {bondData?.name}
+              {bondData?.name == ':Aptos InBond'
+                ? 'Aptos InBond'
+                : bondData?.name}
             </span>
           </div>
         </div>

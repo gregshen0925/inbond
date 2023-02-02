@@ -55,10 +55,10 @@ export default function ModernScreen({ className }: Props) {
       </div>
       <div
         className={cn(
-          'grid gap-5 sm:grid-cols-2 md:grid-cols-3',
-          isGridCompact
-            ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-            : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+          'grid gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4',
+          // isGridCompact
+          //   ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+          //   : '3xl:!grid-cols-3 4xl:!grid-cols-4',
           className
         )}
       >
