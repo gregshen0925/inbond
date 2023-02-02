@@ -168,7 +168,7 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            Buy Now
+            Invest Now
           </span>
         )}
       </RadioGroup.Option>
@@ -181,7 +181,7 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            On Auction
+            Finished
           </span>
         )}
       </RadioGroup.Option>
@@ -194,7 +194,7 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            New
+            Trending
           </span>
         )}
       </RadioGroup.Option>
@@ -207,7 +207,7 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            Has offers
+            Has Raised
           </span>
         )}
       </RadioGroup.Option>

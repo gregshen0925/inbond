@@ -29,12 +29,10 @@ export default function Search() {
   return (
     <>
       {getAllProjectsSuccess ? (
-        <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
-          <div className="hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700 2xl:block">
-            <Filters />
-          </div>
-
-          <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+        <div className="grid grid-cols-3 xl:grid-cols-4"
+        // "grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]"
+        >
+          <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10 col-span-3 xl:col-span-3">
             <div className="relative z-10 mb-6 flex items-center justify-between">
               <div className="flex gap-6 3xl:gap-8">
                 <SortList />
@@ -58,11 +56,17 @@ export default function Search() {
             <Feeds projectsArray={projectsArray} />
           </div>
 
-          <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
+          <div className="hidden 2xl:block 2xl:col-span-1 pt-10"
+          // "hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700 2xl:block"
+          >
+            <Filters />
+          </div>
+
+          {/* <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
             <Button onClick={() => openDrawer('DRAWER_SEARCH')} fullWidth>
               Filters
             </Button>
-          </div>
+          </div> */}
         </div>
       ) : (
         'Fetching data...'
