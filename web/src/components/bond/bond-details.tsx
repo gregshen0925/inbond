@@ -135,12 +135,12 @@ export default function BondDetails() {
                       <Image
                         src={bondData?.image_url}
                         // layout="fill"
-                        width={400}
-                        height={400}
+                        width={500}
+                        height={500}
                         alt={bondData?.name}
                         className="h-full bg-gray-200 dark:bg-light-dark"
                       />
-                      <div className="z-10 overflow-scroll scrollbar-hide">
+                      <div className="overflow-scroll scrollbar-hide">
                         <div className="pb-5">
                           <div className="py-2 text-center text-2xl text-gray-900 dark:text-white">
                             Creator
@@ -153,7 +153,7 @@ export default function BondDetails() {
                           <div className="py-2 text-center text-2xl text-gray-900 dark:text-white">
                             Description
                           </div>
-                          <div className="text-center text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400 sm:text-lg lg:text-left">
+                          <div className="text-center text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400 sm:text-lg ">
                             {bondData?.description}
                           </div>
                         </div>
