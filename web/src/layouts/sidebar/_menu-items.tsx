@@ -35,11 +35,6 @@ export const menuItems = [
   //   icon: <PoolIcon />,
   //   href: routes.liquidity,
   // },
-  {
-    name: 'Create Bond',
-    icon: <PlusCircle />,
-    href: routes.createBond,
-  },
 
   // {
   //   name: 'Profile',
@@ -64,5 +59,10 @@ export const menuItems = [
         href: routes.createProposal,
       },
     ],
+  },
+  {
+    name: 'Create Bond',
+    icon: <PlusCircle />,
+    href: routes.createBond,
   },
 ];
