@@ -187,7 +187,7 @@ export default function VoteDetailsCard({ vote }: any) {
                     layout === LAYOUT_OPTIONS.RETRO,
                 })}
               >
-                Add POOL token to MetaMask
+                Add token to Wallet
               </Button>
             </div>
           </motion.div>
