@@ -41,32 +41,32 @@ const ProposalsPage: NextPageWithLayout = () => {
       ),
       path: 'active',
     },
-    {
-      title: (
-        <>
-          Off-Chain{' '}
-          {totalOffChainVote > 0 && (
-            <span className="ltr:ml-0.5 rtl:mr-0.5 ltr:md:ml-1.5 rtl:md:mr-1.5 ltr:lg:ml-2 rtl:lg:mr-2">
-              {totalOffChainVote}
-            </span>
-          )}
-        </>
-      ),
-      path: 'off-chain',
-    },
-    {
-      title: (
-        <>
-          Executable{' '}
-          {totalExecutableVote > 0 && (
-            <span className="ltr:ml-0.5 rtl:mr-0.5 ltr:md:ml-1.5 rtl:md:mr-1.5 ltr:lg:ml-2 rtl:lg:mr-2">
-              {totalExecutableVote}
-            </span>
-          )}
-        </>
-      ),
-      path: 'executable',
-    },
+    // {
+    //   title: (
+    //     <>
+    //       Off-Chain{' '}
+    //       {totalOffChainVote > 0 && (
+    //         <span className="ltr:ml-0.5 rtl:mr-0.5 ltr:md:ml-1.5 rtl:md:mr-1.5 ltr:lg:ml-2 rtl:lg:mr-2">
+    //           {totalOffChainVote}
+    //         </span>
+    //       )}
+    //     </>
+    //   ),
+    //   path: 'off-chain',
+    // },
+    // {
+    //   title: (
+    //     <>
+    //       Executable{' '}
+    //       {totalExecutableVote > 0 && (
+    //         <span className="ltr:ml-0.5 rtl:mr-0.5 ltr:md:ml-1.5 rtl:md:mr-1.5 ltr:lg:ml-2 rtl:lg:mr-2">
+    //           {totalExecutableVote}
+    //         </span>
+    //       )}
+    //     </>
+    //   ),
+    //   path: 'executable',
+    // },
     {
       title: (
         <>
@@ -124,7 +124,7 @@ const ProposalsPage: NextPageWithLayout = () => {
           <TabPanel className="focus:outline-none">
             <VoteList voteStatus={'active'} />
           </TabPanel>
-          <TabPanel className="focus:outline-none">
+          {/* <TabPanel className="focus:outline-none">
             <>
               <div className="mb-6 rounded-lg border-2 border-gray-900 bg-white p-5 dark:border-gray-700 dark:bg-light-dark xs:py-6 lg:px-6 lg:py-6">
                 <div className="mb-3 flex flex-col gap-3 xs:mb-4 sm:gap-4 md:flex-row md:items-center md:justify-between">
@@ -165,7 +165,7 @@ const ProposalsPage: NextPageWithLayout = () => {
           </TabPanel>
           <TabPanel className="focus:outline-none">
             <VoteList voteStatus={'executable'} />
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel className="focus:outline-none">
             <VoteList voteStatus={'past'} />
           </TabPanel>
