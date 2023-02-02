@@ -123,7 +123,7 @@ export const cripticVotes = [
   },
   {
     id: '2',
-    title: 'Aptos InChat - 100% funds to develop video chat function',
+    title: 'Aptos InChat - 100% funds to develop whole roadmap',
     accepted: {
       vote: 303,
       percentage: 30,
