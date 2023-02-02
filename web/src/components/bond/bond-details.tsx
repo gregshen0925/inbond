@@ -179,9 +179,7 @@ export default function BondDetails() {
                 <div className="block">
                   <div className="flex justify-center ">
                     <h2 className="text-3xl font-medium leading-[1.45em] -tracking-wider text-gray-900 dark:text-white ">
-                      {bondData?.name == ':Aptos InBond'
-                        ? 'Aptos InBond'
-                        : bondData?.name}
+                      {bondData?.name}
                     </h2>
                   </div>
                 </div>

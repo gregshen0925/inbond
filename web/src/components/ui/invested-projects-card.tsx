@@ -59,9 +59,7 @@ export default function InvestedGrid({
               className="text-ellipsis ltr:mr-3 rtl:ml-3 dark:border-gray-500"
             />
             <span className="overflow-hidden text-ellipsis">
-              {bondData?.name == ':Aptos InBond'
-                ? 'Aptos InBond'
-                : bondData?.name}
+              {bondData?.name}
             </span>
           </div>
         </div>
