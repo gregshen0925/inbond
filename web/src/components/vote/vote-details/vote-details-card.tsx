@@ -56,7 +56,9 @@ export default function VoteDetailsCard({ vote }: any) {
             {vote.title}
           </h3>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Proposal #{vote.id}
+            <a href="https://inbond-app.vercel.app/bond-details/0xa9eb381c1bad4a7b6909dbdf3a52b99b62148a0c657019292d98191e03b91631&0x1::aptos_coin::AptosCoin">
+              Proposal #{vote.id}
+            </a>
           </p>
 
           {/* show only when vote is active */}

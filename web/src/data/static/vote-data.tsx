@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const cripticVotes = [
   {
     id: '1',
-    title: 'PTIP 50 - Treasury Assets Management #1',
+    title: 'Aptos InChat - 20% funds to develop video chat function',
     accepted: {
       vote: 10303,
       percentage: 90,
@@ -123,7 +123,7 @@ export const cripticVotes = [
   },
   {
     id: '2',
-    title: 'PTIP 51 - Retroactive Proxy Contract Airdrop — Phase One',
+    title: 'Aptos InChat - 100% funds to develop video chat function',
     accepted: {
       vote: 303,
       percentage: 30,

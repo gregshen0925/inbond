@@ -52,7 +52,12 @@ export function useBlockchain() {
     }
   };
 
-  const convert = async (fundingType: string, founderType: string, creatorAddress: string, convertAmount: number) => {
+  const convert = async (
+    fundingType: string,
+    founderType: string,
+    creatorAddress: string,
+    convertAmount: number
+  ) => {
     if (!account?.address || !account?.publicKey) {
       toast.error('Please connect wallet first');
     } else {
@@ -74,7 +79,11 @@ export function useBlockchain() {
     }
   };
 
-  const redeem = async (coinType: string, createAddress: string, redeemAmount: number) => {
+  const redeem = async (
+    coinType: string,
+    createAddress: string,
+    redeemAmount: number
+  ) => {
     if (!account?.address || !account?.publicKey) {
       toast.error('Please connect wallet first');
     } else {
@@ -91,7 +100,7 @@ export function useBlockchain() {
       await client
         .waitForTransaction(transactionRes?.hash || '', { checkSuccess: true })
         .then(() => {
-          toast.success(`Successfully redeemed ${redeemAmount} APT`);
+          toast.success(`Successfully redeemed ${redeemAmount * 0.9} APT`);
         });
     }
   };
