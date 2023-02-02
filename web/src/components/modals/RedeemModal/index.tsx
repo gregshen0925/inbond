@@ -12,30 +12,37 @@ import { useBlockchain } from '@/lib/hooks/use-blockchain';
 type Props = {
   setRedeemModalOn: Dispatch<SetStateAction<boolean>>;
   redeemAmount: number;
-  creatorAddress:string;
-  coinType:string;
+  creatorAddress: string;
+  coinType: string;
+  setRedeemAmount: Dispatch<SetStateAction<number | undefined>>;
 };
 
-const RedeemModal = ({ setRedeemModalOn,redeemAmount,creatorAddress,coinType }: Props) => {
+const RedeemModal = ({
+  setRedeemModalOn,
+  redeemAmount,
+  creatorAddress,
+  coinType,
+  setRedeemAmount,
+}: Props) => {
   const clickOutsideRef = useRef<HTMLDivElement>(null);
-
-  const { redeem } = useBlockchain();
-
   const clickOutsidehandler = () => {
     setRedeemModalOn(false);
   };
+  useOnClickOutside(clickOutsideRef, clickOutsidehandler);
+
+  const { redeem } = useBlockchain();
 
   const handleRedeem = async () => {
     if (!redeemAmount) {
-        setRedeemModalOn(false);
+      setRedeemModalOn(false);
     }
     redeem(coinType, creatorAddress, redeemAmount).then(() => {
-    //   refetch();
-    setRedeemModalOn(false)
+      //   refetch();
+      setRedeemModalOn(false);
+      setRedeemAmount(0);
     });
   };
 
-  useOnClickOutside(clickOutsideRef, clickOutsidehandler);
   return (
     <div className="h-modal fixed z-50 flex w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-opacity-80 backdrop-blur-sm md:inset-0 md:h-full">
       <div className="relative h-full w-full max-w-md p-4 md:h-auto">
@@ -70,9 +77,9 @@ const RedeemModal = ({ setRedeemModalOn,redeemAmount,creatorAddress,coinType }: 
             </div>
           </div>
 
-          <div className='text-gray-900 dark:text-white text-lg text-center pt-4'>
-                You can only redeem 90% of your investment!
-                </div>
+          <div className="pt-4 text-center text-lg text-gray-900 dark:text-white">
+            You can only redeem 90% of your investment!
+          </div>
 
           <div className="flex justify-center space-x-2 p-6">
             <motion.div

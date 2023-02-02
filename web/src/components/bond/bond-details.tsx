@@ -90,6 +90,7 @@ export default function BondDetails() {
     }
     await invest(investAmount, params[0]).then(() => {
       refetch();
+      setInvestAmount(0);
     });
   };
 
@@ -105,6 +106,7 @@ export default function BondDetails() {
       convertAmount
     ).then(() => {
       refetch();
+      setInvestAmount(0);
     });
   };
 
@@ -171,6 +173,7 @@ export default function BondDetails() {
                 redeemAmount={redeemAmount || 0}
                 creatorAddress={params[0]}
                 coinType={params[1]}
+                setRedeemAmount={setRedeemAmount}
               />
             ) : null}
 
