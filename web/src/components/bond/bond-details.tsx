@@ -193,8 +193,7 @@ export default function BondDetails() {
                 <div className="flex justify-center py-5 text-gray-900 dark:text-white">
                   Progress :{' '}
                   {
-                    // Number(bondData?.funding.value) / 10 ** 8
-                    40
+                    Number(bondData?.funding.value) / 10 ** 8
                   }
                   /{Number(bondData?.target_funding_size) / 10 ** 8}{' '}
                   {params[1] == APT_TYPE ? '$APT' : null}
@@ -202,7 +201,7 @@ export default function BondDetails() {
 
                 <div className="flex justify-center pb-10 text-gray-900 dark:text-white">
                   You&apos;ve invested :{' '}
-                  {investedValue[0] ? investedValue[0] / 10 ** 8 : 2}{' '}
+                  {investedValue[0] ? investedValue[0] / 10 ** 8 : 0}{' '}
                   {params[1] == APT_TYPE ? '$APT' : null}
                 </div>
 
