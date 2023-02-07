@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import useOnClickOutside from '../../../lib/hooks/use-click-outside';
 import mixpanel from 'mixpanel-browser';
+import { Mixpanel } from '@/lib/utils/Mixpanel';
 
 interface Props {
   setConnectModalOn: Dispatch<SetStateAction<boolean>>;
@@ -24,7 +25,9 @@ const ConnectModal = ({ setConnectModalOn }: Props) => {
       const handleConnect = () => {
         connect(option.name);
         setConnectModalOn(false);
-        mixpanel.track(`A user is connecting with ${option.name}`);
+        Mixpanel.track(`A user is connecting with ${option.name}`, {
+          result: 'success',
+        });
       };
 
       return (

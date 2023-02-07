@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { targetNetwork } from '@/lib/constants/targetNetwork';
 import mixpanel from 'mixpanel-browser';
+import { Mixpanel } from '@/lib/utils/Mixpanel';
 
 type Props = {
   setConnectModalOn: Dispatch<SetStateAction<boolean>>;
@@ -18,7 +19,9 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
 
   const handleOpenWalletModal = () => {
     setConnectModalOn(true);
-    mixpanel.track('A user is openning Connect Wallet Modal!');
+    Mixpanel.track('A user is openning Connect Wallet Modal!', {
+      result: 'success',
+    });
   };
 
   return (
