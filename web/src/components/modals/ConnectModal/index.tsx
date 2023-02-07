@@ -2,7 +2,7 @@ import React, { useRef, type Dispatch, type SetStateAction } from 'react';
 import { motion } from 'framer-motion';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import useOnClickOutside from '../../../lib/hooks/use-click-outside';
-import Image from 'next/image';
+import mixpanel from 'mixpanel-browser';
 
 interface Props {
   setConnectModalOn: Dispatch<SetStateAction<boolean>>;
@@ -20,6 +20,13 @@ const ConnectModal = ({ setConnectModalOn }: Props) => {
   const renderWalletConnectorGroup = () => {
     return wallets.map((wallet) => {
       const option = wallet.adapter;
+
+      const handleConnect = () => {
+        connect(option.name);
+        setConnectModalOn(false);
+        mixpanel.track(`A user is connecting with ${option.name}`);
+      };
+
       return (
         <motion.div
           whileTap={{
@@ -32,10 +39,7 @@ const ConnectModal = ({ setConnectModalOn }: Props) => {
           <li>
             <div className="group flex items-center rounded-lg bg-gray-800 p-3 text-base font-bold text-white hover:bg-gray-500 hover:shadow">
               <button
-                onClick={() => {
-                  connect(option.name);
-                  setConnectModalOn(false);
-                }}
+                onClick={handleConnect}
                 id={option.name.split(' ').join('_')}
                 key={option.name}
                 // className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-3 text-xs font-bold text-white lg:px-5 lg:py-3 lg:text-base">
@@ -49,7 +53,11 @@ const ConnectModal = ({ setConnectModalOn }: Props) => {
                     width={2}
                     height={2}
                   /> */}
-                  <img className="h-8 w-8 rounded-full" src={option.icon} />
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    alt=""
+                    src={option.icon}
+                  />
 
                   <div className="pt-1">{option.name}</div>
                   {option.name === 'Martian' ||

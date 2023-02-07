@@ -10,6 +10,7 @@ import SettingsDrawer from '@/components/settings/settings-drawer';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import mixpanel from 'mixpanel-browser';
 
 // base css file
 import 'swiper/css';
@@ -17,8 +18,8 @@ import '@/assets/css/scrollbar.css';
 import '@/assets/css/globals.css';
 import '@/assets/css/range-slider.css';
 import '@/assets/css/styles.css';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -48,10 +49,17 @@ const toastOptions = {
 
 const queryClient = new QueryClient();
 
-function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
+function InBondApp({ Component, pageProps }: AppPropsWithLayout) {
   //could remove this if you don't need to page level layout
   const getLayout = Component.getLayout ?? ((page) => page);
-  const router = useRouter();
+
+  useEffect(() => {
+    mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
+      debug: true,
+      ignore_dnt: true,
+      api_host: 'https://api.mixpanel.com',
+    });
+  }, []);
 
   return (
     <>
@@ -80,4 +88,4 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   );
 }
 
-export default CustomApp;
+export default InBondApp;

@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { targetNetwork } from '@/lib/constants/targetNetwork';
+import mixpanel from 'mixpanel-browser';
 
 type Props = {
   setConnectModalOn: Dispatch<SetStateAction<boolean>>;
@@ -14,6 +15,12 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
   useEffect(() => {
     setAddress(account?.address?.toString());
   }, [connected, account]);
+
+  const handleOpenWalletModal = () => {
+    setConnectModalOn(true);
+    mixpanel.track('A user is openning Connect Wallet Modal!');
+  };
+
   return (
     <div className="pt-4">
       <motion.div
@@ -34,8 +41,10 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
             }`}
           </span>
           <button
-            onClick={() =>
-              connected ? setWalletInfoModalOn(true) : setConnectModalOn(true)
+            onClick={
+              connected
+                ? () => setWalletInfoModalOn(true)
+                : handleOpenWalletModal
             }
             type="button"
             name="Hover"
