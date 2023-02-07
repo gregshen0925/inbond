@@ -1,7 +1,7 @@
 import mixpanel, { Dict } from 'mixpanel-browser';
 
-const enabled = process.env.MIXPANEL_TOKEN;
-console.log('enabled:', enabled);
+const enabled = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
+// console.log('enabled:', enabled);
 export const Mixpanel = {
   identify: (id: string) => {
     if (enabled) mixpanel.identify(id);
