@@ -49,17 +49,16 @@ const toastOptions = {
 
 const queryClient = new QueryClient();
 
+if (process.env.NEXT_PUBLIC_MIXPANEL_TOKEN) {
+  mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN, {
+    debug: true,
+    ignore_dnt: true,
+  });
+}
+
 function InBondApp({ Component, pageProps }: AppPropsWithLayout) {
   //could remove this if you don't need to page level layout
   const getLayout = Component.getLayout ?? ((page) => page);
-
-  useEffect(() => {
-    mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
-      debug: true,
-      ignore_dnt: true,
-      api_host: 'https://api.mixpanel.com',
-    });
-  }, []);
 
   return (
     <>
