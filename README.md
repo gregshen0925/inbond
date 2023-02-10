@@ -2,14 +2,12 @@ This is the alpha version frontend app for InBond.
 Created by Next.js, TailwindCSS, TypeScript, Aptos TypeScript SDK, Hippospace Wallet Adapter.
 
 # What is InBond?
-InBond is convertible bond protocol on Aptos for fundraising which is designed to prevent investors from getting rugpull.
 
-# How InBond Works?
-## For Investors
-When you invest in a project, instead of getting token first, you get a zero coupon bond. This bond can be used to vote and you can convert it to token whenever you want.
+With our platform, investing in ICOs has never been easier or more secure. The InBond protocol works by giving investors a convertible bond when they invest in a project instead of getting tokens upfront. This bond can be used for voting(for proposals) and can be converted to tokens at any time or even redeem their investment back. Meanwhile, developers should create proposals and wait approval before they could withdraw the funds they have raised.
 
-## For Developers
-When you raise fund, all the funds are locked in a pool. If the team wants to take a portion of the fund to do something, they should create a proposal and wait for investors to vote.
+Besides we can also create a convertible market (innovative in web3) to enable tradings and.generate platform income.
+
+By adding tokenomic and well-designed mathematical models to InBond, we incentivize both investors and honorable developers to meet on our platform.
 
 # Why Aptos?
 Upgradability of Move langauge enables builders to add function step by step. In EVM, if a dev wants to add function for a coin, they develop new contracts so that users have to approve new contracts. Not only causes bad user experience but also safety issues since user could approve malicious contract from phishing sites.
