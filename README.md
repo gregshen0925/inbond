@@ -15,3 +15,7 @@ When you raise fund, all the funds are locked in a pool. If the team wants to ta
 Upgradability of Move langauge enables builders to add function step by step. In EVM, if a dev wants to add function for a coin, they develop new contracts so that users have to approve new contracts. Not only causes bad user experience but also safety issues since user could approve malicious contract from phishing sites.
 
 Developed by InJoy Labs. We're here to BUIDL!
+
+# Additional info
+[InBond Module Doc](https://github.com/gregshen0925/inbond/blob/main/inbond-module/README.md)
+[InBond frontend Doc](https://github.com/gregshen0925/inbond/blob/main/web/README.md)
