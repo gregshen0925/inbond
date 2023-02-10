@@ -1,9 +1,9 @@
-import { client, TREASURY_MODULE_ID } from './aptosClient';
+import { client, INBOND_MODULE_ID } from './aptosClient';
 
 export const getBond = async (creatorAddress: string, coinType: string) => {
   const { type, data } = await client.getAccountResource(
     creatorAddress,
-    TREASURY_MODULE_ID + `Treasury<${coinType}>`
+    INBOND_MODULE_ID + `Project<${coinType}>`
   );
   return { type, data };
 };

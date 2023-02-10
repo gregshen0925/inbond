@@ -3,7 +3,7 @@ import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { useQuery } from '@tanstack/react-query';
 import type { Types } from 'aptos';
 import toast from 'react-hot-toast';
-import { client, coinClient, TREASURY_MODULE_ID } from '../utils/aptosClient';
+import { client, coinClient, INBOND_MODULE_ID } from '../utils/aptosClient';
 import { getInvestedList } from '../utils/getInvestedList';
 import { getAllProjects } from '../utils/getAllProjects';
 
@@ -36,7 +36,7 @@ export function useBlockchain() {
     } else {
       const payload: Types.TransactionPayload = {
         type: 'entry_function_payload',
-        function: `${TREASURY_MODULE_ID}invest`,
+        function: `${INBOND_MODULE_ID}invest`,
         type_arguments: ['0x1::aptos_coin::AptosCoin'],
         arguments: [creator_address, investAmount! * 10 ** 8],
       };
@@ -63,7 +63,7 @@ export function useBlockchain() {
     } else {
       const payload: Types.TransactionPayload = {
         type: 'entry_function_payload',
-        function: `${TREASURY_MODULE_ID}convert_all`,
+        function: `${INBOND_MODULE_ID}convert_all`,
         type_arguments: [fundingType, founderType],
         arguments: [creatorAddress],
       };
@@ -89,7 +89,7 @@ export function useBlockchain() {
     } else {
       const payload: Types.TransactionPayload = {
         type: 'entry_function_payload',
-        function: `${TREASURY_MODULE_ID}redeem_all`,
+        function: `${INBOND_MODULE_ID}redeem_all`,
         type_arguments: [coinType],
         arguments: [createAddress],
       };

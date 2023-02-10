@@ -3,7 +3,7 @@ import { Verified } from '@/components/icons/verified';
 import Avatar from '@/components/ui/avatar';
 import type { BondData, KV } from '@/types/typing';
 import { useEffect, useState } from 'react';
-import { client, TREASURY_MODULE_ID } from '@/lib/utils/aptosClient';
+import { client, INBOND_MODULE_ID } from '@/lib/utils/aptosClient';
 
 type Props = {
   project: KV;
@@ -27,7 +27,7 @@ export default function BondGrid({ project }: Props) {
         (
           await client.getAccountResource(
             project.key,
-            TREASURY_MODULE_ID + `Treasury<${project.value}>`
+            INBOND_MODULE_ID + `Project<${project.value}>`
           )
         ).data as BondData
       );

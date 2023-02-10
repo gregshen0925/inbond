@@ -1,13 +1,13 @@
 import {
     client,
-    CREATOR_ADDRESS,
-    FOUNDERINFOS_MODULE_ID,
+    MODULE_ADDRESS,
+    INBOND_MODULE_ID,
   } from './aptosClient';
   
   export const getAllProjects = async () => {
     const { type, data } = await client.getAccountResource(
-      CREATOR_ADDRESS,
-      FOUNDERINFOS_MODULE_ID + 'FounderInfos'
+      MODULE_ADDRESS,
+      INBOND_MODULE_ID + 'ProjectInfoList'
     );
     return { type, data };
   };

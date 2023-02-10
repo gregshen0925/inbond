@@ -14,4 +14,4 @@ subdir = 'aptos-move/framework/aptos-token'
 
 
 [addresses]
-injoy_labs = "6064192b201dc3a7cff0513654610b141e754c9eb1ff22d40622f858c9d912e9"
+injoy_labs = "0dc7b2c036447526dbc3bf97e1f76944a9b57492377f2100f7537a59b9df685f"

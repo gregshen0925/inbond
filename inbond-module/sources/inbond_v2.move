@@ -3,7 +3,7 @@ module injoy_labs::inbond_v2 {
     use aptos_framework::coin::{Self, Coin};
     use aptos_framework::account::{Self, SignerCapability};
     use aptos_framework::signer;
-    use aptos_framework::voting;
+    // use aptos_framework::voting;
     use aptos_std::option;
     use aptos_std::simple_map::{Self, SimpleMap};
     use aptos_std::table::{Self, Table};
@@ -12,20 +12,19 @@ module injoy_labs::inbond_v2 {
     use std::string::{Self, String};
     use std::error;
     use std::type_info;
-    use std::vector;
     use std::bcs;
-    use injoy_labs::to_string;
+    use injoy_labs::op_voting;
 
     /// ProposalStateEnum representing proposal state.
     const PROPOSAL_STATE_SUCCEEDED: u64 = 1;
     /// Max u64 number
     const MAX_U64: u64 = 0xffffffffffffffff;
     /// Additional seed to create resource account
-    const INBOND_SEED: vector<u8> = b"InBond Protocol V2 ";
+    const INBOND_POSTFIX: vector<u8> = b" - Launched on InBond Protocol";
     /// Property map key: voting power
-    const KEY_VOTING_POWER: vector<u8> = b"voting power";
+    const KEY_VOTING_POWER: vector<u8> = b"voting_power";
     /// Property map key: converted amount
-    const KEY_REMAINING_AMOUNT: vector<u8> = b"remaining amount";
+    const KEY_REMAINING_AMOUNT: vector<u8> = b"remaining_amount";
 
     /// No Project under the account
     const EPROJECT_NOT_FOUND: u64 = 0;
@@ -66,7 +65,7 @@ module injoy_labs::inbond_v2 {
     /// Index of votes
     struct RecordKey has copy, drop, store {
         investor_addr: address,
-        bond_id: String,
+        bond_id: u64,
         proposal_id: u64,
     }
 
@@ -113,11 +112,10 @@ module injoy_labs::inbond_v2 {
         voting_duration_secs: u64,
         founder_valt_size: u64,
     ) acquires ProjectInfoList {
-        let seed = INBOND_SEED;
-        vector::append(&mut seed, *string::bytes(&name));
-        let (resource_signer, resource_signer_cap) = account::create_resource_account(founder, seed);
+        string::append_utf8(&mut name, INBOND_POSTFIX);
+        let (resource_signer, resource_signer_cap) = account::create_resource_account(founder, *string::bytes(&name));
 
-        voting::register<WithdrawalProposal>(&resource_signer);
+        op_voting::register<WithdrawalProposal>(&resource_signer);
 
         let founder_address = signer::address_of(founder);
         move_to(&resource_signer, Project<FundingType> {
@@ -153,8 +151,23 @@ module injoy_labs::inbond_v2 {
             name,
             description,
             image_url,
-            MAX_U64,
+            0,
             vector[true, true, false],
+        );
+        token::create_tokendata(
+            &resource_signer,
+            name,
+            name,
+            description,
+            0,
+            image_url,
+            @injoy_labs,
+            100,
+            1,
+            token::create_token_mutability_config(&vector[false, true, false, true, true]),
+            vector[],
+            vector[],
+            vector[],
         );
     }
 
@@ -181,27 +194,25 @@ module injoy_labs::inbond_v2 {
 
         let project_signer = account::create_signer_with_capability(&project.signer_cap);
         token::opt_in_direct_transfer(investor, true);
-        let next_token_name = get_next_token_name<FundingType>(project_address, project.name);
-        let token_data_id = token::create_tokendata(
-            &project_signer,
+        let token_data_id = token::create_token_data_id(
+            project_address,
             project.name,
-            next_token_name,
-            project.description,
-            0,
-            project.image_url,
-            @injoy_labs,
-            100,
+            project.name,
+        );
+        let investor_addr = signer::address_of(investor);
+        token::mint_token_to(
+            &project_signer,
+            investor_addr,
+            token_data_id,
             1,
-            token::create_token_mutability_config(&vector[false, true, false, true, true]),
+        );
+        token::mutate_one_token(
+            &project_signer,
+            investor_addr,
+            token::create_token_id(token_data_id, 0),
             vector[string::utf8(KEY_VOTING_POWER), string::utf8(KEY_REMAINING_AMOUNT)],
             vector[bcs::to_bytes(&amount), bcs::to_bytes(&amount)],
             vector[string::utf8(b"u64"), string::utf8(b"u64")],
-        );
-        token::mint_token_to(
-            &project_signer,
-            signer::address_of(investor),
-            token_data_id,
-            1,
         );
         token::opt_in_direct_transfer(investor, false);
     }
@@ -231,7 +242,7 @@ module injoy_labs::inbond_v2 {
             error::permission_denied(ENOT_FOUNDER_PROPOSE),
         );
 
-        voting::create_proposal(
+        op_voting::create_proposal(
             founder_addr,
             project_address,
             WithdrawalProposal { withdrawal_amount, beneficiary },
@@ -250,7 +261,7 @@ module injoy_labs::inbond_v2 {
     public entry fun vote<FundingType>(
         investor: &signer,
         project_address: address,
-        bond_id: String,
+        bond_id: u64,
         proposal_id: u64,
         should_pass: bool,
     ) acquires Project {
@@ -260,8 +271,8 @@ module injoy_labs::inbond_v2 {
         let token_id = token::create_token_id_raw(
             project_address,
             project.name,
+            project.name,
             bond_id,
-            0,
         );
         assert!(
             token::balance_of(investor_addr, token_id) > 0,
@@ -280,7 +291,7 @@ module injoy_labs::inbond_v2 {
 
         let (voting_powner, _) = get_properties(investor_addr, token_id);
 
-        voting::vote<WithdrawalProposal>(
+        op_voting::vote<WithdrawalProposal>(
             &empty_proposal(),
             copy project_address,
             proposal_id,
@@ -304,7 +315,7 @@ module injoy_labs::inbond_v2 {
     public entry fun redeem<FundingType>(
         investor: &signer,
         project_address: address,
-        bond_id: String,
+        bond_id: u64,
         amount: u64,
     ) acquires Project {
         let investor_addr = signer::address_of(investor);
@@ -313,9 +324,9 @@ module injoy_labs::inbond_v2 {
         let token_data_id = token::create_token_data_id(
             project_address,
             project.name,
-            bond_id,
+            project.name,
         );
-        let token_id = token::create_token_id(token_data_id, 0);
+        let token_id = token::create_token_id(token_data_id, bond_id);
         let (voting_power, remaining_amount) = get_properties(investor_addr, token_id);
         assert!(remaining_amount >= amount, error::invalid_argument(ENOT_ENOUGH_REMAINING_AMOUNT));
         remaining_amount = remaining_amount - amount;
@@ -337,7 +348,7 @@ module injoy_labs::inbond_v2 {
     public entry fun convert<FundingType, FounderType>(
         investor: &signer,
         project_address: address,
-        bond_id: String,
+        bond_id: u64,
         amount: u64,
     ) acquires Project, FounderVault {
         let investor_addr = signer::address_of(investor);
@@ -353,10 +364,10 @@ module injoy_labs::inbond_v2 {
         let token_data_id = token::create_token_data_id(
             project_address,
             project.name,
-            bond_id,
+            project.name,
         );
 
-        let token_id = token::create_token_id(token_data_id, 0);
+        let token_id = token::create_token_id(token_data_id, bond_id);
 
         let (voting_power, remaining_amount) = get_properties(investor_addr, token_id);
 
@@ -409,11 +420,6 @@ module injoy_labs::inbond_v2 {
             exists<Project<FundingType>>(project_address),
             error::not_found(EPROJECT_NOT_FOUND),
         );
-    }
-
-    fun get_next_token_name<FundingType>(project_address: address, project_name: String): String {
-        let group_supply = token::get_collection_supply(project_address, project_name);
-        to_string::to_string(option::destroy_some(group_supply))
     }
 
     fun empty_proposal(): WithdrawalProposal {

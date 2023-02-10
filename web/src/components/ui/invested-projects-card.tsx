@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getBond } from '@/lib/utils/getBond';
 import type { BondData } from '@/types/typing';
 import { useEffect, useState } from 'react';
-import { client, TREASURY_MODULE_ID } from '@/lib/utils/aptosClient';
+import { client, INBOND_MODULE_ID } from '@/lib/utils/aptosClient';
 
 type Props = {
   creatorAddress: string;
@@ -40,7 +40,7 @@ export default function InvestedGrid({
     const getBondData = async () => {
       const resource = await client.getAccountResource(
         creatorAddress,
-        TREASURY_MODULE_ID + `Treasury<${coinType}>`
+        INBOND_MODULE_ID + `Project<${coinType}>`
       );
       setBondData(resource.data as BondData);
     };
