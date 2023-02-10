@@ -1,16 +1,3 @@
-# InBond Protocol
-A convertible bond protocol on Aptos for fundraising which is designed to prevent investors from getting rug-pulled.
-
-# How InBond Works?
-## For Investors
-When you invest in a project, instead of getting token first, you get a zero coupon bond. This bond can be used to vote and you can convert it to token whenever you want.
-
-## For Developers
-When you raise fund, all the funds are locked in a pool. If the team wants to take a portion of the fund to do something, they should create a proposal and wait for investors to vote.
-
-# Why on Aptos?
-Upgradability of Move langauge enables builders to add function step by step. In EVM, if a dev wants to add function for a coin, they develop new contracts so that users have to approve new contracts. Not only causes bad user experience but also safety issues since user could approve malicious contract from phishing sites.
-
 <a name="0x6064192b201dc3a7cff0513654610b141e754c9eb1ff22d40622f858c9d912e9_inbond"></a>
 
 # Module `0x6064192b201dc3a7cff0513654610b141e754c9eb1ff22d40622f858c9d912e9::inbond`
