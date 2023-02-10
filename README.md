@@ -18,4 +18,5 @@ Developed by InJoy Labs. We're here to BUIDL!
 
 # Additional info
 [InBond Module Doc](https://github.com/gregshen0925/inbond/blob/main/inbond-module/README.md)
+
 [InBond frontend Doc](https://github.com/gregshen0925/inbond/blob/main/web/README.md)
