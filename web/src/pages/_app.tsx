@@ -18,8 +18,6 @@ import '@/assets/css/scrollbar.css';
 import '@/assets/css/globals.css';
 import '@/assets/css/range-slider.css';
 import '@/assets/css/styles.css';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -75,7 +73,9 @@ function InBondApp({ Component, pageProps }: AppPropsWithLayout) {
         <Toaster position="top-center" toastOptions={toastOptions} />
         <AptosWalletProvider>
           <QueryClientProvider client={queryClient}>
-            {getLayout(<Component {...pageProps} />)}
+            <div className="font-mono">
+              {getLayout(<Component {...pageProps} />)}
+            </div>
           </QueryClientProvider>
           <SettingsButton />
           <SettingsDrawer />
