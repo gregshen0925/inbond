@@ -32,8 +32,8 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
           borderRadius: '100%',
         }}
       >
-        <div className="button-container-1">
-          <span className="mas">
+        {/* <div className="button-container-1"> */}
+        {/* <span className="mas">
             {`${
               connected
                 ? network?.name?.toLowerCase() ==
@@ -42,28 +42,27 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
                   : `Switch to ${targetNetwork}`
                 : 'Connect Wallet'
             }`}
-          </span>
-          <button
-            onClick={
+          </span> */}
+        <button
+          onClick={
+            connected ? () => setWalletInfoModalOn(true) : handleOpenWalletModal
+          }
+          // type="button"
+          // name="Hover"
+          className="rounded-2xl border-[1px] border-white bg-black px-2 py-2 font-mono text-white sm:px-4 sm:py-4"
+        >
+          <div className={`${connected ? null : 'animate-pulse'}`}>
+            {`${
               connected
-                ? () => setWalletInfoModalOn(true)
-                : handleOpenWalletModal
-            }
-            type="button"
-            name="Hover"
-          >
-            <div className={`${connected ? null : 'animate-pulse'}`}>
-              {`${
-                connected
-                  ? network?.name?.toLowerCase() ==
-                    (targetNetwork || 'Aptos testnet')
-                    ? network?.name
-                    : `Switch to ${targetNetwork}`
-                  : 'Connect Wallet'
-              }`}
-            </div>
-          </button>
-        </div>
+                ? network?.name?.toLowerCase() ==
+                  (targetNetwork || 'Aptos testnet')
+                  ? network?.name
+                  : `Switch to ${targetNetwork}`
+                : 'Connect Wallet'
+            }`}
+          </div>
+        </button>
+        {/* </div> */}
       </motion.div>
 
       <div className="justify-end py-1 text-center text-sm font-bold dark:text-white ">
