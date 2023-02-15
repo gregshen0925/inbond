@@ -8,14 +8,7 @@ import { getInvestedList } from '../utils/getInvestedList';
 import { getAllProjects } from '../utils/getAllProjects';
 
 export function useBlockchain() {
-  const {
-    account,
-    signAndSubmitTransaction,
-    connected,
-    wallet: currentWallet,
-    signMessage,
-    signTransaction,
-  } = useWallet();
+  const { account, signAndSubmitTransaction } = useWallet();
 
   const {
     data: allProjects,
