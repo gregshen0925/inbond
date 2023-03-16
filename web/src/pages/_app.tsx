@@ -66,7 +66,7 @@ function InBondApp({ Component, pageProps }: AppPropsWithLayout) {
           name="viewport"
           content="width=device-width, initial-scale=1 maximum-scale=1"
         />
-        <link rel="icon" href="https://i.imgur.com/W7K187R.png" />
+        <link rel="icon" href="https://i.imgur.com/A5WMCyu.png" />
         <title>InBond</title>
       </Head>
       <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">

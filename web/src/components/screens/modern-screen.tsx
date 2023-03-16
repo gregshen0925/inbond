@@ -32,7 +32,7 @@ export default function ModernScreen({ className }: Props) {
 
   return (
     <>
-      <NextSeo title="InBond" description="InBond - By InJoy Labs" />
+      <NextSeo title="InBond" description="InBond" />
       {/* <div className="flex flex-wrap">
         <div className="mb-8 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
           <CoinSlider coins={coinSlideData} />

@@ -3,8 +3,8 @@ import Image from '@/components/ui/image';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useIsDarkMode } from '@/lib/hooks/use-is-dark-mode';
-import lightLogo from '@/assets/images/injoylabslogo-dark.png';
-import darkLogo from '@/assets/images/injoylabslogo-light.png';
+import lightLogo from '@/assets/images/inbond-logo.png';
+import darkLogo from '@/assets/images/inbond-logo.png';
 import routes from '@/config/routes';
 import { LAYOUT_OPTIONS } from '@/lib/constants/layout-options';
 
@@ -30,10 +30,10 @@ export default function Logo() {
     >
       <span className="relative flex overflow-hidden">
         {isMounted && isDarkMode && (
-          <Image src={darkLogo} alt="Criptic" priority />
+          <Image src={darkLogo} alt="InBond" priority />
         )}
         {isMounted && !isDarkMode && (
-          <Image src={lightLogo} alt="Criptic" priority />
+          <Image src={lightLogo} alt="InBond" priority />
         )}
       </span>
     </AnchorLink>
