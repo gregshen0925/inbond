@@ -28,47 +28,15 @@ type SearchFromProps = {
 
 const tags = [
   {
-    label: 'illustration',
+    label: 'DeFi',
     link: '#',
   },
   {
-    label: '3d',
+    label: 'NFT',
     link: '#',
   },
   {
-    label: 'animation',
-    link: '#',
-  },
-  {
-    label: 'digital',
-    link: '#',
-  },
-  {
-    label: 'fanart',
-    link: '#',
-  },
-  {
-    label: 'concept',
-    link: '#',
-  },
-  {
-    label: 'sports',
-    link: '#',
-  },
-  {
-    label: 'fantasy',
-    link: '#',
-  },
-  {
-    label: 'abstract',
-    link: '#',
-  },
-  {
-    label: 'colorful',
-    link: '#',
-  },
-  {
-    label: 'modern',
+    label: 'Tools',
     link: '#',
   },
 ];

@@ -49,7 +49,7 @@ const ConnectButton = ({ setWalletInfoModalOn, setConnectModalOn }: Props) => {
           }
           // type="button"
           // name="Hover"
-          className="rounded-2xl border-[1px] border-white bg-black px-2 py-2 font-mono text-white sm:px-4 sm:py-4"
+          className="h-[60px] w-[180px] rounded-2xl border-[1px] border-white bg-black font-mono text-white"
         >
           <div className={`${connected ? null : 'animate-pulse'}`}>
             {`${
